@@ -1,0 +1,7 @@
+//
+// Custom resources that Microsoft Visual C++ does not have a visual editor for.
+//
+
+#ifdef APSTUDIO_INVOKED
+#error This file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED

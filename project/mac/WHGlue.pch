@@ -1,0 +1,12 @@
+//
+// WHGlue.pch
+// Harmony
+//
+
+//
+// Precompiled header that contains useful headers for the Mac platform layer.
+//
+
+#ifdef __OBJC__
+#import <Cocoa/Cocoa.h>
+#endif

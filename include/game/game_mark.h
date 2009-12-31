@@ -1,0 +1,43 @@
+//
+// game_mark.h
+// Harmony
+//
+
+#ifndef HARMONY_GAME_MARK_H
+#define HARMONY_GAME_MARK_H
+
+#include <boost/shared_ptr.hpp>
+#include <boost/enable_shared_from_this.hpp>
+
+#include "vec2.h"
+#include "game_level_fwd.h"
+
+namespace harmony {
+	namespace game {
+		// An invisible, intangible point in the game world. Also the base
+		// class of actors.
+		class mark : public boost::enable_shared_from_this<mark> {
+		public:
+			// Checking the dynamic type of the mark.
+			virtual bool is_mark() const;
+			bool is_actor() const;
+			
+			// The level and position where this mark resides.
+			level_ref level() const { return level_; }
+			vec2 position() const { return position_; }
+			
+			// Change the position of the mark.
+			void set_position(const vec2 & new_position);
+			void set_position(const level_ref & new_level, const vec2 & new_position);
+			void remove_from_level();
+			
+		private:
+			level_ref level_;
+			vec2 position_;
+		};
+		
+		typedef boost::shared_ptr<mark> mark_ref;
+	}
+}
+
+#endif // HARMONY_GAME_MARK_H
