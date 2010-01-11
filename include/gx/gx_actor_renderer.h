@@ -24,8 +24,7 @@ namespace harmony {
 			void draw(game::elapsed_t elapsed, game::level & level,
 				gl::texture_cache & tex_cache) const;
 			void draw(game::elapsed_t elapsed, game::actor & actor,
-				gl::texture_cache & tex_cache, gl::using_shader & active_shader)
-				const;
+				gl::texture_cache & tex_cache) const;
 			
 		private:
 			gl::shader_program sprite_shader_;

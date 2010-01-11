@@ -15,5 +15,6 @@
 #include "gl_using_rotation.h"
 #include "gl_using_shader.h"
 #include "gl_using_translation.h"
+#include "gl_using_uniform.h"
 #include "gl_using_vertices.h"
 #include "gl_viewport.h"

@@ -31,17 +31,13 @@ namespace harmony {
 		// Translate to the layer origin.
 		gl::using_translation translation(layer.origin() * layer.tile_size());
 		
-		// Determine the uniform locations.
-		const gl::uniform_t tile_uniform = tile_shader_.uniform_location("tile");
-		const gl::uniform_t rotation_uniform = tile_shader_.uniform_location("rotation");
-		
-		// Initialize uniform values.
-		gl::texture * current_texture = &(*layer.tile(cell)).texture();
-		gl::int_t current_rotation = 0;
-		
-		// Set initial uniform values.
-		active_shader.set_uniform(tile_uniform, *current_texture);
-		active_shader.set_uniform(rotation_uniform, current_rotation);
+		// Initialize uniforms.
+		gl::using_uniform<gl::texture_ref> current_texture(
+			tile_shader_, "tile", (*layer.tile(cell)).texture()
+		);
+		gl::using_uniform<gl::int_t> current_rotation(
+			tile_shader_, "rotation", 0
+		);
 		
 		// Loop through the rest of the cells.
 		for (; cell.uy() < layer.height(); cell.incr_y()) {
@@ -50,16 +46,10 @@ namespace harmony {
 				game::terrain_tile_ref tile = layer.tile(cell);
 				if (tile) {
 					// Set the texture.
-					if (&tile->texture() != current_texture) {
-						current_texture = &tile->texture();
-						active_shader.set_uniform(tile_uniform, *current_texture);
-					}
+					current_texture.set(tile->texture());
 					
 					// Set the rotation.
-					if (tile->rotation() != current_rotation) {
-						current_rotation = tile->rotation();
-						active_shader.set_uniform(rotation_uniform, current_rotation);
-					}
+					current_rotation.set(tile->rotation());
 					
 					// Actually draw the tile.
 					gl::using_translation translation(cell * layer.tile_size());

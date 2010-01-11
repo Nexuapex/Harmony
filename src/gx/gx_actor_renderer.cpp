@@ -18,9 +18,13 @@ namespace harmony {
 		// Activate the shader.
 		gl::using_shader active_shader(sprite_shader_);
 		
-		// DEMO: Transparency.
-		active_shader.set_uniform("use_transparent_color", true);
-		active_shader.set_uniform("transparent_color", gl::color(1.0f, 1.0f, 1.0f));
+		// DEMO: Transparency uniforms.
+		gl::using_uniform<bool> use_transparent_color(
+			sprite_shader_, "use_transparent_color", true
+		);
+		gl::using_uniform<gl::color> transparent_color(
+			sprite_shader_, "transparent_color", gl::color(1.0f, 1.0f, 1.0f)
+		);
 		
 		// Iterate through all actors attached to the level.
 		for (game::level::actor_iterator iter(level); iter; ++iter) {
@@ -28,12 +32,12 @@ namespace harmony {
 			
 			// Draw any actors that have an associated sprite.
 			if (actor->sprite())
-				draw(elapsed, *actor, tex_cache, active_shader);
+				draw(elapsed, *actor, tex_cache);
 		}
 	}
 	
 	void gx::actor_renderer::draw(game::elapsed_t elapsed, game::actor & actor,
-		gl::texture_cache & tex_cache, gl::using_shader & active_shader) const
+		gl::texture_cache & tex_cache) const
 	{
 		// Make rendering time elapsed for the actor.
 		actor.sprite_state().step(elapsed);
@@ -52,7 +56,7 @@ namespace harmony {
 		using_sprite active_sprite(sprite);
 		
 		// Set up the shader.
-		active_shader.set_uniform("sprite", *texture);
+		gl::using_uniform<gl::texture_ref> sprite_texture(sprite_shader_, "sprite", texture);
 		
 		// Translate to the actor's position.
 		gl::using_translation translation(actor.position());

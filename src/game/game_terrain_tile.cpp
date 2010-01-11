@@ -14,8 +14,8 @@ namespace harmony {
 	
 	game::terrain_tile::~terrain_tile() {}
 	
-	gl::texture & game::terrain_tile::texture() const {
-		return *texture_;
+	gl::texture_ref game::terrain_tile::texture() const {
+		return texture_;
 	}
 	
 	gl::int_t game::terrain_tile::rotation() const {

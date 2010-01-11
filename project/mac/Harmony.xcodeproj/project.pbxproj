@@ -151,6 +151,7 @@
 		B4D4E92B10D5AD6900C43C87 /* WHGameWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WHGameWindowDelegate.h; path = ../../include/mac/WHGameWindowDelegate.h; sourceTree = SOURCE_ROOT; };
 		B4D4E92C10D5AD6900C43C87 /* WHGameWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WHGameWindowDelegate.m; path = ../../src/mac/WHGameWindowDelegate.m; sourceTree = "<group>"; };
 		B4D6696710DC9CA300C34868 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shader; path = ../../shader; sourceTree = SOURCE_ROOT; };
+		B4DC74D010FB82B5005C6691 /* gl_using_uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_using_uniform.h; path = ../../include/gl/gl_using_uniform.h; sourceTree = SOURCE_ROOT; };
 		B4DE009A10D622E000077598 /* gl_clear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_clear.h; path = ../../include/gl/gl_clear.h; sourceTree = SOURCE_ROOT; };
 		B4DE009B10D622E000077598 /* gl_clear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gl_clear.cpp; path = ../../src/gl/gl_clear.cpp; sourceTree = SOURCE_ROOT; };
 		B4DE00CC10D626C200077598 /* gl_camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_camera.h; path = ../../include/gl/gl_camera.h; sourceTree = SOURCE_ROOT; };
@@ -2445,6 +2446,7 @@
 				B4FC574F10DE99830013CA88 /* gl_using_rotation.h */,
 				B44D8AE210DC64AE009A16CF /* gl_using_shader.h */,
 				B4D4106510DD6EB500D722A8 /* gl_using_translation.h */,
+				B4DC74D010FB82B5005C6691 /* gl_using_uniform.h */,
 				B4C2D9A610DC3B1E00BF1E38 /* gl_using_vertices.h */,
 				B48E546110D5D38800CEE891 /* gl_viewport.cpp */,
 				B48E546010D5D38800CEE891 /* gl_viewport.h */,

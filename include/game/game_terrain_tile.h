@@ -19,7 +19,7 @@ namespace harmony {
 			terrain_tile(const gl::texture_ref & texture, gl::int_t rotation = 0);
 			~terrain_tile();
 			
-			gl::texture & texture() const;
+			gl::texture_ref texture() const;
 			gl::int_t rotation() const;
 			const gl::float_t * tex_coords() const;
 			

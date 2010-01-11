@@ -533,6 +533,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\gl\gl_using_uniform.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\include\gl\gl_using_vertices.h"
 					>
 				</File>
