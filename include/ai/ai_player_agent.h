@@ -8,13 +8,14 @@
 
 #include "ivec2.h"
 #include "ai_agent.h"
+#include "ai_player_agent_fwd.h"
 
 namespace harmony {
 	namespace ai {
 		// An agent that obtains input from the user and directs the actor.
-		// There is only one of these, managed by the game engine. It also
-		// keeps track of the camera bias (used to center the camera on the
-		// actor) and the mouse position.
+		// There is only instance of this class, managed by the game engine.
+		// This agent also keeps track of the camera bias (used to center the
+		// camera on the actor) and the mouse position.
 		class player_agent : public agent {
 		public:
 			// The position of the mouse, in window coordinates.

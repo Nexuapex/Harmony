@@ -42,7 +42,7 @@ namespace harmony {
 			// Convert from cell coordinates to world coordinates.
 			vec2 cell_center(const ivec2 & cell) const;
 			
-			// The first cell, scanning row by row, that is not empty.
+			// The first cell, scanning in row-major order, that is not empty.
 			ivec2 first_nonempty_cell() const;
 			
 			// The size, in pixels, of a tile in this layer.
@@ -57,7 +57,7 @@ namespace harmony {
 				return tiles_[cell.y() * width_ + cell.x()];
 			}
 			
-			// The const version of that subscript operator.
+			// The const version of the subscript operator.
 			const terrain_tile_ref & operator[](const ivec2 & cell) const {
 				return tiles_[cell.y() * width_ + cell.x()];
 			}

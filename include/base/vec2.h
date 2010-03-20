@@ -34,6 +34,7 @@ namespace harmony {
 		void incr_x() { ++x_; }
 		void incr_y() { ++y_; }
 		
+		float magnitude() const;
 		vec2 unit() const;
 		angle_t arc_tangent() const;
 		

@@ -520,6 +520,8 @@
 		B4EDC94D10D5FAFF00177704 /* game_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_engine.cpp; path = ../../src/game/game_engine.cpp; sourceTree = SOURCE_ROOT; };
 		B4EDC95C10D5FBE300177704 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = ../../include/game/game.h; sourceTree = SOURCE_ROOT; };
 		B4EDC95D10D5FBF000177704 /* game_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_types.h; path = ../../include/game/game_types.h; sourceTree = SOURCE_ROOT; };
+		B4F55C3311555D1400101328 /* game_mark_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_mark_fwd.h; path = ../../include/game/game_mark_fwd.h; sourceTree = "<group>"; };
+		B4F55C3411555DA100101328 /* game_actor_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_actor_fwd.h; path = ../../include/game/game_actor_fwd.h; sourceTree = "<group>"; };
 		B4F7921010DDD21100A31A96 /* shared_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = shared_ptr.hpp; path = ../../boost/shared_ptr.hpp; sourceTree = SOURCE_ROOT; };
 		B4F7921210DDD21100A31A96 /* bad_weak_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = bad_weak_ptr.hpp; path = ../../boost/smart_ptr/bad_weak_ptr.hpp; sourceTree = SOURCE_ROOT; };
 		B4F7921410DDD21100A31A96 /* atomic_count.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = atomic_count.hpp; path = ../../boost/smart_ptr/detail/atomic_count.hpp; sourceTree = SOURCE_ROOT; };
@@ -3111,6 +3113,7 @@
 			children = (
 				B4D40E6A10DD3C1800D722A8 /* game_actor.cpp */,
 				B4D40E6910DD3C1800D722A8 /* game_actor.h */,
+				B4F55C3411555DA100101328 /* game_actor_fwd.h */,
 				B4EDC94D10D5FAFF00177704 /* game_engine.cpp */,
 				B4EDC94C10D5FAFF00177704 /* game_engine.h */,
 				B4E5CDE910D722A5008EDF74 /* game_terrain_layer.cpp */,
@@ -3122,6 +3125,7 @@
 				B4E16FA410DEC9D0004823E4 /* game_level_fwd.h */,
 				B4A8907710DEBAF000F2349D /* game_mark.cpp */,
 				B4A8907610DEBAF000F2349D /* game_mark.h */,
+				B4F55C3311555D1400101328 /* game_mark_fwd.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

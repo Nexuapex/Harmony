@@ -9,14 +9,16 @@
 #include "ai_agent_fwd.h"
 #include "ai_types.h"
 #include "game_types.h"
-#include "game_actor.h"
+#include "game_actor_fwd.h"
 
 namespace harmony {
 	namespace ai {
-		// An agent directs the actions of an attached actor.
+		// An agent directs the actions and provides the behaviors of the actor
+		// or actors to which it is attached. An actor without an agent will
+		// generally be entirely inert.
 		class agent {
 		public:
-			// The speed at which the attached actor moves.
+			// The speed at which attached actors move.
 			speed_t speed() const;
 			virtual void set_speed(speed_t new_speed);
 			

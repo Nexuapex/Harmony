@@ -5,6 +5,7 @@
 
 #include "vec2.h"
 #include "ai_player_agent.h"
+#include "game_actor.h"
 
 namespace harmony {
 	ivec2 ai::player_agent::mouse_position() const {
@@ -27,12 +28,12 @@ namespace harmony {
 		// Standard agent update.
 		agent::step(actor, elapsed);
 		
-		// Change the heading of the player.
+		// Update the heading of the player.
 		vec2 heading = mouse_position_ - camera_bias_;
 		if (heading.x() != 0.0f || heading.y() != 0.0f)
 			actor->set_heading(heading.arc_tangent());
 		
-		// Change the velocity of the player.
+		// Update the velocity of the player.
 		set_velocity_instantly(actor);
 	}
 }

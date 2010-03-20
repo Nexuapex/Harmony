@@ -43,9 +43,13 @@ namespace harmony {
 		return *this;
 	}
 	
+	float vec2::magnitude() const {
+		return std::sqrt(x_ * x_ + y_ * y_);
+	}
+	
 	vec2 vec2::unit() const {
-		float magnitude = std::sqrt(x_ * x_ + y_ * y_);
-		return vec2(x_ / magnitude, y_ / magnitude);
+		float magn = magnitude();
+		return vec2(x_ / magn, y_ / magn);
 	}
 	
 	angle_t vec2::arc_tangent() const {

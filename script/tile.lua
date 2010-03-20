@@ -1,7 +1,5 @@
-local T do
-	function T(name, ...)
-		return terrain.create_tile(("tile/%s.png"):format(name), ...)
-	end
+local function T(name, ...)
+	return terrain.create_tile(("tile/%s.png"):format(name), ...)
 end
 
 module "tile"

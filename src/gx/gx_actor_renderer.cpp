@@ -39,7 +39,7 @@ namespace harmony {
 	void gx::actor_renderer::draw(game::elapsed_t elapsed, game::actor & actor,
 		gl::texture_cache & tex_cache) const
 	{
-		// Make rendering time elapsed for the actor.
+		// Make rendering time elapse for the actor.
 		actor.sprite_state().step(elapsed);
 		
 		// Get the actor's sprite.

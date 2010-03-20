@@ -36,8 +36,8 @@ namespace harmony {
 			program_ = glCreateProgram();
 			
 			// Load both shaders.
-			vertexShader_ = load_shader(program_, GL_VERTEX_SHADER, vertex);
-			fragmentShader_ = load_shader(program_, GL_FRAGMENT_SHADER, fragment);
+			vertex_shader_ = load_shader(program_, GL_VERTEX_SHADER, vertex);
+			fragment_shader_ = load_shader(program_, GL_FRAGMENT_SHADER, fragment);
 			
 			// Compile and link the shader program.
 			glLinkProgram(program_);
@@ -45,14 +45,14 @@ namespace harmony {
 	}
 	
 	gl::shader_program::~shader_program() {
-		if (fragmentShader_) {
-			glDetachShader(program_, fragmentShader_);
-			glDeleteShader(fragmentShader_);
+		if (fragment_shader_) {
+			glDetachShader(program_, fragment_shader_);
+			glDeleteShader(fragment_shader_);
 		}
 		
-		if (vertexShader_) {
-			glDetachShader(program_, vertexShader_);
-			glDeleteShader(vertexShader_);
+		if (vertex_shader_) {
+			glDetachShader(program_, vertex_shader_);
+			glDeleteShader(vertex_shader_);
 		}
 		
 		if (program_) {

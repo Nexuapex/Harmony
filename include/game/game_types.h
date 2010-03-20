@@ -14,7 +14,11 @@
 namespace harmony {
 	namespace game {
 		using std::size_t;
+		
+		// Time intervals are measured in milliseconds.
 		typedef float elapsed_t;
+		
+		// Angles are measured in degrees.
 		typedef float angle_t;
 	}
 }

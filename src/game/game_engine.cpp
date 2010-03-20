@@ -4,6 +4,7 @@
 //
 
 #include "game_engine.h"
+#include "game_actor.h"
 #include "ai_player_agent.h"
 #include "lua_vector.h"
 #include "lua_level.h"
@@ -94,7 +95,7 @@ namespace harmony {
 		return tile_renderer_;
 	}
 	
-	ai::player_agent_ref & game::engine::player_agent() {
+	ai::player_agent_ref game::engine::player_agent() const {
 		return player_agent_;
 	}
 	

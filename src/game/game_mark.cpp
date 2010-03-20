@@ -3,8 +3,6 @@
 // Harmony
 //
 
-#include <stdexcept>
-
 #include "game_mark.h"
 #include "game_level.h"
 
@@ -44,7 +42,6 @@ namespace harmony {
 	}
 	
 	void game::mark::remove_from_level() {
-		level_ref empty_ref;
-		set_position(empty_ref, vec2());
+		set_position(level_ref(), vec2());
 	}
 }

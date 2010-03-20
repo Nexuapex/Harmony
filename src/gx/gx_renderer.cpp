@@ -47,8 +47,8 @@ void hgx_render(hgame_ref game, float elapsed) {
 	// Render the actors attached to the current level.
 	self.actor_renderer().draw(elapsed, self.current_level(), self.texture_cache());
 	
-	// Report any error occurring during the rendering.
+	// Report the last error occurring during the rendering.
 	std::string err = gl::error();
 	if (!err.empty())
-		std::cout << "hgx_render: " << err << std::endl;
+		std::cerr << "hgx_render: " << err << std::endl;
 }

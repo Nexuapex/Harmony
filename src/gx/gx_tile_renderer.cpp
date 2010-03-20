@@ -28,9 +28,6 @@ namespace harmony {
 		gl::using_shader active_shader(tile_shader_);
 		using_layer active_layer(layer, *layer.tile(cell));
 		
-		// Translate to the layer origin.
-		gl::using_translation translation(layer.origin() * layer.tile_size());
-		
 		// Initialize uniforms.
 		gl::using_uniform<gl::texture_ref> current_texture(
 			tile_shader_, "tile", (*layer.tile(cell)).texture()
@@ -41,7 +38,7 @@ namespace harmony {
 		
 		// Loop through the rest of the cells.
 		for (; cell.uy() < layer.height(); cell.incr_y()) {
-			for (; cell.ux() < layer.width(); cell.incr_x()) {
+			for (cell.set_x(0); cell.ux() < layer.width(); cell.incr_x()) {
 				// If the tile exists, draw it.
 				game::terrain_tile_ref tile = layer.tile(cell);
 				if (tile) {
@@ -56,14 +53,14 @@ namespace harmony {
 					active_layer.draw(GL_QUADS);
 				}
 			}
-			cell.set_x(0);
 		}
 	}
 	
-	// Potentially incorrect optimization alert! Instead of giving OpenGL correct texture coordinates for
+	// Potentially incorrect optimization alert: Instead of giving OpenGL correct texture coordinates for
 	// every tile, we use the first tile in any given layer's texture coordinates to stand for them all.
 	// This will only render incorrectly if a layer consists of multiple tiles that have very different
 	// source image sizes, which is something I don't foresee happening in the immediate future.
 	gx::tile_renderer::using_layer::using_layer(game::terrain_layer & layer, game::terrain_tile & initial_tile)
-			: using_vertices(4, 2, layer.tile_vertices(), initial_tile.tex_coords()) {}
+			: using_vertices(4, 2, layer.tile_vertices(), initial_tile.tex_coords())
+			, translation_(layer.origin() * layer.tile_size()) {}
 }

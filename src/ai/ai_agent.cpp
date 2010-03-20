@@ -4,6 +4,7 @@
 //
 
 #include "ai_agent.h"
+#include "game_actor.h"
 
 namespace harmony {
 	ai::speed_t ai::agent::speed() const {

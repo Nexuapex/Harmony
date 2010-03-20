@@ -21,9 +21,9 @@ namespace harmony {
 		lua_pushlightuserdata(state_, context);
 		lua_setfield(state_, LUA_REGISTRYINDEX, "harmony_engine_context");
 		
-		// Get up the search path for Lua files loaded from other scripts.
+		// Set up the search path for Lua files loaded from other scripts.
 		char * search_path = hplat_get_script_path();
-
+		
 		// <package table>
 		lua_getfield(state_, LUA_GLOBALSINDEX, "package");
 		

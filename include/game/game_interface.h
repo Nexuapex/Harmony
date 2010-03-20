@@ -26,10 +26,10 @@ namespace harmony {
 }
 #endif
 
-// Create the game engine object. Needs an OpenGL context activated.
+// Create the game engine object. Requires an activated OpenGL context.
 HARMONY_API hgame_ref hgame_create();
 
-// Advance the game time. The parameter is in milliseconds.
+// Advance the game time. The elapsed time is in milliseconds.
 HARMONY_API void hgame_step(hgame_ref game, float elapsed);
 
 // Let the game know that an input state has changed.

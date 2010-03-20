@@ -3,6 +3,8 @@
 // Harmony
 //
 
+#include <cmath>
+
 #include "ivec2.h"
 
 namespace harmony {
@@ -42,5 +44,9 @@ namespace harmony {
 	
 	ivec2::operator vec2() const {
 		return vec2(static_cast<coord_t>(x_), static_cast<coord_t>(y_));
+	}
+	
+	float ivec2::magnitude() const {
+		return std::sqrt(static_cast<float>(x_ * x_ + y_ * y_));
 	}
 }

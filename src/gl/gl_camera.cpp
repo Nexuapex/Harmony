@@ -10,7 +10,7 @@ namespace harmony {
 	void gl::set_camera_projection(gl::size_t width, gl::size_t height) {
 		// Even when OpenGL is set up to correspond directly to pixels on the
 		// screen, there can be problems. Specifically, OpenGL coordinates begin
-		// at the center of a pizel (0.5, 0.5). So points and lines should start
+		// at the center of a pixel (0.5, 0.5). So points and lines should start
 		// from the center of a pixel. However, quads and rects should use
 		// normal integral coordinates, so for our purposes nothing special
 		// needs to happen.

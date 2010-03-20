@@ -52,8 +52,8 @@ namespace harmony {
 		if (texture_cache_.empty())
 			texture->load_tex_coords(tex_coords_);
 		
-		// Preserve the texture. (Without this, the texture cache, which keeps
-		// only weak references to textures, is likely to deallocate it.)
+		// Preserve the texture. (Without this, the general texture cache, which
+		// keeps only weak references to textures, is likely to deallocate it.)
 		texture_cache_.insert(texture);
 	}
 }

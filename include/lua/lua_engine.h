@@ -17,6 +17,7 @@
 
 namespace harmony {
 	namespace lua {
+		// Handles the Lua scripting engine and state.
 		class engine {
 		public:
 			explicit engine(void * context);

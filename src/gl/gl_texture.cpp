@@ -12,17 +12,17 @@
 
 namespace harmony {
 	gl::texture::texture(const std::string & filename) : loaded_(false) {
-		::size_t imageWidth, imageHeight, textureWidth, textureHeight;
+		::size_t image_width, image_height, texture_width, texture_height;
 		
 		// Load the texture file.
 		data_ = hplat_read_texture_file(filename.c_str(),
-			&imageWidth, &imageHeight, &textureWidth, &textureHeight);
+			&image_width, &image_height, &texture_width, &texture_height);
 
 		// Store image metrics.
-		width_ = textureWidth;
-		height_ = textureHeight;
-		width_ratio_ = static_cast<float_t>(imageWidth) / static_cast<float_t>(textureWidth);
-		height_ratio_ = static_cast<float_t>(imageHeight) / static_cast<float_t>(textureHeight);
+		width_ = texture_width;
+		height_ = texture_height;
+		width_ratio_ = static_cast<float_t>(image_width) / static_cast<float_t>(texture_width);
+		height_ratio_ = static_cast<float_t>(image_height) / static_cast<float_t>(texture_height);
 		
 		// Generate a texture name.
 		glGenTextures(1, &name_);

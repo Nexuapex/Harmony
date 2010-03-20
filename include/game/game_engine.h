@@ -8,7 +8,7 @@
 
 #include "game_types.h"
 #include "game_level.h"
-#include "game_actor.h"
+#include "game_actor_fwd.h"
 #include "game_interface.h"
 #include "lua_engine.h"
 #include "gl_texture_cache.h"
@@ -47,7 +47,7 @@ namespace harmony {
 			gl::texture_cache & texture_cache();
 			gx::actor_renderer & actor_renderer();
 			gx::tile_renderer & tile_renderer();
-			ai::player_agent_ref & player_agent();
+			ai::player_agent_ref player_agent() const;
 			
 			// Advance game time.
 			void step(elapsed_t elapsed);

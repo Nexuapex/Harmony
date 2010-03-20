@@ -361,6 +361,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\game\game_actor_fwd.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\game\game_engine.cpp"
 					>
 				</File>
@@ -386,6 +390,10 @@
 				</File>
 				<File
 					RelativePath="..\..\include\game\game_mark.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\game\game_mark_fwd.h"
 					>
 				</File>
 				<File

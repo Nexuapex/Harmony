@@ -95,7 +95,7 @@ namespace harmony {
 					while (iter_ != set_->end() && !acceptable()) ++iter_;
 				}
 				
-				bool acceptable() const { return !!boost::dynamic_pointer_cast<actor>(*iter_); }
+				bool acceptable() const { return (*iter_)->is_actor(); }
 				
 			private:
 				mark_set::iterator iter_;

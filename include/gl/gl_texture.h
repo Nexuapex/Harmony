@@ -30,7 +30,7 @@ namespace harmony {
 			size_t height() const;
 			
 			// The area, from 0 to 1, of the texture that is actually filled
-			// by the source image. May not be 1 on systems where texture
+			// by the source image. Always 1 except on systems where texture
 			// dimensions must be powers of 2.
 			float_t width_ratio() const;
 			float_t height_ratio() const;

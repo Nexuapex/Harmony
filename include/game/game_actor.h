@@ -9,6 +9,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "game_types.h"
+#include "game_actor_fwd.h"
 #include "game_mark.h"
 #include "ai_agent_fwd.h"
 #include "gx_animation.h"
@@ -17,7 +18,7 @@
 
 namespace harmony {
 	namespace game {
-		// An actor is a single renderable, movable object in the game world.
+		// An actor is a single renderable, mobile object in the game world.
 		class actor : public mark {
 		public:
 			// Checking the dynamic type of the actor.
@@ -35,7 +36,7 @@ namespace harmony {
 			ai::agent_ref agent() const;
 			void set_agent(const ai::agent_ref & new_agent);
 			
-			// The sprite of this actor.
+			// The sprite used to render this actor.
 			gx::sprite_ref sprite() const;
 			void set_sprite(const gx::sprite_ref & new_sprite);
 			
@@ -53,8 +54,6 @@ namespace harmony {
 			gx::sprite_ref sprite_;
 			gx::sprite_state sprite_state_;
 		};
-		
-		typedef boost::shared_ptr<actor> actor_ref;
 	}
 }
 

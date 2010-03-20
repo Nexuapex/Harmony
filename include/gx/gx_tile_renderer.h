@@ -8,6 +8,7 @@
 
 #include "gl_types.h"
 #include "gl_using_shader.h"
+#include "gl_using_translation.h"
 #include "gl_using_vertices.h"
 #include "game_level.h"
 #include "game_terrain_layer.h"
@@ -15,7 +16,7 @@
 
 namespace harmony {
 	namespace gx {
-		// In charge of rendering terrain tiles.
+		// The subsystem in charge of rendering terrain tiles.
 		class tile_renderer {
 		public:
 			tile_renderer();
@@ -30,6 +31,9 @@ namespace harmony {
 			class using_layer : public gl::using_vertices {
 			public:
 				using_layer(game::terrain_layer & layer, game::terrain_tile & initial_tile);
+				
+			private:
+				gl::using_translation translation_;
 			};
 		};
 	}

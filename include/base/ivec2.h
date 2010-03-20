@@ -40,6 +40,8 @@ namespace harmony {
 		void incr_x() { ++x_; }
 		void incr_y() { ++y_; }
 		
+		float magnitude() const;
+		
 	private:
 		icoord_t x_, y_;
 	};

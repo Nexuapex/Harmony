@@ -16,7 +16,7 @@
 
 namespace harmony {
 	namespace gx {
-		// In charge of rendering actors.
+		// The subsystem in charge of rendering actors.
 		class actor_renderer {
 		public:
 			actor_renderer();
@@ -28,8 +28,6 @@ namespace harmony {
 			
 		private:
 			gl::shader_program sprite_shader_;
-			
-		private:
 			
 		private:
 			class using_sprite : public gl::using_vertices {

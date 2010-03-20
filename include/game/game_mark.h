@@ -10,6 +10,7 @@
 #include <boost/enable_shared_from_this.hpp>
 
 #include "vec2.h"
+#include "game_mark_fwd.h"
 #include "game_level_fwd.h"
 
 namespace harmony {
@@ -19,8 +20,8 @@ namespace harmony {
 		class mark : public boost::enable_shared_from_this<mark> {
 		public:
 			// Checking the dynamic type of the mark.
-			virtual bool is_mark() const;
-			bool is_actor() const;
+			bool is_mark() const;
+			virtual bool is_actor() const;
 			
 			// The level and position where this mark resides.
 			level_ref level() const { return level_; }
@@ -35,8 +36,6 @@ namespace harmony {
 			level_ref level_;
 			vec2 position_;
 		};
-		
-		typedef boost::shared_ptr<mark> mark_ref;
 	}
 }
 

@@ -23,7 +23,7 @@ namespace harmony {
 			
 		private:
 			shader_t program_;
-			shader_t vertexShader_, fragmentShader_;
+			shader_t vertex_shader_, fragment_shader_;
 		};
 	}
 }
