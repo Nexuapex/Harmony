@@ -56,6 +56,10 @@ namespace harmony {
 		return height_ratio_;
 	}
 	
+	vec2 gl::texture::area_ratio() const {
+		return vec2(width_ratio_, height_ratio_);
+	}
+	
 	void gl::texture::load_tex_coords(float (& tex_coords)[4][2]) const {
 		tex_coords[0][0] = 0.00;         tex_coords[0][1] = 0.00;
 		tex_coords[1][0] = 0.00;         tex_coords[1][1] = height_ratio_;

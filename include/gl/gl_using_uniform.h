@@ -68,6 +68,23 @@ namespace harmony {
 			}
 		};
 		
+		// Vector uniforms.
+		template <>
+		class using_uniform<vec2> : public using_uniform_base<vec2> {
+		public:
+			using_uniform(const shader_program & shader,
+				const char * uniform, const vec2 & initial_value)
+				: using_uniform_base<vec2>(shader, uniform, initial_value)
+			{
+				update();
+			}
+			
+		protected:
+			void update() const {
+				glUniform2f(uniform_, value_.x(), value_.y());
+			}
+		};
+		
 		// Color uniforms.
 		template <>
 		class using_uniform<color> : public using_uniform_base<color> {

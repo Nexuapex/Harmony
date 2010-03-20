@@ -25,8 +25,7 @@ namespace harmony {
 			return;
 		
 		// Activate the shader and the tile vertices.
-		gl::using_shader active_shader(tile_shader_);
-		using_layer active_layer(layer, *layer.tile(cell));
+		using_layer active_layer(tile_shader_, layer, *layer.tile(cell));
 		
 		// Initialize uniforms.
 		gl::using_uniform<gl::texture_ref> current_texture(
@@ -60,7 +59,10 @@ namespace harmony {
 	// every tile, we use the first tile in any given layer's texture coordinates to stand for them all.
 	// This will only render incorrectly if a layer consists of multiple tiles that have very different
 	// source image sizes, which is something I don't foresee happening in the immediate future.
-	gx::tile_renderer::using_layer::using_layer(game::terrain_layer & layer, game::terrain_tile & initial_tile)
-			: using_vertices(4, 2, layer.tile_vertices(), initial_tile.tex_coords())
-			, translation_(layer.origin() * layer.tile_size()) {}
+	gx::tile_renderer::using_layer::using_layer(const gl::shader_program & shader,
+		const game::terrain_layer & layer, const game::terrain_tile & initial_tile)
+		: using_shader(shader)
+		, using_vertices(4, 2, layer.tile_vertices(), initial_tile.tex_coords())
+		, translation_(layer.origin() * layer.tile_size())
+		, tile_ratio_(shader, "tile_ratio", initial_tile.texture()->area_ratio()) {}
 }

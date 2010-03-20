@@ -34,6 +34,7 @@ namespace harmony {
 			// dimensions must be powers of 2.
 			float_t width_ratio() const;
 			float_t height_ratio() const;
+			vec2 area_ratio() const;
 			
 			// Load the texture coordinates representing the full extent of this
 			// texture into the given array.
