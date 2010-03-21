@@ -84,6 +84,7 @@
 		B4EDC81F10D5E25F00177704 /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = B4EDC80110D5E25F00177704 /* print.c */; };
 		B4EDC83510D5E73000177704 /* game_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EDC83410D5E73000177704 /* game_interface.cpp */; };
 		B4EDC94E10D5FAFF00177704 /* game_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EDC94D10D5FAFF00177704 /* game_engine.cpp */; };
+		B4F130BC11558B7E005D83B2 /* irect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F130BB11558B7E005D83B2 /* irect.cpp */; };
 		B4F8AD4D10DD33F700795612 /* gl_color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AD4C10DD33F700795612 /* gl_color.cpp */; };
 		B4FC578810DE9CB70013CA88 /* lua_vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC578710DE9CB70013CA88 /* lua_vector.cpp */; };
 /* End PBXBuildFile section */
@@ -520,6 +521,8 @@
 		B4EDC94D10D5FAFF00177704 /* game_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_engine.cpp; path = ../../src/game/game_engine.cpp; sourceTree = SOURCE_ROOT; };
 		B4EDC95C10D5FBE300177704 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = ../../include/game/game.h; sourceTree = SOURCE_ROOT; };
 		B4EDC95D10D5FBF000177704 /* game_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_types.h; path = ../../include/game/game_types.h; sourceTree = SOURCE_ROOT; };
+		B4F130BA11558B7E005D83B2 /* irect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = irect.h; path = ../../include/base/irect.h; sourceTree = SOURCE_ROOT; };
+		B4F130BB11558B7E005D83B2 /* irect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = irect.cpp; path = ../../src/base/irect.cpp; sourceTree = SOURCE_ROOT; };
 		B4F55C3311555D1400101328 /* game_mark_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_mark_fwd.h; path = ../../include/game/game_mark_fwd.h; sourceTree = "<group>"; };
 		B4F55C3411555DA100101328 /* game_actor_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_actor_fwd.h; path = ../../include/game/game_actor_fwd.h; sourceTree = "<group>"; };
 		B4F7921010DDD21100A31A96 /* shared_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = shared_ptr.hpp; path = ../../boost/shared_ptr.hpp; sourceTree = SOURCE_ROOT; };
@@ -3003,6 +3006,8 @@
 			children = (
 				B4D3C99010D6329300850761 /* ivec2.cpp */,
 				B4D3C98F10D6329300850761 /* ivec2.h */,
+				B4F130BB11558B7E005D83B2 /* irect.cpp */,
+				B4F130BA11558B7E005D83B2 /* irect.h */,
 				B4D40E8710DD3CE700D722A8 /* vec2.cpp */,
 				B4D40E8610DD3CE700D722A8 /* vec2.h */,
 			);
@@ -6069,6 +6074,7 @@
 				B4E4EFD010DF2979006D7E4D /* ai_agent.cpp in Sources */,
 				B4E4EFD910DF2A76006D7E4D /* ai_player_agent.cpp in Sources */,
 				B4E4F3E610DF561C006D7E4D /* gl_blend.cpp in Sources */,
+				B4F130BC11558B7E005D83B2 /* irect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

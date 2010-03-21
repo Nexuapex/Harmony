@@ -22,8 +22,8 @@ namespace harmony {
 		public:
 			tile_renderer();
 			
-			void draw(game::level & level) const;
-			void draw(game::terrain_layer & layer) const;
+			void draw(const irect & viewport, game::level & level) const;
+			void draw(const irect & viewport, game::terrain_layer & layer) const;
 			
 		private:
 			gl::shader_program tile_shader_;

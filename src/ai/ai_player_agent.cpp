@@ -16,6 +16,14 @@ namespace harmony {
 		mouse_position_ = position;
 	}
 	
+	ivec2 ai::player_agent::viewport_size() const {
+		return viewport_size_;
+	}
+	
+	void ai::player_agent::set_viewport_size(const ivec2 & new_size) {
+		viewport_size_ = new_size;
+	}
+	
 	ivec2 ai::player_agent::camera_bias() const {
 		return camera_bias_;
 	}

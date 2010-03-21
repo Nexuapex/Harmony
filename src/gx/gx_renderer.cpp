@@ -20,6 +20,7 @@ void hgx_reshape(hgame_ref game, size_t width, size_t height) {
 	gl::set_camera_projection(width, height);
 	
 	// Bias the camera so that it looks at the center of the viewport.
+	self.set_viewport_size(ivec2(width, height));
 	self.set_camera_bias(ivec2(width / 2, height / 2));
 	
 	// Turn on blending.
@@ -33,16 +34,11 @@ void hgx_render(hgame_ref game, float elapsed) {
 	// Clear the viewport.
 	gl::clear();
 	
-	{
-		// Set the camera position.
-		vec2 pos = self.followed_actor()->position();
-		icoord_t x = static_cast<icoord_t>(pos.x());
-		icoord_t y = static_cast<icoord_t>(pos.y());
-		gl::set_camera_position(ivec2(x, y) - self.camera_bias());
-	}
+	// Set the camera position.
+	gl::set_camera_position(ivec2(self.followed_actor()->position()) - self.camera_bias());
 	
 	// Render the tiles of the current level.
-	self.tile_renderer().draw(self.current_level());
+	self.tile_renderer().draw(self.viewport(), self.current_level());
 	
 	// Render the actors attached to the current level.
 	self.actor_renderer().draw(elapsed, self.current_level(), self.texture_cache());

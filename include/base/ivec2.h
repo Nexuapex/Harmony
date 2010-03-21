@@ -16,6 +16,7 @@ namespace harmony {
 		ivec2();
 		ivec2(icoord_t x, icoord_t y);
 		ivec2(const ivec2 & that);
+		explicit ivec2(const vec2 & that);
 		
 		ivec2 operator+(const ivec2 & that) const;
 		ivec2 & operator+=(const ivec2 & that);

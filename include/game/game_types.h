@@ -9,7 +9,9 @@
 #include <cstddef>
 
 #include "types.h"
+#include "vec2.h"
 #include "ivec2.h"
+#include "irect.h"
 
 namespace harmony {
 	namespace game {

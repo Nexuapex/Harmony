@@ -9,16 +9,20 @@
 namespace harmony {
 	gx::tile_renderer::tile_renderer() : tile_shader_("tile.vs", "tile.fs") {}
 	
-	void gx::tile_renderer::draw(game::level & level) const {
+	void gx::tile_renderer::draw(const irect & viewport, game::level & level) const {
 		game::size_t num_layers = level.num_terrain_layers();
 		
 		for (unsigned index = 0; index < num_layers; ++index)
-			draw(level.terrain_layer_at(index));
+			draw(viewport, level.terrain_layer_at(index));
 	}
 	
-	void gx::tile_renderer::draw(game::terrain_layer & layer) const {
+	void gx::tile_renderer::draw(const irect & viewport, game::terrain_layer & layer) const {
+		// Find the visible area.
+		irect visible = viewport.tile_bounding_rect(layer.tile_size()).intersect(layer.rect());
+		visible.origin -= layer.origin();
+		
 		// Find the first cell.
-		ivec2 cell = layer.first_nonempty_cell();
+		ivec2 cell = layer.first_nonempty_cell(visible);
 		
 		// Make sure that the first cell exists.
 		if (cell.x() < 0 || cell.y() < 0)
@@ -36,8 +40,8 @@ namespace harmony {
 		);
 		
 		// Loop through the rest of the cells.
-		for (; cell.uy() < layer.height(); cell.incr_y()) {
-			for (cell.set_x(0); cell.ux() < layer.width(); cell.incr_x()) {
+		for (; cell.y() < visible.y2(); cell.incr_y()) {
+			for (cell.set_x(visible.x1()); cell.x() < visible.x2(); cell.incr_x()) {
 				// If the tile exists, draw it.
 				game::terrain_tile_ref tile = layer.tile(cell);
 				if (tile) {

@@ -38,9 +38,9 @@ namespace harmony {
 		return (vec2(cell) * size) + vec2(size / 2.0f, size / 2.0f);
 	}
 	
-	ivec2 game::terrain_layer::first_nonempty_cell() const {
-		for (ivec2 cell; cell.uy() < height_; cell.incr_y())
-			for (cell.set_x(0); cell.ux() < width_; cell.incr_x())
+	ivec2 game::terrain_layer::first_nonempty_cell(const irect & region) const {
+		for (ivec2 cell = region.origin; cell.y() < region.y2(); cell.incr_y())
+			for (cell.set_x(region.x1()); cell.x() < region.x2(); cell.incr_x())
 				if ((*this)[cell])
 					return cell;
 		

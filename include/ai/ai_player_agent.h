@@ -22,6 +22,10 @@ namespace harmony {
 			ivec2 mouse_position() const;
 			void set_mouse_position(const ivec2 & position);
 			
+			// The size of the viewable area.
+			ivec2 viewport_size() const;
+			void set_viewport_size(const ivec2 & new_size);
+			
 			// The offset applied to the camera's position.
 			ivec2 camera_bias() const;
 			void set_camera_bias(const ivec2 & new_bias);
@@ -31,6 +35,7 @@ namespace harmony {
 			
 		private:
 			ivec2 mouse_position_;
+			ivec2 viewport_size_;
 			ivec2 camera_bias_;
 		};
 	}

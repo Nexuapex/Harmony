@@ -31,6 +31,13 @@ namespace harmony {
 			actor_ref followed_actor() const;
 			void set_followed_actor(const actor_ref & new_followed);
 			
+			// The viewable area.
+			irect viewport() const;
+			
+			// The size of the viewable area.
+			ivec2 viewport_size() const;
+			void set_viewport_size(const ivec2 & new_size);
+			
 			// The offset applied to the camera's position.
 			ivec2 camera_bias() const;
 			void set_camera_bias(const ivec2 & bias);
