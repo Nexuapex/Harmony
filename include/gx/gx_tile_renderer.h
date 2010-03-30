@@ -6,14 +6,15 @@
 #ifndef HARMONY_GX_TILE_RENDERER_H
 #define HARMONY_GX_TILE_RENDERER_H
 
+#include "game_level.h"
+#include "game_terrain_layer.h"
+#include "game_terrain_tile.h"
+#include "geom_rect.h"
 #include "gl_types.h"
 #include "gl_using_shader.h"
 #include "gl_using_translation.h"
 #include "gl_using_uniform.h"
 #include "gl_using_vertices.h"
-#include "game_level.h"
-#include "game_terrain_layer.h"
-#include "game_terrain_tile.h"
 
 namespace harmony {
 	namespace gx {
@@ -22,8 +23,8 @@ namespace harmony {
 		public:
 			tile_renderer();
 			
-			void draw(const irect & viewport, game::level & level) const;
-			void draw(const irect & viewport, game::terrain_layer & layer) const;
+			void draw(const geom::rect & viewport, game::level & level) const;
+			void draw(const geom::rect & viewport, game::terrain_layer & layer) const;
 			
 		private:
 			gl::shader_program tile_shader_;

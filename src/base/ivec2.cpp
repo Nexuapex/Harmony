@@ -45,6 +45,16 @@ namespace harmony {
 		return *this;
 	}
 	
+	ivec2 ivec2::operator/(int scalar) const {
+		return ivec2(x_ / scalar, y_ / scalar);
+	}
+	
+	ivec2 & ivec2::operator/=(int scalar) {
+		x_ /= scalar;
+		y_ /= scalar;
+		return *this;
+	}
+	
 	ivec2::operator vec2() const {
 		return vec2(static_cast<coord_t>(x_), static_cast<coord_t>(y_));
 	}

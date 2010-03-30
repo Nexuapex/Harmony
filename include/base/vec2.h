@@ -25,6 +25,9 @@ namespace harmony {
 		vec2 operator*(float scalar) const;
 		vec2 & operator*=(float scalar);
 		
+		vec2 operator/(float scalar) const;
+		vec2 & operator/=(float scalar);
+		
 		coord_t x() const { return x_; }
 		coord_t y() const { return y_; }
 		

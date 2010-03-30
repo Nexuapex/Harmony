@@ -7,7 +7,7 @@
 #include "gl_library.h"
 
 namespace harmony {
-	void gl::set_camera_projection(gl::size_t width, gl::size_t height) {
+	void gl::set_camera_projection(ivec2 viewport) {
 		// Even when OpenGL is set up to correspond directly to pixels on the
 		// screen, there can be problems. Specifically, OpenGL coordinates begin
 		// at the center of a pixel (0.5, 0.5). So points and lines should start
@@ -16,7 +16,7 @@ namespace harmony {
 		// needs to happen.
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		gluOrtho2D(0, width, height, 0);
+		gluOrtho2D(0, viewport.x(), viewport.y(), 0);
 		glMatrixMode(GL_MODELVIEW);
 	}
 	

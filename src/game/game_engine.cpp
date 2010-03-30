@@ -58,9 +58,13 @@ namespace harmony {
 		followed_actor_ = new_followed;
 	}
 	
-	irect game::engine::viewport() const {
-		return irect(
-			static_cast<ivec2>(followed_actor()->position()) - camera_bias(),
+	ivec2 game::engine::camera_origin() const {
+		return static_cast<ivec2>(followed_actor()->position()) - camera_bias();
+	}
+	
+	geom::rect game::engine::viewport() const {
+		return geom::rect(
+			camera_origin(),
 			viewport_size()
 		);
 	}

@@ -1,15 +1,15 @@
 //
-// irect.cpp
+// geom_rect.cpp
 // Harmony
 //
 
 #include <algorithm>
 #include <cmath>
 
-#include "irect.h"
+#include "geom_rect.h"
 
 namespace harmony {
-	irect irect::intersect(const irect & that) const {
+	geom::rect geom::rect::intersect(const geom::rect & that) const {
 		if (intersects(that)) {
 			ivec2 o(
 				std::max(x1(), that.x1()),
@@ -19,13 +19,13 @@ namespace harmony {
 				std::min(x2(), that.x2()) - o.x(),
 				std::min(y2(), that.y2()) - o.y()
 			);
-			return irect(o, s);
+			return rect(o, s);
 		} else {
-			return irect();
+			return rect();
 		}
 	}
 	
-	irect irect::tile_bounding_rect(ucoord_t tile_size) const {
+	geom::rect geom::rect::tile_bounding_rect(ucoord_t tile_size) const {
 		float size = static_cast<float>(tile_size);
 		ivec2 o(
 			static_cast<icoord_t>(std::floor(x1() / size)),
@@ -35,6 +35,6 @@ namespace harmony {
 			static_cast<icoord_t>(std::ceil(x2() / size) - o.x() + 1),
 			static_cast<icoord_t>(std::ceil(y2() / size) - o.y() + 1)
 		);
-		return irect(o, s);
+		return rect(o, s);
 	}
 }

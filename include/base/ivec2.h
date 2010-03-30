@@ -27,6 +27,9 @@ namespace harmony {
 		ivec2 operator*(int scalar) const;
 		ivec2 & operator*=(int scalar);
 		
+		ivec2 operator/(int scalar) const;
+		ivec2 & operator/=(int scalar);
+		
 		operator vec2() const;
 		
 		icoord_t x() const { return x_; }

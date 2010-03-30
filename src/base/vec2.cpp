@@ -43,6 +43,16 @@ namespace harmony {
 		return *this;
 	}
 	
+	vec2 vec2::operator/(float scalar) const {
+		return vec2(x_ / scalar, y_ / scalar);
+	}
+	
+	vec2 & vec2::operator/=(float scalar) {
+		x_ /= scalar;
+		y_ /= scalar;
+		return *this;
+	}
+	
 	float vec2::magnitude() const {
 		return std::sqrt(x_ * x_ + y_ * y_);
 	}

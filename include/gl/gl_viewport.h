@@ -11,7 +11,7 @@
 namespace harmony {
 	namespace gl {
 		// Set the size of the OpenGL viewport.
-		void set_viewport(size_t width, size_t height);
+		void set_viewport(ivec2 viewport);
 	}
 }
 

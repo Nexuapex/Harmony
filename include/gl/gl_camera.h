@@ -11,7 +11,7 @@
 namespace harmony {
 	namespace gl {
 		// Set up the camera projection matrix.
-		void set_camera_projection(size_t width, size_t height);
+		void set_camera_projection(ivec2 viewport);
 		
 		// Set up the camera modelview matrix, looking at a given position.
 		void set_camera_position(ivec2 position);

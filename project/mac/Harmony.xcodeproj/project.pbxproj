@@ -12,6 +12,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* WHMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* WHMain.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B428568F1162BA70002FE5FF /* geom_rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B428568E1162BA70002FE5FF /* geom_rect.cpp */; };
 		B42A7C3410D66343001792A1 /* GLee.c in Sources */ = {isa = PBXBuildFile; fileRef = B42A7C3210D66343001792A1 /* GLee.c */; };
 		B42A7C4C10D663D2001792A1 /* game_terrain_tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42A7C4B10D663D2001792A1 /* game_terrain_tile.cpp */; };
 		B42A7C5910D66494001792A1 /* gl_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42A7C5810D66494001792A1 /* gl_texture.cpp */; };
@@ -84,7 +85,6 @@
 		B4EDC81F10D5E25F00177704 /* print.c in Sources */ = {isa = PBXBuildFile; fileRef = B4EDC80110D5E25F00177704 /* print.c */; };
 		B4EDC83510D5E73000177704 /* game_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EDC83410D5E73000177704 /* game_interface.cpp */; };
 		B4EDC94E10D5FAFF00177704 /* game_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EDC94D10D5FAFF00177704 /* game_engine.cpp */; };
-		B4F130BC11558B7E005D83B2 /* irect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F130BB11558B7E005D83B2 /* irect.cpp */; };
 		B4F8AD4D10DD33F700795612 /* gl_color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AD4C10DD33F700795612 /* gl_color.cpp */; };
 		B4FC578810DE9CB70013CA88 /* lua_vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC578710DE9CB70013CA88 /* lua_vector.cpp */; };
 /* End PBXBuildFile section */
@@ -100,6 +100,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Harmony.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Harmony.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B428568D1162BA60002FE5FF /* geom_rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_rect.h; path = ../../include/geom/geom_rect.h; sourceTree = SOURCE_ROOT; };
+		B428568E1162BA70002FE5FF /* geom_rect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_rect.cpp; path = ../../src/geom/geom_rect.cpp; sourceTree = SOURCE_ROOT; };
 		B42A7C3210D66343001792A1 /* GLee.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GLee.c; path = ../../glee/GLee.c; sourceTree = SOURCE_ROOT; };
 		B42A7C3310D66343001792A1 /* GLee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLee.h; path = ../../glee/GLee.h; sourceTree = SOURCE_ROOT; };
 		B42A7C4A10D663D2001792A1 /* game_terrain_tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_terrain_tile.h; path = ../../include/game/game_terrain_tile.h; sourceTree = SOURCE_ROOT; };
@@ -521,8 +523,6 @@
 		B4EDC94D10D5FAFF00177704 /* game_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_engine.cpp; path = ../../src/game/game_engine.cpp; sourceTree = SOURCE_ROOT; };
 		B4EDC95C10D5FBE300177704 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game.h; path = ../../include/game/game.h; sourceTree = SOURCE_ROOT; };
 		B4EDC95D10D5FBF000177704 /* game_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_types.h; path = ../../include/game/game_types.h; sourceTree = SOURCE_ROOT; };
-		B4F130BA11558B7E005D83B2 /* irect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = irect.h; path = ../../include/base/irect.h; sourceTree = SOURCE_ROOT; };
-		B4F130BB11558B7E005D83B2 /* irect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = irect.cpp; path = ../../src/base/irect.cpp; sourceTree = SOURCE_ROOT; };
 		B4F55C3311555D1400101328 /* game_mark_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_mark_fwd.h; path = ../../include/game/game_mark_fwd.h; sourceTree = "<group>"; };
 		B4F55C3411555DA100101328 /* game_actor_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_actor_fwd.h; path = ../../include/game/game_actor_fwd.h; sourceTree = "<group>"; };
 		B4F7921010DDD21100A31A96 /* shared_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = shared_ptr.hpp; path = ../../boost/shared_ptr.hpp; sourceTree = SOURCE_ROOT; };
@@ -2362,6 +2362,7 @@
 				B4E946DC10D5CD4200A1B041 /* Harmony */,
 				B4E4EFC410DF290A006D7E4D /* Artificial Intelligence */,
 				B4EDC82A10D5E36700177704 /* Game Logic */,
+				B428568B1162BA28002FE5FF /* Geometry */,
 				B48E545D10D5D32E00CEE891 /* Graphics Layer */,
 				B4E946D510D5CBAB00A1B041 /* Graphics Engine */,
 				B4D40FAD10DD58A800D722A8 /* Lua */,
@@ -2401,6 +2402,23 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B428568B1162BA28002FE5FF /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				B428568C1162BA45002FE5FF /* Classes */,
+			);
+			name = Geometry;
+			sourceTree = "<group>";
+		};
+		B428568C1162BA45002FE5FF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B428568E1162BA70002FE5FF /* geom_rect.cpp */,
+				B428568D1162BA60002FE5FF /* geom_rect.h */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		B42A7C2C10D66334001792A1 /* GLee */ = {
@@ -3006,8 +3024,6 @@
 			children = (
 				B4D3C99010D6329300850761 /* ivec2.cpp */,
 				B4D3C98F10D6329300850761 /* ivec2.h */,
-				B4F130BB11558B7E005D83B2 /* irect.cpp */,
-				B4F130BA11558B7E005D83B2 /* irect.h */,
 				B4D40E8710DD3CE700D722A8 /* vec2.cpp */,
 				B4D40E8610DD3CE700D722A8 /* vec2.h */,
 			);
@@ -6074,7 +6090,7 @@
 				B4E4EFD010DF2979006D7E4D /* ai_agent.cpp in Sources */,
 				B4E4EFD910DF2A76006D7E4D /* ai_player_agent.cpp in Sources */,
 				B4E4F3E610DF561C006D7E4D /* gl_blend.cpp in Sources */,
-				B4F130BC11558B7E005D83B2 /* irect.cpp in Sources */,
+				B428568F1162BA70002FE5FF /* geom_rect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

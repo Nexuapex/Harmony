@@ -10,11 +10,12 @@
 #include "game_level.h"
 #include "game_actor_fwd.h"
 #include "game_interface.h"
-#include "lua_engine.h"
+#include "geom_rect.h"
 #include "gl_texture_cache.h"
 #include "gx_actor_renderer.h"
 #include "gx_tile_renderer.h"
 #include "ai_player_agent_fwd.h"
+#include "lua_engine.h"
 
 namespace harmony {
 	namespace game {
@@ -31,8 +32,9 @@ namespace harmony {
 			actor_ref followed_actor() const;
 			void set_followed_actor(const actor_ref & new_followed);
 			
-			// The viewable area.
-			irect viewport() const;
+			// The camera origin and the viewable area.
+			ivec2 camera_origin() const;
+			geom::rect viewport() const;
 			
 			// The size of the viewable area.
 			ivec2 viewport_size() const;

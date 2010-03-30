@@ -15,13 +15,16 @@ using namespace harmony;
 void hgx_reshape(hgame_ref game, size_t width, size_t height) {
 	game::engine & self = *reinterpret_cast<game::engine *>(game);
 	
+	// Determine the size of the viewport.
+	ivec2 viewport(width, height);
+	
 	// Set up the camera projection.
-	gl::set_viewport(width, height);
-	gl::set_camera_projection(width, height);
+	gl::set_viewport(viewport);
+	gl::set_camera_projection(viewport);
 	
 	// Bias the camera so that it looks at the center of the viewport.
-	self.set_viewport_size(ivec2(width, height));
-	self.set_camera_bias(ivec2(width / 2, height / 2));
+	self.set_viewport_size(viewport);
+	self.set_camera_bias(viewport / 2);
 	
 	// Turn on blending.
 	gl::set_blending_enabled(true);
@@ -35,7 +38,7 @@ void hgx_render(hgame_ref game, float elapsed) {
 	gl::clear();
 	
 	// Set the camera position.
-	gl::set_camera_position(ivec2(self.followed_actor()->position()) - self.camera_bias());
+	gl::set_camera_position(self.camera_origin());
 	
 	// Render the tiles of the current level.
 	self.tile_renderer().draw(self.viewport(), self.current_level());

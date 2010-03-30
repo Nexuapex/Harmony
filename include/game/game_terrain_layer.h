@@ -10,6 +10,7 @@
 
 #include "game_types.h"
 #include "game_terrain_tile.h"
+#include "geom_rect.h"
 #include "gl_types.h"
 
 namespace harmony {
@@ -30,8 +31,8 @@ namespace harmony {
 			game::size_t height() const { return height_; }
 			
 			// The rectangle that includes all cells in the layer.
-			irect rect() const {
-				return irect(origin_.x(), origin_.y(), width_, height_);
+			geom::rect rect() const {
+				return geom::rect(origin_.x(), origin_.y(), width_, height_);
 			}
 			
 			// Get the terrain tile in a specific cell.
@@ -47,7 +48,7 @@ namespace harmony {
 			
 			// The first cell in the given region that, scanning in row-major
 			// order, is not empty.
-			ivec2 first_nonempty_cell(const irect & region) const;
+			ivec2 first_nonempty_cell(const geom::rect & region) const;
 			
 			// The size, in pixels, of a tile in this layer.
 			game::size_t tile_size() const;
