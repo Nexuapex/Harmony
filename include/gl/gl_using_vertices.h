@@ -14,28 +14,14 @@ namespace harmony {
 		// Activates a set of vertices and texture coordinates.
 		class using_vertices {
 		public:
-			using_vertices(gl::size_t count, gl::size_t breadth,
-				const gl::float_t * vertices, const gl::float_t * tex_coords)
-				: count_(count)
-			{
-				glEnableClientState(GL_VERTEX_ARRAY);
-				glVertexPointer(breadth, GL_FLOAT, 0, vertices);
-				
-				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-				glTexCoordPointer(breadth, GL_FLOAT, 0, tex_coords);
-			}
+			using_vertices(size_t count, size_t breadth,
+				const float_t * vertices, const float_t * tex_coords);
+			~using_vertices();
 			
-			~using_vertices() {
-				glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-				glDisableClientState(GL_VERTEX_ARRAY);
-			}
-			
-			void draw(gl::enum_t mode) {
-				glDrawArrays(mode, 0, count_);
-			}
+			void draw(enum_t mode) const;
 
 		private:
-			gl::size_t count_;
+			size_t count_;
 		};
 	}
 }

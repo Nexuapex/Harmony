@@ -2,7 +2,7 @@
 uniform sampler2D tile;
 
 // The region of the tile that is occupied by the texture.
-uniform vec2 tile_ratio;
+uniform vec2 extent;
 
 // The rotation to apply to the texture.
 uniform int rotation;
@@ -22,28 +22,28 @@ vec2 apply_rotation(in vec4 src) {
 		coord = src.st;
 	} else if (rotation == 1) {
 		// Rotate right.
-		coord.s = tile_ratio.t - src.t;
+		coord.s = extent.t - src.t;
 		coord.t = src.s;
 	} else if (rotation == 2) {
 		// Rotate 180.
-		coord.s = tile_ratio.s - src.s;
-		coord.t = tile_ratio.t - src.t;
+		coord.s = extent.s - src.s;
+		coord.t = extent.t - src.t;
 	} else if (rotation == 3) {
 		// Rotate left.
 		coord.s = src.t;
-		coord.t = tile_ratio.s - src.s;
+		coord.t = extent.s - src.s;
 	} else if (rotation == 4) {
 		// Flip.
-		coord.s = tile_ratio.s - src.s;
+		coord.s = extent.s - src.s;
 		coord.t = src.t;
 	} else if (rotation == 5) {
 		// Flip and rotate left.
-		coord.s = tile_ratio.t - src.t;
-		coord.t = tile_ratio.s - src.s;
+		coord.s = extent.t - src.t;
+		coord.t = extent.s - src.s;
 	} else if (rotation == 6) {
 		// Flip and rotate 180.
 		coord.s = src.s;
-		coord.t = tile_ratio.t - src.t;
+		coord.t = extent.t - src.t;
 	} else if (rotation == 7) {
 		// Flip and rotate right.
 		coord = src.ts;

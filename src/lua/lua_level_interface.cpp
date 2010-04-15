@@ -80,7 +80,8 @@ namespace harmony {
 			std::vector<game::terrain_layer_ref> layers;
 			
 			// Create the initial terrain layer.
-			game::terrain_layer_ref layer(new game::terrain_layer(origin, width, height, tile_size));
+			ivec2 size(width, height);
+			game::terrain_layer_ref layer(new game::terrain_layer(origin, size, tile_size));
 			layers.push_back(layer);
 			
 			for (ivec2 cell; cell.uy() < height; cell.incr_y()) {
@@ -104,7 +105,7 @@ namespace harmony {
 						// Create new layers as needed.
 						for (unsigned index = layers.size(); index < depth; ++index) {
 							game::terrain_layer_ref layer(
-								new game::terrain_layer(origin, width, height, tile_size)
+								new game::terrain_layer(origin, size, tile_size)
 							);
 							layers.push_back(layer);
 						}

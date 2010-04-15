@@ -19,26 +19,27 @@ namespace harmony {
 		public:
 			// Constructors.
 			explicit texture(const std::string & filename);
+			explicit texture(const ivec2 & size);
 			~texture();
 			
 			// A reference to the texture itself, to be used with OpenGL calls.
 			// Can optionally require the texture to be loaded first.
 			texture_t name(bool require_loaded = true);
 			
-			// The size of the texture, in pixels.
-			size_t width() const;
-			size_t height() const;
+			// The full size of the texture, in pixels.
+			ivec2 size() const;
 			
-			// The area, from 0 to 1, of the texture that is actually filled
-			// by the source image. Always 1 except on systems where texture
-			// dimensions must be powers of 2.
-			float_t width_ratio() const;
-			float_t height_ratio() const;
-			vec2 area_ratio() const;
+			// On systems where texture dimensions are not necessarily powers of
+			// 2, the image might not occupy the entire texture. When displaying
+			// the full texture, filled_portion() describes the portion of the
+			// texture, starting at (0, 0) and going to filled_size(), that
+			// actually contains the image.
+			ivec2 filled_size() const;
+			vec2 filled_portion() const;
 			
 			// Load the texture coordinates representing the full extent of this
 			// texture into the given array.
-			void load_tex_coords(float (& tex_coords)[4][2]) const;
+			void copy_tex_coords(float (& tex_coords)[4][2]) const;
 			
 			// Force the texture to be loaded into OpenGL. Has no effect if the
 			// texture is already loaded.
@@ -47,8 +48,7 @@ namespace harmony {
 		private:
 			texture_t name_;
 			bool loaded_;
-			size_t width_, height_;
-			float_t width_ratio_, height_ratio_;
+			ivec2 size_, filled_size_;
 			void * data_;
 		};
 		

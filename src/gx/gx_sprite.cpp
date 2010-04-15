@@ -7,12 +7,12 @@
 
 namespace harmony {
 	gx::sprite::sprite(const std::string & name, const std::string & suffix,
-		gl::size_t width, gl::size_t height)
-		: name_(name), suffix_(suffix), width_(width), height_(height)
+		ivec2 size)
+		: name_(name), suffix_(suffix), size_(size)
 	{
 		// Useful temporaries.
-		gl::float_t w = static_cast<gl::float_t>(width) / 2.0f;
-		gl::float_t h = static_cast<gl::float_t>(height) / 2.0f;
+		gl::float_t w = static_cast<gl::float_t>(size.x()) / 2.0f;
+		gl::float_t h = static_cast<gl::float_t>(size.y()) / 2.0f;
 		
 		// The vertices of this sprite.
 		vertices_[0][0] = -w; vertices_[0][1] = -h; // Top left.
@@ -29,12 +29,8 @@ namespace harmony {
 		return suffix_;
 	}
 	
-	gl::size_t gx::sprite::width() const {
-		return width_;
-	}
-	
-	gl::size_t gx::sprite::height() const {
-		return height_;
+	ivec2 gx::sprite::size() const {
+		return size_;
 	}
 	
 	const gl::float_t * gx::sprite::vertices() const {
@@ -45,12 +41,12 @@ namespace harmony {
 		return &tex_coords_[0][0];
 	}
 	
-	void gx::sprite::touch(const gl::texture_ref & texture) {
+	void gx::sprite::touch(const gx::texture_ref & texture) {
 		// If this is the first texture we've touched, populate the tex coords.
 		// Potentially incorrect optimization alert: if multiple textures for
 		// one sprite have very different source image sizes, this will fail.
 		if (texture_cache_.empty())
-			texture->load_tex_coords(tex_coords_);
+			texture->source()->copy_tex_coords(tex_coords_);
 		
 		// Preserve the texture. (Without this, the general texture cache, which
 		// keeps only weak references to textures, is likely to deallocate it.)

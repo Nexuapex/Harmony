@@ -1,18 +1,18 @@
 //
-// gl_texture_cache.h
+// gx_texture_cache.h
 // Harmony
 //
 
-#ifndef HARMONY_GL_TEXTURE_CACHE_H
-#define HARMONY_GL_TEXTURE_CACHE_H
+#ifndef HARMONY_GX_TEXTURE_CACHE_H
+#define HARMONY_GX_TEXTURE_CACHE_H
 
 #include <boost/weak_ptr.hpp>
 #include <boost/unordered_map.hpp>
 
-#include "gl_texture.h"
+#include "gx_texture.h"
 
 namespace harmony {
-	namespace gl {
+	namespace gx {
 		// Maintains a weakly-referenced cache of textures.
 		class texture_cache {
 		private:
@@ -28,4 +28,4 @@ namespace harmony {
 	}
 }
 
-#endif // HARMONY_GL_TEXTURE_CACHE_H
+#endif // HARMONY_GX_TEXTURE_CACHE_H

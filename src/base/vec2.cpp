@@ -54,7 +54,7 @@ namespace harmony {
 	}
 	
 	float vec2::magnitude() const {
-		return std::sqrt(x_ * x_ + y_ * y_);
+		return std::sqrt(magnitude_squared());
 	}
 	
 	vec2 vec2::unit() const {

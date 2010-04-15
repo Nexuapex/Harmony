@@ -10,11 +10,10 @@
 
 namespace harmony {
 	namespace geom {
-		struct rect {
-			ivec2 origin, size;
-			
+		class rect {
+		public:
 			rect() {}
-			rect(ivec2 o, ivec2 s) : origin(o), size(s) {}
+			rect(const ivec2 & o, const ivec2 & s) : origin(o), size(s) {}
 			rect(icoord_t x, icoord_t y, ucoord_t width, ucoord_t height)
 				: origin(ivec2(x, y)), size(ivec2(width, height)) {}
 			
@@ -32,8 +31,11 @@ namespace harmony {
 			
 			rect intersect(const rect & that) const;
 			
-			rect tile_bounding_rect(ucoord_t tile_size) const;
+		public:
+			ivec2 origin, size;
 		};
+		
+		rect tile_aligned_bounding_rect(const rect & r, ucoord_t tile_size);
 	}
 }
 

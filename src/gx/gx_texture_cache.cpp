@@ -1,12 +1,13 @@
 //
-// gl_texture_cache.cpp
+// gx_texture_cache.cpp
 // Harmony
 //
 
-#include "gl_texture_cache.h"
+#include "gx_texture_cache.h"
 
 namespace harmony {
-	gl::texture_ref gl::texture_cache::get(const std::string & filename) {
+	gx::texture_ref gx::texture_cache::get(const std::string & filename)
+	{
 		{
 			// Find an existing texture.
 			cache_map::const_iterator ref = cache_.find(filename);
@@ -18,14 +19,15 @@ namespace harmony {
 		
 		{
 			// Otherwise, load the texture.
-			texture_ref new_texture(new gl::texture(filename));
-			texture_weak weak_ref(new_texture);
+			gl::texture_ref new_texture(new gl::texture(filename));
+			texture_ref new_texture_wrapper(new gx::texture(new_texture));
+			texture_weak weak_ref(new_texture_wrapper);
 			
 			// Insert it into the cache.
 			cache_[filename] = weak_ref;
 			
 			// Return the new texture.
-			return new_texture;
+			return new_texture_wrapper;
 		}
 	}
 }

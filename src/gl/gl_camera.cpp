@@ -25,6 +25,7 @@ namespace harmony {
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		
+		(void)position;
 		// Set the camera's position.
 		glTranslated(
 			static_cast<GLdouble>(-position.x()),

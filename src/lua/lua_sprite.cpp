@@ -31,9 +31,9 @@ namespace harmony {
 		// Create the sprite object.
 		std::string name = luaL_checkstring(state, 1);
 		std::string suffix = luaL_checkstring(state, 2);
-		gl::size_t width = static_cast<gl::size_t>(luaL_checkinteger(state, 3));
-		gl::size_t height = static_cast<gl::size_t>(luaL_optinteger(state, 4, width));
-		gx::sprite_ref sprite(new gx::sprite(name, suffix, width, height));
+		lua_Integer width = luaL_checkinteger(state, 3);
+		lua_Integer height = luaL_optinteger(state, 4, width);
+		gx::sprite_ref sprite(new gx::sprite(name, suffix, ivec2(width, height)));
 		
 		// Create and return the userdata proxy.
 		engine.lua_engine().push_proxy(lua::sprite_class, sprite);

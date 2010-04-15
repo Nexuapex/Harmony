@@ -11,8 +11,9 @@
 #include "game_actor_fwd.h"
 #include "game_interface.h"
 #include "geom_rect.h"
-#include "gl_texture_cache.h"
+#include "gx_texture_cache.h"
 #include "gx_actor_renderer.h"
+#include "gx_atlas_renderer.h"
 #include "gx_tile_renderer.h"
 #include "ai_player_agent_fwd.h"
 #include "lua_engine.h"
@@ -53,8 +54,9 @@ namespace harmony {
 			
 			// The various subsystems.
 			lua::engine & lua_engine();
-			gl::texture_cache & texture_cache();
+			gx::texture_cache & texture_cache();
 			gx::actor_renderer & actor_renderer();
+			gx::atlas_renderer & atlas_renderer();
 			gx::tile_renderer & tile_renderer();
 			ai::player_agent_ref player_agent() const;
 			
@@ -63,8 +65,9 @@ namespace harmony {
 			
 		private:
 			lua::engine lua_engine_;
-			gl::texture_cache texture_cache_;
+			gx::texture_cache texture_cache_;
 			gx::actor_renderer actor_renderer_;
+			gx::atlas_renderer atlas_renderer_;
 			gx::tile_renderer tile_renderer_;
 			ai::player_agent_ref player_agent_;
 			level_ref current_level_;

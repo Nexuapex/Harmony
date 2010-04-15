@@ -102,12 +102,16 @@ namespace harmony {
 		return lua_engine_;
 	}
 	
-	gl::texture_cache & game::engine::texture_cache() {
+	gx::texture_cache & game::engine::texture_cache() {
 		return texture_cache_;
 	}
 	
 	gx::actor_renderer & game::engine::actor_renderer() {
 		return actor_renderer_;
+	}
+	
+	gx::atlas_renderer & game::engine::atlas_renderer() {
+		return atlas_renderer_;
 	}
 	
 	gx::tile_renderer & game::engine::tile_renderer() {

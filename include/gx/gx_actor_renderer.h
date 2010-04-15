@@ -9,7 +9,7 @@
 #include "game_types.h"
 #include "game_level.h"
 #include "gx_sprite.h"
-#include "gl_texture_cache.h"
+#include "gx_texture_cache.h"
 #include "gl_shader_program.h"
 #include "gl_using_shader.h"
 #include "gl_using_vertices.h"
@@ -22,9 +22,9 @@ namespace harmony {
 			actor_renderer();
 			
 			void draw(game::elapsed_t elapsed, game::level & level,
-				gl::texture_cache & tex_cache) const;
+				gx::texture_cache & tex_cache) const;
 			void draw(game::elapsed_t elapsed, game::actor & actor,
-				gl::texture_cache & tex_cache) const;
+				gx::texture_cache & tex_cache) const;
 			
 		private:
 			gl::shader_program sprite_shader_;

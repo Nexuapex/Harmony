@@ -40,10 +40,12 @@ namespace harmony {
 		
 		// Get the function's parameters.
 		const char * filename = luaL_checkstring(state, 1);
-		gl::int_t rotation = luaL_checkoption(state, 2, "normal", tile_rotation_options);
+		gl::ushort_t rotation = static_cast<gl::ushort_t>(
+			luaL_checkoption(state, 2, "normal", tile_rotation_options)
+		);
 		
 		// Create the tile object.
-		gl::texture_ref texture = engine.texture_cache().get(filename);
+		gx::texture_ref texture = engine.texture_cache().get(filename);
 		game::terrain_tile_ref tile(new game::terrain_tile(texture, rotation));
 		
 		// Create and return the userdata proxy.

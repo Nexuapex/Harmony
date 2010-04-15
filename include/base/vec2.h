@@ -28,6 +28,8 @@ namespace harmony {
 		vec2 operator/(float scalar) const;
 		vec2 & operator/=(float scalar);
 		
+		vec2 operator-() const { return (*this) * -1; }
+		
 		coord_t x() const { return x_; }
 		coord_t y() const { return y_; }
 		
@@ -37,7 +39,9 @@ namespace harmony {
 		void incr_x() { ++x_; }
 		void incr_y() { ++y_; }
 		
+		float magnitude_squared() const { return x_ * x_ + y_ * y_; }
 		float magnitude() const;
+		
 		vec2 unit() const;
 		angle_t arc_tangent() const;
 		

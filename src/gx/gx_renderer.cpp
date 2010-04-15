@@ -41,7 +41,7 @@ void hgx_render(hgame_ref game, float elapsed) {
 	gl::set_camera_position(self.camera_origin());
 	
 	// Render the tiles of the current level.
-	self.tile_renderer().draw(self.viewport(), self.current_level());
+	self.tile_renderer().draw(self.atlas_renderer(), self.current_level());
 	
 	// Render the actors attached to the current level.
 	self.actor_renderer().draw(elapsed, self.current_level(), self.texture_cache());

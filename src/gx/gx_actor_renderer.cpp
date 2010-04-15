@@ -13,7 +13,7 @@ namespace harmony {
 	gx::actor_renderer::actor_renderer() : sprite_shader_("actor.vs", "actor.fs") {}
 	
 	void gx::actor_renderer::draw(game::elapsed_t elapsed, game::level & level,
-		gl::texture_cache & tex_cache) const
+		gx::texture_cache & tex_cache) const
 	{
 		// Activate the shader.
 		gl::using_shader active_shader(sprite_shader_);
@@ -37,7 +37,7 @@ namespace harmony {
 	}
 	
 	void gx::actor_renderer::draw(game::elapsed_t elapsed, game::actor & actor,
-		gl::texture_cache & tex_cache) const
+		gx::texture_cache & tex_cache) const
 	{
 		// Make rendering time elapse for the actor.
 		actor.sprite_state().step(elapsed);
@@ -49,14 +49,14 @@ namespace harmony {
 		std::string path = actor.sprite_state().path_for(sprite);
 		
 		// Load said texture and inform the sprite of it.
-		gl::texture_ref texture = tex_cache.get(path);
+		gx::texture_ref texture = tex_cache.get(path);
 		sprite.touch(texture);
 		
 		// Activate the sprite vertices.
 		using_sprite active_sprite(sprite);
 		
 		// Set up the shader.
-		gl::using_uniform<gl::texture_ref> sprite_texture(sprite_shader_, "sprite", texture);
+		gl::using_uniform<gl::texture_ref> sprite_texture(sprite_shader_, "sprite", texture->source());
 		
 		// Translate to the actor's position.
 		gl::using_translation translation(actor.position());

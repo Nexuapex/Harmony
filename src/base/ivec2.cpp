@@ -60,6 +60,6 @@ namespace harmony {
 	}
 	
 	float ivec2::magnitude() const {
-		return std::sqrt(static_cast<float>(x_ * x_ + y_ * y_));
+		return std::sqrt(static_cast<float>(magnitude_squared()));
 	}
 }

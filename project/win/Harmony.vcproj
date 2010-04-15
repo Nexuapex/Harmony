@@ -301,6 +301,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\gx\gx_atlas_renderer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gx\gx_atlas_renderer.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\gx\gx_sprite.cpp"
 					>
 				</File>
@@ -322,6 +330,34 @@
 				</File>
 				<File
 					RelativePath="..\..\include\gx\gx_sprite_tag.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\gx\gx_texture.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gx\gx_texture.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\gx\gx_texture_atlas.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gx\gx_texture_atlas.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\gx\gx_texture_cache.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gx\gx_texture_cache.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gx\gx_texture_fwd.h"
 					>
 				</File>
 				<File
@@ -445,11 +481,31 @@
 				Name="Classes"
 				>
 				<File
+					RelativePath="..\..\src\gl\gl_buffer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gl\gl_buffer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gl\gl_buffer_fwd.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\gl\gl_color.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\include\gl\gl_color.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\gl\gl_offscreen_renderer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gl\gl_offscreen_renderer.h"
 					>
 				</File>
 				<File
@@ -466,14 +522,6 @@
 				</File>
 				<File
 					RelativePath="..\..\include\gl\gl_texture.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\src\gl\gl_texture_cache.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\include\gl\gl_texture_cache.h"
 					>
 				</File>
 			</Filter>
@@ -529,6 +577,18 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\gl\gl_using_buffer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\gl\gl_using_offscreen_renderer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gl\gl_using_offscreen_renderer.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\include\gl\gl_using_rotation.h"
 					>
 				</File>
@@ -542,6 +602,10 @@
 				</File>
 				<File
 					RelativePath="..\..\include\gl\gl_using_uniform.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\gl\gl_using_vertices.cpp"
 					>
 				</File>
 				<File

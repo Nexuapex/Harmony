@@ -113,6 +113,11 @@ namespace harmony {
 				update();
 			}
 			
+			~using_uniform() {
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
+			
 		protected:
 			void update() const {
 				glActiveTexture(GL_TEXTURE0);

@@ -11,6 +11,7 @@
 #include "game_terrain_tile.h"
 #include "geom_rect.h"
 #include "gl_types.h"
+#include "gl_using_buffer.h"
 #include "gl_using_shader.h"
 #include "gl_using_translation.h"
 #include "gl_using_uniform.h"
@@ -23,22 +24,28 @@ namespace harmony {
 		public:
 			tile_renderer();
 			
-			void draw(const geom::rect & viewport, game::level & level) const;
-			void draw(const geom::rect & viewport, game::terrain_layer & layer) const;
+			void draw(gx::atlas_renderer & intermediate_renderer, game::level & level) const;
+			void draw(gx::atlas_renderer & intermediate_renderer, game::terrain_layer & layer) const;
 			
 		private:
 			gl::shader_program tile_shader_;
 			
 		private:
-			class using_layer : public gl::using_shader, public gl::using_vertices {
-			public:
+			struct using_layer {
+				gl::using_shader shader;
+				gl::using_buffer<game::terrain_layer::tile_vertex> vertex_buffer;
+				gl::using_buffer<gl::index_t> index_buffer;
+				gl::using_translation translation;
+				gl::using_uniform<vec2> extent;
+				gl::using_uniform<gl::texture_ref> texture;
+				gl::using_uniform<gl::int_t> rotation;
+				
 				using_layer(const gl::shader_program & shader,
-					const game::terrain_layer & layer,
+					game::terrain_layer & layer,
+					const game::terrain_layer::buffer_object & rendering_object,
 					const game::terrain_tile & initial_tile);
 				
-			private:
-				gl::using_translation translation_;
-				gl::using_uniform<vec2> tile_ratio_;
+				void draw();
 			};
 		};
 	}
