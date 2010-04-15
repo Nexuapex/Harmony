@@ -22,8 +22,14 @@ namespace harmony {
 		vec2 operator-(const vec2 & that) const;
 		vec2 & operator-=(const vec2 & that);
 		
+		vec2 operator*(const vec2 & that) const;
+		vec2 & operator*=(const vec2 & that);
+		
 		vec2 operator*(float scalar) const;
 		vec2 & operator*=(float scalar);
+		
+		vec2 operator/(const vec2 & that) const;
+		vec2 & operator/=(const vec2 & that);
 		
 		vec2 operator/(float scalar) const;
 		vec2 & operator/=(float scalar);

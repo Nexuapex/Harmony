@@ -24,8 +24,14 @@ namespace harmony {
 		ivec2 operator-(const ivec2 & that) const;
 		ivec2 & operator-=(const ivec2 & that);
 		
+		ivec2 operator*(const ivec2 & that) const;
+		ivec2 & operator*=(const ivec2 & that);
+		
 		ivec2 operator*(int scalar) const;
 		ivec2 & operator*=(int scalar);
+		
+		ivec2 operator/(const ivec2 & that) const;
+		ivec2 & operator/=(const ivec2 & that);
 		
 		ivec2 operator/(int scalar) const;
 		ivec2 & operator/=(int scalar);

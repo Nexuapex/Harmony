@@ -33,6 +33,16 @@ namespace harmony {
 		return *this;
 	}
 	
+	vec2 vec2::operator*(const vec2 & that) const {
+		return vec2(x_ * that.x_, y_ * that.y_);
+	}
+	
+	vec2 & vec2::operator*=(const vec2 & that) {
+		x_ *= that.x_;
+		y_ *= that.y_;
+		return *this;
+	}
+	
 	vec2 vec2::operator*(float scalar) const {
 		return vec2(x_ * scalar, y_ * scalar);
 	}
@@ -40,6 +50,16 @@ namespace harmony {
 	vec2 & vec2::operator*=(float scalar) {
 		x_ *= scalar;
 		y_ *= scalar;
+		return *this;
+	}
+	
+	vec2 vec2::operator/(const vec2 & that) const {
+		return vec2(x_ / that.x_, y_ / that.y_);
+	}
+	
+	vec2 & vec2::operator/=(const vec2 & that) {
+		x_ /= that.x_;
+		y_ /= that.y_;
 		return *this;
 	}
 	

@@ -25,9 +25,9 @@ namespace harmony {
 	void gx::texture_atlas::load(atlas_renderer & renderer) {
 		if (!atlas_) {
 			// Preliminary work for creating an atlas.
-			unsigned tile_count = textures_.size();
+			const unsigned tile_count = textures_.size();
 			if (tile_count == 0) return;
-			ivec2 tile_size_vec(tile_size_, tile_size_);
+			const ivec2 tile_size_vec(tile_size_, tile_size_);
 			ivec2 size(64, 64);
 			
 			// Iteratively determine a potential size.
@@ -71,14 +71,8 @@ namespace harmony {
 				tex.size_ = tile_size_vec;
 				
 				// Calculate the lower-left and upper-right texture coordinates.
-				vec2 ll(
-					offset.fx() / size.fx(),
-					offset.fy() / size.fy()
-				);
-				vec2 ur(
-					(offset.fx() + tile_size_) / size.fx(),
-					(offset.fy() + tile_size_) / size.fy()
-				);
+				vec2 ll = static_cast<vec2>(offset) / static_cast<vec2>(size);
+				vec2 ur = static_cast<vec2>(offset + tile_size_vec) / static_cast<vec2>(size);
 				
 				// Update the texture coordinates.
 				tex.tex_coords_[0][0] = ll.x(); tex.tex_coords_[0][1] = ll.y();

@@ -54,7 +54,7 @@ namespace harmony {
 	}
 	
 	vec2 gl::texture::filled_portion() const {
-		return vec2(filled_size_.fx() / size_.fx(), filled_size_.fy() / size_.fy());
+		return static_cast<vec2>(filled_size_) / static_cast<vec2>(size_);
 	}
 	
 	void gl::texture::copy_tex_coords(float (& tex_coords)[4][2]) const {

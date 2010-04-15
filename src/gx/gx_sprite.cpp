@@ -11,14 +11,14 @@ namespace harmony {
 		: name_(name), suffix_(suffix), size_(size)
 	{
 		// Useful temporaries.
-		gl::float_t w = static_cast<gl::float_t>(size.x()) / 2.0f;
-		gl::float_t h = static_cast<gl::float_t>(size.y()) / 2.0f;
+		const gl::float_t w = static_cast<gl::float_t>(size.x()) / 2.0f;
+		const gl::float_t h = static_cast<gl::float_t>(size.y()) / 2.0f;
 		
 		// The vertices of this sprite.
 		vertices_[0][0] = -w; vertices_[0][1] = -h; // Top left.
-		vertices_[1][0] = -w; vertices_[1][1] =  h; // Bottom left.
-		vertices_[2][0] =  w; vertices_[2][1] =  h; // Bottom right.
-		vertices_[3][0] =  w; vertices_[3][1] = -h; // Top right.
+		vertices_[1][0] = -w; vertices_[1][1] = +h; // Bottom left.
+		vertices_[2][0] = +w; vertices_[2][1] = +h; // Bottom right.
+		vertices_[3][0] = +w; vertices_[3][1] = -h; // Top right.
 	}
 	
 	std::string gx::sprite::name() const {

@@ -27,7 +27,7 @@ namespace harmony {
 	
 	vec2 game::terrain_layer::cell_center(const ivec2 & cell) const {
 		float size = static_cast<float>(tile_size_);
-		return (vec2(cell) * size) + vec2(size / 2.0f, size / 2.0f);
+		return static_cast<vec2>(cell) * size + vec2(size / 2.0f, size / 2.0f);
 	}
 	
 	ivec2 game::terrain_layer::first_nonempty_cell(const geom::rect & region) const {

@@ -30,10 +30,7 @@ namespace harmony {
 	}
 	
 	vec2 gx::texture::source_extent() const {
-		return vec2(
-			texture_->size().fx() / size_.fx(),
-			texture_->size().fy() / size_.fy()
-		);
+		return static_cast<vec2>(texture_->size()) / static_cast<vec2>(size_);
 	}
 	
 	void gx::texture::load() const {
