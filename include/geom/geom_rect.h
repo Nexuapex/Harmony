@@ -7,15 +7,20 @@
 #define HARMONY_GEOM_RECT_H
 
 #include "ivec2.h"
+#include "geom_shape.h"
+#include "geom_circle.h"
 
 namespace harmony {
 	namespace geom {
-		class rect {
+		// A two-dimensional axis-aligned rectangle.
+		class rect : public shape {
 		public:
 			rect() {}
 			rect(const ivec2 & o, const ivec2 & s) : origin(o), size(s) {}
 			rect(icoord_t x, icoord_t y, ucoord_t width, ucoord_t height)
-				: origin(ivec2(x, y)), size(ivec2(width, height)) {}
+				: origin(x, y), size(width, height) {}
+			
+			kind_t kind() const;
 			
 			icoord_t x1() const { return origin.x(); }
 			icoord_t y1() const { return origin.y(); }
@@ -24,10 +29,9 @@ namespace harmony {
 			ucoord_t width() const { return size.x(); }
 			ucoord_t height() const { return size.y(); }
 			
-			bool intersects(const rect & that) const {
-				return !(x1() > that.x2() || x2() < that.x1()
-					|| y1() > that.y2() || y2() < that.y1());
-			}
+			bool intersects(const shape & that) const;
+			bool intersects(const geom::circle & that) const;
+			bool intersects(const rect & that) const;
 			
 			rect intersect(const rect & that) const;
 			

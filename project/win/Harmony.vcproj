@@ -665,6 +665,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Functions"
+				>
+				<File
+					RelativePath="..\..\src\base\mathfunc.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\base\mathfunc.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Lua"
@@ -797,11 +809,35 @@
 				Name="Classes"
 				>
 				<File
+					RelativePath="..\..\src\geom\geom_circle.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_circle.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\geom\geom_rect.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\include\geom\geom_rect.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\geom\geom_shape.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_shape.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Glue"
+				>
+				<File
+					RelativePath="..\..\include\geom\geom.h"
 					>
 				</File>
 			</Filter>

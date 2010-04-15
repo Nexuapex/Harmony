@@ -5,10 +5,40 @@
 
 #include <algorithm>
 #include <cmath>
+#include <stdexcept>
 
 #include "geom_rect.h"
+#include "mathfunc.h"
 
 namespace harmony {
+	geom::shape::kind_t geom::rect::kind() const {
+		return shape::rect;
+	}
+	
+	bool geom::rect::intersects(const shape & that) const {
+		switch (that.kind()) {
+			case shape::circle:
+				return intersects(static_cast<const geom::circle &>(that));
+			case shape::rect:
+				return intersects(static_cast<const rect &>(that));
+			default:
+				throw std::domain_error("intersection not defined");
+		}
+	}
+	
+	bool geom::rect::intersects(const geom::circle & that) const {
+		ivec2 closest = ivec2(
+			clamp(that.x(), x1(), x2()),
+			clamp(that.y(), y1(), y2())
+		);
+		
+		return (that.origin - closest).magnitude_squared() < that.radius_squared();
+	}
+	
+	bool geom::rect::intersects(const rect & that) const {
+		return !(x1() > that.x2() || x2() < that.x1() || y1() > that.y2() || y2() < that.y1());
+	}
+	
 	geom::rect geom::rect::intersect(const rect & that) const {
 		if (intersects(that)) {
 			ivec2 o(

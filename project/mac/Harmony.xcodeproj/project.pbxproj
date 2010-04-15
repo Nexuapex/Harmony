@@ -17,6 +17,9 @@
 		B42A7C4C10D663D2001792A1 /* game_terrain_tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42A7C4B10D663D2001792A1 /* game_terrain_tile.cpp */; };
 		B42A7C5910D66494001792A1 /* gl_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42A7C5810D66494001792A1 /* gl_texture.cpp */; };
 		B42A7CD110D67304001792A1 /* gx_tile_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42A7CD010D67304001792A1 /* gx_tile_renderer.cpp */; };
+		B448395C1177607000DED61B /* geom_shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B448395B1177607000DED61B /* geom_shape.cpp */; };
+		B4483986117764CD00DED61B /* geom_circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4483985117764CD00DED61B /* geom_circle.cpp */; };
+		B44839BE11776C2300DED61B /* mathfunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44839BD11776C2300DED61B /* mathfunc.cpp */; };
 		B45032B310DDC12100934590 /* tile in Resources */ = {isa = PBXBuildFile; fileRef = B450328C10DDC12100934590 /* tile */; };
 		B47DAEE410DDAAC900BF33FE /* lua_level_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47DAEE310DDAAC900BF33FE /* lua_level_interface.cpp */; };
 		B47DAEF610DDACB700BF33FE /* lua_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47DAEF510DDACB700BF33FE /* lua_interface.cpp */; };
@@ -117,6 +120,13 @@
 		B42A7C5810D66494001792A1 /* gl_texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = gl_texture.cpp; path = ../../src/gl/gl_texture.cpp; sourceTree = SOURCE_ROOT; };
 		B42A7CCF10D67304001792A1 /* gx_tile_renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx_tile_renderer.h; path = ../../include/gx/gx_tile_renderer.h; sourceTree = SOURCE_ROOT; };
 		B42A7CD010D67304001792A1 /* gx_tile_renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gx_tile_renderer.cpp; path = ../../src/gx/gx_tile_renderer.cpp; sourceTree = SOURCE_ROOT; };
+		B448395A1177607000DED61B /* geom_shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_shape.h; path = ../../include/geom/geom_shape.h; sourceTree = SOURCE_ROOT; };
+		B448395B1177607000DED61B /* geom_shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_shape.cpp; path = ../../src/geom/geom_shape.cpp; sourceTree = SOURCE_ROOT; };
+		B4483984117764CD00DED61B /* geom_circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_circle.h; path = ../../include/geom/geom_circle.h; sourceTree = "<group>"; };
+		B4483985117764CD00DED61B /* geom_circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_circle.cpp; path = ../../src/geom/geom_circle.cpp; sourceTree = "<group>"; };
+		B44839BB11776BD200DED61B /* geom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom.h; path = ../../include/geom/geom.h; sourceTree = "<group>"; };
+		B44839BC11776C2300DED61B /* mathfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mathfunc.h; path = ../../include/base/mathfunc.h; sourceTree = SOURCE_ROOT; };
+		B44839BD11776C2300DED61B /* mathfunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mathfunc.cpp; path = ../../src/base/mathfunc.cpp; sourceTree = SOURCE_ROOT; };
 		B44D8AE210DC64AE009A16CF /* gl_using_shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_using_shader.h; path = ../../include/gl/gl_using_shader.h; sourceTree = SOURCE_ROOT; };
 		B450328C10DDC12100934590 /* tile */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tile; path = ../../tile; sourceTree = SOURCE_ROOT; };
 		B47DAEE310DDAAC900BF33FE /* lua_level_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lua_level_interface.cpp; path = ../../src/lua/lua_level_interface.cpp; sourceTree = SOURCE_ROOT; };
@@ -2431,6 +2441,7 @@
 			isa = PBXGroup;
 			children = (
 				B428568C1162BA45002FE5FF /* Classes */,
+				B44839BA11776BC500DED61B /* Glue */,
 			);
 			name = Geometry;
 			sourceTree = "<group>";
@@ -2438,8 +2449,12 @@
 		B428568C1162BA45002FE5FF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B4483985117764CD00DED61B /* geom_circle.cpp */,
+				B4483984117764CD00DED61B /* geom_circle.h */,
 				B428568E1162BA70002FE5FF /* geom_rect.cpp */,
 				B428568D1162BA60002FE5FF /* geom_rect.h */,
+				B448395B1177607000DED61B /* geom_shape.cpp */,
+				B448395A1177607000DED61B /* geom_shape.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2451,6 +2466,23 @@
 				B42A7C3310D66343001792A1 /* GLee.h */,
 			);
 			name = GLee;
+			sourceTree = "<group>";
+		};
+		B44839BA11776BC500DED61B /* Glue */ = {
+			isa = PBXGroup;
+			children = (
+				B44839BB11776BD200DED61B /* geom.h */,
+			);
+			name = Glue;
+			sourceTree = "<group>";
+		};
+		B44839BF11776C2700DED61B /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				B44839BD11776C2300DED61B /* mathfunc.cpp */,
+				B44839BC11776C2300DED61B /* mathfunc.h */,
+			);
+			name = Functions;
 			sourceTree = "<group>";
 		};
 		B48E545D10D5D32E00CEE891 /* Graphics Layer */ = {
@@ -3052,6 +3084,7 @@
 			isa = PBXGroup;
 			children = (
 				B4E946DD10D5CD4E00A1B041 /* Classes */,
+				B44839BF11776C2700DED61B /* Functions */,
 				B4E946DE10D5CD5200A1B041 /* Glue */,
 				B4D3CA7610D645D200850761 /* Platform Layer */,
 			);
@@ -6137,6 +6170,9 @@
 				B4EE2FD81167C375000A7776 /* gx_texture.cpp in Sources */,
 				B4EE30901167D28E000A7776 /* gx_texture_atlas.cpp in Sources */,
 				B480B25D1168173C007E4BC1 /* gx_atlas_renderer.cpp in Sources */,
+				B448395C1177607000DED61B /* geom_shape.cpp in Sources */,
+				B4483986117764CD00DED61B /* geom_circle.cpp in Sources */,
+				B44839BE11776C2300DED61B /* mathfunc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
