@@ -20,21 +20,27 @@ namespace harmony {
 			typedef animated<float>::animation_ref animation_ref;
 			
 		public:
-			sprite_tag(const std::string & name,
+			sprite_tag(const std::string & name, int priority,
 				const animation_ref & animation = animation_ref());
 			sprite_tag(const sprite_tag & that);
 			sprite_tag & operator=(const sprite_tag & that);
 			
 			bool operator==(const sprite_tag & that) const;
 			bool operator!=(const sprite_tag & that) const;
+			bool operator< (const sprite_tag & that) const;
+			bool operator<=(const sprite_tag & that) const;
+			bool operator> (const sprite_tag & that) const;
+			bool operator>=(const sprite_tag & that) const;
 			
 			std::string name() const;
+			int priority() const;
 			std::string animated_name() const;
 			
 			void step(game::elapsed_t elapsed);
 			
 		private:
 			std::string name_;
+			int priority_;
 			animated<float> animation_;
 		};
 	}

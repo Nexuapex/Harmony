@@ -7,7 +7,7 @@
 #define HARMONY_GX_SPRITE_STATE_H
 
 #include <string>
-#include <vector>
+#include <set>
 
 #include "game_types.h"
 #include "gx_sprite_fwd.h"
@@ -28,7 +28,7 @@ namespace harmony {
 			void step(game::elapsed_t elapsed);
 			
 		private:
-			std::vector<sprite_tag> tags_;
+			std::set<sprite_tag> tags_;
 		};
 	}
 }

@@ -31,7 +31,7 @@ namespace harmony {
 		
 		// DEMO: Set up the player's walking animation.
 		gx::animated<float>::animation_ref walking_animation(new gx::animation<float>(1.0f, 3.0f, 5.0f));
-		gx::sprite_tag walking_tag("walk", walking_animation);
+		gx::sprite_tag walking_tag("walk", 0, walking_animation);
 		
 		// DEMO: Set up the player.
 		actor_ref player;
