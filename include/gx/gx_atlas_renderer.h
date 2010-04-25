@@ -32,7 +32,7 @@ namespace harmony {
 		private:
 			gl::shader_program shader_;
 			gl::offscreen_renderer renderer_;
-			gl::float_t vertices_[4][2];
+			gl::quad_t vertices_;
 		};
 	}
 }

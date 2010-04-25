@@ -11,7 +11,7 @@
 #include <boost/unordered_set.hpp>
 
 #include "gl_types.h"
-#include "gx_texture.h"
+#include "gx_texture_fwd.h"
 
 namespace harmony {
 	namespace gx {
@@ -34,8 +34,8 @@ namespace harmony {
 			ivec2 size() const;
 			
 			// The vertex array and texture coordinates of this sprite.
-			const gl::float_t * vertices() const;
-			const gl::float_t * tex_coords() const;
+			const gl::quad_t & vertices() const;
+			const gl::quad_t & tex_coords() const;
 			
 			// Lets a sprite know that a specific texture is representing it.
 			// Used to populate the array of texture coordinates. Also keeps
@@ -46,8 +46,8 @@ namespace harmony {
 		private:
 			std::string name_, suffix_;
 			ivec2 size_;
-			gl::float_t vertices_[4][2];
-			gl::float_t tex_coords_[4][2];
+			gl::quad_t vertices_;
+			gl::quad_t tex_coords_;
 			cache_set texture_cache_;
 		};
 		

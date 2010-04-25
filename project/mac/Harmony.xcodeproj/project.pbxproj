@@ -110,6 +110,11 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Harmony.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Harmony.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B41F43411184CBE4009D8598 /* game_terrain_layer_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_terrain_layer_fwd.h; path = ../../include/game/game_terrain_layer_fwd.h; sourceTree = SOURCE_ROOT; };
+		B41F43421184CC62009D8598 /* game_terrain_tile_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_terrain_tile_fwd.h; path = ../../include/game/game_terrain_tile_fwd.h; sourceTree = SOURCE_ROOT; };
+		B41F43541184CD68009D8598 /* gl_texture_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_texture_fwd.h; path = ../../include/gl/gl_texture_fwd.h; sourceTree = SOURCE_ROOT; };
+		B41F43581184CF29009D8598 /* gx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx.h; path = ../../include/gx/gx.h; sourceTree = SOURCE_ROOT; };
+		B41F43691184D008009D8598 /* gx_sprite_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx_sprite_fwd.h; path = ../../include/gx/gx_sprite_fwd.h; sourceTree = SOURCE_ROOT; };
 		B428568D1162BA60002FE5FF /* geom_rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_rect.h; path = ../../include/geom/geom_rect.h; sourceTree = SOURCE_ROOT; };
 		B428568E1162BA70002FE5FF /* geom_rect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_rect.cpp; path = ../../src/geom/geom_rect.cpp; sourceTree = SOURCE_ROOT; };
 		B42A7C3210D66343001792A1 /* GLee.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GLee.c; path = ../../glee/GLee.c; sourceTree = SOURCE_ROOT; };
@@ -2437,6 +2442,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B41F43571184CF11009D8598 /* Glue */ = {
+			isa = PBXGroup;
+			children = (
+				B41F43581184CF29009D8598 /* gx.h */,
+			);
+			name = Glue;
+			sourceTree = "<group>";
+		};
 		B428568B1162BA28002FE5FF /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
@@ -2509,6 +2522,7 @@
 				B4D3CA3610D6410800850761 /* gl_shader_program.h */,
 				B42A7C5810D66494001792A1 /* gl_texture.cpp */,
 				B42A7C5710D66494001792A1 /* gl_texture.h */,
+				B41F43541184CD68009D8598 /* gl_texture_fwd.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -3040,6 +3054,7 @@
 			children = (
 				B4E946D710D5CC3000A1B041 /* Classes */,
 				B4E946D810D5CC3400A1B041 /* Interface */,
+				B41F43571184CF11009D8598 /* Glue */,
 			);
 			name = "Graphics Engine";
 			sourceTree = "<group>";
@@ -3054,6 +3069,7 @@
 				B480B1E81168117E007E4BC1 /* gx_atlas_renderer.h */,
 				B4E16FE410DED279004823E4 /* gx_sprite.cpp */,
 				B4E16FE310DED279004823E4 /* gx_sprite.h */,
+				B41F43691184D008009D8598 /* gx_sprite_fwd.h */,
 				B4E4ED8810DEF12E006D7E4D /* gx_sprite_state.cpp */,
 				B4E4ED8710DEF12E006D7E4D /* gx_sprite_state.h */,
 				B4E4EDD010DEF9D1006D7E4D /* gx_sprite_tag.cpp */,
@@ -3209,16 +3225,18 @@
 				B4F55C3411555DA100101328 /* game_actor_fwd.h */,
 				B4EDC94D10D5FAFF00177704 /* game_engine.cpp */,
 				B4EDC94C10D5FAFF00177704 /* game_engine.h */,
-				B4E5CDE910D722A5008EDF74 /* game_terrain_layer.cpp */,
-				B4E5CDE810D722A5008EDF74 /* game_terrain_layer.h */,
-				B42A7C4B10D663D2001792A1 /* game_terrain_tile.cpp */,
-				B42A7C4A10D663D2001792A1 /* game_terrain_tile.h */,
 				B4D4113E10DD8C8700D722A8 /* game_level.cpp */,
 				B4D4113D10DD8C8700D722A8 /* game_level.h */,
 				B4E16FA410DEC9D0004823E4 /* game_level_fwd.h */,
 				B4A8907710DEBAF000F2349D /* game_mark.cpp */,
 				B4A8907610DEBAF000F2349D /* game_mark.h */,
 				B4F55C3311555D1400101328 /* game_mark_fwd.h */,
+				B4E5CDE910D722A5008EDF74 /* game_terrain_layer.cpp */,
+				B4E5CDE810D722A5008EDF74 /* game_terrain_layer.h */,
+				B41F43411184CBE4009D8598 /* game_terrain_layer_fwd.h */,
+				B42A7C4B10D663D2001792A1 /* game_terrain_tile.cpp */,
+				B42A7C4A10D663D2001792A1 /* game_terrain_tile.h */,
+				B41F43421184CC62009D8598 /* game_terrain_tile_fwd.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

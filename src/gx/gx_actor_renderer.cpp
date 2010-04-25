@@ -7,6 +7,8 @@
 
 #include "gx_actor_renderer.h"
 #include "game_actor.h"
+#include "game_level.h"
+#include "gx_sprite.h"
 #include "gl.h"
 
 namespace harmony {

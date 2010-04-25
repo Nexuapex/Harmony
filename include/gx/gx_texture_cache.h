@@ -9,7 +9,7 @@
 #include <boost/weak_ptr.hpp>
 #include <boost/unordered_map.hpp>
 
-#include "gx_texture.h"
+#include "gx_texture_fwd.h"
 
 namespace harmony {
 	namespace gx {

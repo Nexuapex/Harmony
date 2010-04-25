@@ -317,6 +317,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\gx\gx_sprite_fwd.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\gx\gx_sprite_state.cpp"
 					>
 				</File>
@@ -381,6 +385,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Glue"
+				>
+				<File
+					RelativePath="..\..\include\gx\gx.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Game Logic"
@@ -441,11 +453,19 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\game\game_terrain_layer_fwd.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\game\game_terrain_tile.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\include\game\game_terrain_tile.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\game\game_terrain_tile_fwd.h"
 					>
 				</File>
 			</Filter>
@@ -522,6 +542,10 @@
 				</File>
 				<File
 					RelativePath="..\..\include\gl\gl_texture.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\gl\gl_texture_fwd.h"
 					>
 				</File>
 			</Filter>

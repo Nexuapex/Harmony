@@ -6,9 +6,9 @@
 #ifndef HARMONY_GX_TILE_RENDERER_H
 #define HARMONY_GX_TILE_RENDERER_H
 
-#include "game_level.h"
+#include "game_level_fwd.h"
 #include "game_terrain_layer.h"
-#include "game_terrain_tile.h"
+#include "game_terrain_tile_fwd.h"
 #include "geom_rect.h"
 #include "gl_types.h"
 #include "gl_using_buffer.h"
@@ -16,6 +16,7 @@
 #include "gl_using_translation.h"
 #include "gl_using_uniform.h"
 #include "gl_using_vertices.h"
+#include "gx_atlas_renderer.h"
 
 namespace harmony {
 	namespace gx {

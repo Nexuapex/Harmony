@@ -9,6 +9,7 @@
 #include <boost/unordered_set.hpp>
 
 #include "gl_types.h"
+#include "gl_texture_fwd.h"
 #include "gx_atlas_renderer.h"
 #include "gx_texture_fwd.h"
 

@@ -4,6 +4,8 @@
 //
 
 #include "gx_texture_cache.h"
+#include "gx_texture.h"
+#include "gl_texture.h"
 
 namespace harmony {
 	gx::texture_ref gx::texture_cache::get(const std::string & filename)

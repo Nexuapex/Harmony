@@ -15,7 +15,7 @@ namespace harmony {
 		class using_vertices {
 		public:
 			using_vertices(size_t count, size_t breadth,
-				const float_t * vertices, const float_t * tex_coords);
+				const quad_t & vertices, const quad_t & tex_coords);
 			~using_vertices();
 			
 			void draw(enum_t mode) const;

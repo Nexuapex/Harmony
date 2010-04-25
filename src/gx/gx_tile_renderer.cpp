@@ -4,6 +4,7 @@
 //
 
 #include "gx_tile_renderer.h"
+#include "game.h"
 #include "gl.h"
 
 namespace harmony {

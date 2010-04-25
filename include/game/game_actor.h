@@ -12,9 +12,7 @@
 #include "game_actor_fwd.h"
 #include "game_mark.h"
 #include "ai_agent_fwd.h"
-#include "gx_animation.h"
-#include "gx_sprite.h"
-#include "gx_sprite_state.h"
+#include "gx.h"
 
 namespace harmony {
 	namespace game {

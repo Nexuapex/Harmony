@@ -6,9 +6,8 @@
 #ifndef HARMONY_GAME_TERRAIN_TILE_H
 #define HARMONY_GAME_TERRAIN_TILE_H
 
-#include <boost/shared_ptr.hpp>
-
 #include "game_types.h"
+#include "game_terrain_tile_fwd.h"
 #include "gx_texture.h"
 
 namespace harmony {
@@ -26,8 +25,6 @@ namespace harmony {
 			gx::texture_ref texture_;
 			gl::ushort_t rotation_;
 		};
-		
-		typedef boost::shared_ptr<terrain_tile> terrain_tile_ref;
 	}
 }
 

@@ -4,6 +4,7 @@
 //
 
 #include "gx_sprite.h"
+#include "gx_texture.h"
 
 namespace harmony {
 	gx::sprite::sprite(const std::string & name, const std::string & suffix,
@@ -33,12 +34,12 @@ namespace harmony {
 		return size_;
 	}
 	
-	const gl::float_t * gx::sprite::vertices() const {
-		return &vertices_[0][0];
+	const gl::quad_t & gx::sprite::vertices() const {
+		return vertices_;
 	}
 	
-	const gl::float_t * gx::sprite::tex_coords() const {
-		return &tex_coords_[0][0];
+	const gl::quad_t & gx::sprite::tex_coords() const {
+		return tex_coords_;
 	}
 	
 	void gx::sprite::touch(const gx::texture_ref & texture) {
@@ -46,7 +47,7 @@ namespace harmony {
 		// Potentially incorrect optimization alert: if multiple textures for
 		// one sprite have very different source image sizes, this will fail.
 		if (texture_cache_.empty())
-			texture->source()->copy_tex_coords(tex_coords_);
+			texture->copy_tex_coords(tex_coords_);
 		
 		// Preserve the texture. (Without this, the general texture cache, which
 		// keeps only weak references to textures, is likely to deallocate it.)

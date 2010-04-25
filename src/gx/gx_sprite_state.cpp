@@ -7,6 +7,7 @@
 #include <sstream>
 
 #include "gx_sprite_state.h"
+#include "gx_sprite.h"
 
 namespace harmony {
 	void gx::sprite_state::add_tag(const sprite_tag & tag) {

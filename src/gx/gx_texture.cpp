@@ -3,7 +3,10 @@
 // Harmony
 //
 
+#include <cstring>
+
 #include "gx_texture.h"
+#include "gl_texture.h"
 
 namespace harmony {
 	gx::texture::texture(const gl::texture_ref & texture)
@@ -21,8 +24,12 @@ namespace harmony {
 		return size_;
 	}
 	
-	const gl::float_t (& gx::texture::tex_coords() const)[4][2] {
+	const gl::quad_t & gx::texture::tex_coords() const {
 		return tex_coords_;
+	}
+	
+	void gx::texture::copy_tex_coords(gl::quad_t & tex_coords) const {
+		memcpy(&tex_coords, &tex_coords_, sizeof(tex_coords));
 	}
 	
 	gl::texture_ref gx::texture::source() const {

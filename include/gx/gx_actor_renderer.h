@@ -7,8 +7,9 @@
 #define HARMONY_GX_ACTOR_RENDERER_H
 
 #include "game_types.h"
-#include "game_level.h"
-#include "gx_sprite.h"
+#include "game_actor_fwd.h"
+#include "game_level_fwd.h"
+#include "gx_sprite_fwd.h"
 #include "gx_texture_cache.h"
 #include "gl_shader_program.h"
 #include "gl_using_shader.h"

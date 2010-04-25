@@ -7,8 +7,8 @@
 #define HARMONY_GAME_ENGINE_H
 
 #include "game_types.h"
-#include "game_level.h"
 #include "game_actor_fwd.h"
+#include "game_level_fwd.h"
 #include "game_interface.h"
 #include "geom_rect.h"
 #include "gx_texture_cache.h"

@@ -7,14 +7,13 @@
 #define HARMONY_GAME_LEVEL_H
 
 #include <boost/unordered_set.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <iterator>
 #include <vector>
 
 #include "game_level_fwd.h"
-#include "game_terrain_layer.h"
-#include "game_mark.h"
+#include "game_terrain_layer_fwd.h"
+#include "game_mark_fwd.h"
 #include "game_actor.h"
 
 namespace harmony {

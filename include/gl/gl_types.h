@@ -26,6 +26,7 @@ namespace harmony {
 		typedef uint_t framebuffer_t;
 		typedef uint_t shader_t;
 		typedef uint_t texture_t;
+		typedef float_t quad_t[4][2];
 	}
 }
 

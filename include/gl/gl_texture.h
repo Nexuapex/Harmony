@@ -7,9 +7,9 @@
 #define HARMONY_GL_TEXTURE_H
 
 #include <string>
-#include <boost/shared_ptr.hpp>
 
 #include "gl_types.h"
+#include "gl_texture_fwd.h"
 
 namespace harmony {
 	namespace gl {
@@ -39,7 +39,7 @@ namespace harmony {
 			
 			// Load the texture coordinates representing the full extent of this
 			// texture into the given array.
-			void copy_tex_coords(float (& tex_coords)[4][2]) const;
+			void copy_tex_coords(quad_t & tex_coords) const;
 			
 			// Force the texture to be loaded into OpenGL. Has no effect if the
 			// texture is already loaded.
@@ -51,8 +51,6 @@ namespace harmony {
 			ivec2 size_, filled_size_;
 			void * data_;
 		};
-		
-		typedef boost::shared_ptr<texture> texture_ref;
 	}
 }
 

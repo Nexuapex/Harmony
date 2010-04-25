@@ -55,7 +55,7 @@ namespace harmony {
 	void gx::atlas_renderer::draw(gx::texture & texture, const ivec2 & offset, gl::size_t tile_size) const {
 		// Don't really care about efficiency when building a texture
 		// atlas, so there's no reason not to submit vertices each time.
-		gl::using_vertices active_vertices(4, 2, &vertices_[0][0], &(texture.tex_coords())[0][0]);
+		gl::using_vertices active_vertices(4, 2, vertices_, texture.tex_coords());
 		
 		// Bind the texture.
 		gl::using_uniform<gl::texture_ref> active_texture(shader_, "texture", texture.source());

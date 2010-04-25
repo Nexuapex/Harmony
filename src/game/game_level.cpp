@@ -4,6 +4,9 @@
 //
 
 #include "game_level.h"
+#include "game_terrain_layer.h"
+#include "game_mark.h"
+#include "game_actor.h"
 
 namespace harmony {
 	game::mark_ref game::level::create_mark(const vec2 & position) {

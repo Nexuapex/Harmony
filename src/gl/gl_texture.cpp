@@ -57,7 +57,7 @@ namespace harmony {
 		return static_cast<vec2>(filled_size_) / static_cast<vec2>(size_);
 	}
 	
-	void gl::texture::copy_tex_coords(float (& tex_coords)[4][2]) const {
+	void gl::texture::copy_tex_coords(quad_t & tex_coords) const {
 		vec2 extent = filled_portion();
 		tex_coords[0][0] = 0.00;       tex_coords[0][1] = 0.00;
 		tex_coords[1][0] = 0.00;       tex_coords[1][1] = extent.y();

@@ -10,7 +10,8 @@
 
 #include "lua_types.h"
 #include "lua_engine.h"
-#include "game_level.h"
+#include "game_terrain_tile_fwd.h"
+#include "game_level_fwd.h"
 
 namespace harmony {
 	namespace lua {

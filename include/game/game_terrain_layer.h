@@ -6,9 +6,8 @@
 #ifndef HARMONY_GAME_TERRAIN_LAYER_H
 #define HARMONY_GAME_TERRAIN_LAYER_H
 
-#include <boost/shared_ptr.hpp>
-
 #include "game_types.h"
+#include "game_terrain_layer_fwd.h"
 #include "game_terrain_tile.h"
 #include "geom_rect.h"
 #include "gl_types.h"
@@ -100,10 +99,6 @@ namespace harmony {
 				return tiles_[cell.y() * size_.x() + cell.x()];
 			}
 			
-		protected:
-			// Assignment operator to satisfy MSVC++.
-			terrain_layer & operator=(const terrain_layer & that);
-			
 		private:
 			ivec2 origin_, size_;
 			game::size_t tile_size_;
@@ -112,8 +107,6 @@ namespace harmony {
 			buffer_object buffer_object_;
 			bool dirty_;
 		};
-		
-		typedef boost::shared_ptr<terrain_layer> terrain_layer_ref;
 	}
 }
 

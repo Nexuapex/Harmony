@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "game_types.h"
-#include "gx_sprite.h"
+#include "gx_sprite_fwd.h"
 #include "gx_sprite_tag.h"
 
 namespace harmony {

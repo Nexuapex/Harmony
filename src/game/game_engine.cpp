@@ -4,7 +4,7 @@
 //
 
 #include "game_engine.h"
-#include "game_actor.h"
+#include "game.h"
 #include "ai_player_agent.h"
 #include "lua_vector.h"
 #include "lua_level.h"
