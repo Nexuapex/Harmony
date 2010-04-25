@@ -95,6 +95,8 @@
 		B4EE2F801167BE8F000A7776 /* gl_using_vertices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2F7F1167BE8F000A7776 /* gl_using_vertices.cpp */; };
 		B4EE2FD81167C375000A7776 /* gx_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2FD71167C375000A7776 /* gx_texture.cpp */; };
 		B4EE30901167D28E000A7776 /* gx_texture_atlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE308F1167D28E000A7776 /* gx_texture_atlas.cpp */; };
+		B4F009191184E1D400FBE7A3 /* geom_circular_sector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F009181184E1D400FBE7A3 /* geom_circular_sector.cpp */; };
+		B4F0095C1184E71800FBE7A3 /* geom_binary_op.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F0095B1184E71800FBE7A3 /* geom_binary_op.cpp */; };
 		B4F8AD4D10DD33F700795612 /* gl_color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AD4C10DD33F700795612 /* gl_color.cpp */; };
 		B4FC578810DE9CB70013CA88 /* lua_vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC578710DE9CB70013CA88 /* lua_vector.cpp */; };
 /* End PBXBuildFile section */
@@ -561,6 +563,10 @@
 		B4EE2FDF1167C3C3000A7776 /* gx_texture_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx_texture_fwd.h; path = ../../include/gx/gx_texture_fwd.h; sourceTree = SOURCE_ROOT; };
 		B4EE308E1167D28E000A7776 /* gx_texture_atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx_texture_atlas.h; path = ../../include/gx/gx_texture_atlas.h; sourceTree = SOURCE_ROOT; };
 		B4EE308F1167D28E000A7776 /* gx_texture_atlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gx_texture_atlas.cpp; path = ../../src/gx/gx_texture_atlas.cpp; sourceTree = SOURCE_ROOT; };
+		B4F009171184E1D400FBE7A3 /* geom_circular_sector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_circular_sector.h; path = ../../include/geom/geom_circular_sector.h; sourceTree = SOURCE_ROOT; };
+		B4F009181184E1D400FBE7A3 /* geom_circular_sector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_circular_sector.cpp; path = ../../src/geom/geom_circular_sector.cpp; sourceTree = SOURCE_ROOT; };
+		B4F0095A1184E71800FBE7A3 /* geom_binary_op.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_binary_op.h; path = ../../include/geom/geom_binary_op.h; sourceTree = SOURCE_ROOT; };
+		B4F0095B1184E71800FBE7A3 /* geom_binary_op.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_binary_op.cpp; path = ../../src/geom/geom_binary_op.cpp; sourceTree = SOURCE_ROOT; };
 		B4F55C3311555D1400101328 /* game_mark_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_mark_fwd.h; path = ../../include/game/game_mark_fwd.h; sourceTree = "<group>"; };
 		B4F55C3411555DA100101328 /* game_actor_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_actor_fwd.h; path = ../../include/game/game_actor_fwd.h; sourceTree = "<group>"; };
 		B4F7921010DDD21100A31A96 /* shared_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = shared_ptr.hpp; path = ../../boost/shared_ptr.hpp; sourceTree = SOURCE_ROOT; };
@@ -2462,8 +2468,12 @@
 		B428568C1162BA45002FE5FF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B4F0095B1184E71800FBE7A3 /* geom_binary_op.cpp */,
+				B4F0095A1184E71800FBE7A3 /* geom_binary_op.h */,
 				B4483985117764CD00DED61B /* geom_circle.cpp */,
 				B4483984117764CD00DED61B /* geom_circle.h */,
+				B4F009181184E1D400FBE7A3 /* geom_circular_sector.cpp */,
+				B4F009171184E1D400FBE7A3 /* geom_circular_sector.h */,
 				B428568E1162BA70002FE5FF /* geom_rect.cpp */,
 				B428568D1162BA60002FE5FF /* geom_rect.h */,
 				B448395B1177607000DED61B /* geom_shape.cpp */,
@@ -6191,6 +6201,8 @@
 				B448395C1177607000DED61B /* geom_shape.cpp in Sources */,
 				B4483986117764CD00DED61B /* geom_circle.cpp in Sources */,
 				B44839BE11776C2300DED61B /* mathfunc.cpp in Sources */,
+				B4F009191184E1D400FBE7A3 /* geom_circular_sector.cpp in Sources */,
+				B4F0095C1184E71800FBE7A3 /* geom_binary_op.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@ namespace harmony {
 			circle() : radius(0) {}
 			circle(const ivec2 & o, ucoord_t r) : origin(o), radius(r) {}
 			circle(icoord_t x, icoord_t y, ucoord_t r) : origin(x, y), radius(r) {}
+			~circle() {}
 			
 			kind_t kind() const;
 			

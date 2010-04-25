@@ -833,11 +833,27 @@
 				Name="Classes"
 				>
 				<File
+					RelativePath="..\..\src\geom\geom_binary_op.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_binary_op.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\geom\geom_circle.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\include\geom\geom_circle.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\geom\geom_circular_sector.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_circular_sector.h"
 					>
 				</File>
 				<File

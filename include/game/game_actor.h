@@ -6,8 +6,6 @@
 #ifndef HARMONY_GAME_ACTOR_H
 #define HARMONY_GAME_ACTOR_H
 
-#include <boost/shared_ptr.hpp>
-
 #include "game_types.h"
 #include "game_actor_fwd.h"
 #include "game_mark.h"
@@ -19,6 +17,10 @@ namespace harmony {
 		// An actor is a single renderable, mobile object in the game world.
 		class actor : public mark {
 		public:
+			// Constructor/destructor.
+			actor();
+			~actor();
+			
 			// Checking the dynamic type of the actor.
 			bool is_actor() const;
 			

@@ -7,6 +7,9 @@
 #include "ai_agent.h"
 
 namespace harmony {
+	game::actor::actor() : heading_(0) {}
+	game::actor::~actor() {}
+	
 	bool game::actor::is_actor() const {
 		return true;
 	}

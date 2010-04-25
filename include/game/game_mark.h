@@ -6,7 +6,6 @@
 #ifndef HARMONY_GAME_MARK_H
 #define HARMONY_GAME_MARK_H
 
-#include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 
 #include "vec2.h"
@@ -19,6 +18,10 @@ namespace harmony {
 		// class of actors.
 		class mark : public boost::enable_shared_from_this<mark> {
 		public:
+			// Constructor/destructor.
+			mark();
+			virtual ~mark();
+			
 			// Checking the dynamic type of the mark.
 			bool is_mark() const;
 			virtual bool is_actor() const;

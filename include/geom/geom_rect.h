@@ -9,6 +9,7 @@
 #include "ivec2.h"
 #include "geom_shape.h"
 #include "geom_circle.h"
+#include "geom_circular_sector.h"
 
 namespace harmony {
 	namespace geom {
@@ -19,6 +20,7 @@ namespace harmony {
 			rect(const ivec2 & o, const ivec2 & s) : origin(o), size(s) {}
 			rect(icoord_t x, icoord_t y, ucoord_t width, ucoord_t height)
 				: origin(x, y), size(width, height) {}
+			~rect() {}
 			
 			kind_t kind() const;
 			
@@ -31,6 +33,7 @@ namespace harmony {
 			
 			bool intersects(const shape & that) const;
 			bool intersects(const geom::circle & that) const;
+			bool intersects(const geom::circular_sector & that) const;
 			bool intersects(const rect & that) const;
 			
 			rect intersect(const rect & that) const;

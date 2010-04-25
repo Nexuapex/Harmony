@@ -7,6 +7,9 @@
 #include "game_level.h"
 
 namespace harmony {
+	game::mark::mark() {}
+	game::mark::~mark() {}
+	
 	bool game::mark::is_mark() const {
 		return !is_actor();
 	}

@@ -7,6 +7,7 @@
 #include <cmath>
 #include <stdexcept>
 
+#include "geom_binary_op.h"
 #include "geom_rect.h"
 #include "mathfunc.h"
 
@@ -17,8 +18,12 @@ namespace harmony {
 	
 	bool geom::rect::intersects(const shape & that) const {
 		switch (that.kind()) {
+			case shape::binary_op:
+				return static_cast<const geom::binary_op &>(that).intersects(*this);
 			case shape::circle:
 				return intersects(static_cast<const geom::circle &>(that));
+			case shape::circular_sector:
+				return intersects(static_cast<const geom::circular_sector &>(that));
 			case shape::rect:
 				return intersects(static_cast<const rect &>(that));
 			default:
@@ -33,6 +38,11 @@ namespace harmony {
 		);
 		
 		return (that.origin - closest).magnitude_squared() < that.radius_squared();
+	}
+	
+	bool geom::rect::intersects(const geom::circular_sector & that) const {
+		(void)that;
+		throw std::domain_error("intersection not defined");
 	}
 	
 	bool geom::rect::intersects(const rect & that) const {
