@@ -32,6 +32,7 @@ protected:
 	afx_msg void OnMButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnXButtonDown(UINT nFlags, UINT nButton, CPoint point);
 	afx_msg void OnXButtonUp(UINT nFlags, UINT nButton, CPoint point);
+	afx_msg void OnGetMinMaxInfo(MINMAXINFO * info);
 	afx_msg void OnSize(UINT action, int width, int height);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
@@ -44,5 +45,4 @@ protected:
 	CClientDC * deviceContext_;
 	HGLRC graphicsContext_;
 	HICON icon_;
-	bool isMaximized_;
 };

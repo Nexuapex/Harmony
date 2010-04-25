@@ -22,6 +22,7 @@ BEGIN_MESSAGE_MAP(WHGameWindow, CDialog)
 	ON_WM_MBUTTONUP()
 	ON_WM_XBUTTONDOWN()
 	ON_WM_XBUTTONUP()
+	ON_WM_GETMINMAXINFO()
 	ON_WM_SIZE()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
@@ -33,7 +34,6 @@ WHGameWindow::WHGameWindow()
 	: CDialog(IDD_GAME_WINDOW, NULL)
 	, game_(NULL)
 	, graphicsContext_(NULL)
-	, isMaximized_(false)
 {
 	icon_ = WHApp.LoadIcon(IDR_HARMONY);
 }
@@ -218,25 +218,45 @@ void WHGameWindow::OnXButtonUp(UINT nFlags, UINT nButton, CPoint point) {
 
 #pragma endregion
 
+// Provide information about the maximized size of the window.
+void WHGameWindow::OnGetMinMaxInfo(MINMAXINFO * info) {
+	info->ptMaxPosition.x = 0;
+	info->ptMaxPosition.y = 0;
+	info->ptMaxSize.x = GetSystemMetrics(SM_CXSCREEN);
+	info->ptMaxSize.y = GetSystemMetrics(SM_CYSCREEN);
+	info->ptMaxTrackSize.x = info->ptMaxSize.x;
+	info->ptMaxTrackSize.y = info->ptMaxSize.y;
+}
+
 // The window was resized, maximized, or minimized.
 void WHGameWindow::OnSize(UINT action, int width, int height) {
-	// Change the window style depending on if the window is maximized.
-	switch (action) {
-		case SIZE_RESTORED:
-			isMaximized_ = false;
-			ModifyStyle(0, WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION, 0);
-			break;
-		case SIZE_MAXIMIZED:
-			isMaximized_ = true;
-			ModifyStyle(WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION, 0, 0);
-			break;
-		case SIZE_MINIMIZED:
-			isMaximized_ = false;
-			break;
-	}
-
 	// Pass on the message.
 	CDialog::OnSize(action, width, height);
+
+	// Change the window style depending on if the window is maximized.
+	switch (action) {
+		case SIZE_MAXIMIZED:
+			if (GetStyle() & WS_OVERLAPPEDWINDOW) {
+				MONITORINFO screen;
+				screen.cbSize = sizeof(screen);
+				if (GetMonitorInfo(MonitorFromWindow(GetSafeHwnd(), MONITOR_DEFAULTTOPRIMARY), &screen)) {
+					// ModifyStyle(WS_OVERLAPPEDWINDOW, 0, 0);
+					width = screen.rcMonitor.right - screen.rcMonitor.left;
+					height = screen.rcMonitor.bottom - screen.rcMonitor.top;
+					SetWindowPos(&wndTop, screen.rcMonitor.left, screen.rcMonitor.top,
+						width, height, SWP_NOOWNERZORDER | SWP_FRAMECHANGED);
+				}
+			}
+			break;
+		case SIZE_MINIMIZED:
+		case SIZE_RESTORED:
+			if (!(GetStyle() & WS_OVERLAPPEDWINDOW)) {
+				// ModifyStyle(0, WS_OVERLAPPEDWINDOW, 0);
+				SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE
+					| SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_FRAMECHANGED);
+			}
+			break;
+	}
 
 	// Tell the engine that our view bounds changed.
 	if (wglMakeCurrent(deviceContext_->m_hDC, graphicsContext_))

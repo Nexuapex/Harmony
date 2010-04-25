@@ -29,7 +29,7 @@ namespace harmony {
 			
 		public:
 			// Atlases can reassociate the texture.
-			friend void texture_atlas::load(atlas_renderer & renderer);
+			friend void texture_atlas::associate_texture(texture & texture, vec2 offset, vec2 size) const;
 			
 		private:
 			gl::texture_ref texture_;

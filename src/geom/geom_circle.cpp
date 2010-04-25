@@ -25,7 +25,7 @@ namespace harmony {
 	}
 	
 	bool geom::circle::intersects(const circle & that) const {
-		const coord_t radii = radius + that.radius;
-		return (that.origin - origin).magnitude_squared() < radii * radii;
+		const ucoord_t radii = radius + that.radius;
+		return (that.origin - origin).magnitude_squared() < (radii * radii);
 	}
 }
