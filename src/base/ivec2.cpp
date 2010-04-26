@@ -15,6 +15,14 @@ namespace harmony {
 		: x_(static_cast<icoord_t>(that.x()))
 		, y_(static_cast<icoord_t>(that.y())) {}
 	
+	bool ivec2::operator==(const ivec2 & that) const {
+		return x_ == that.x_ && y_ == that.y_;
+	}
+	
+	bool ivec2::operator!=(const ivec2 & that) const {
+		return !(*this == that);
+	}
+	
 	ivec2 ivec2::operator+(const ivec2 & that) const {
 		return ivec2(x_ + that.x_, y_ + that.y_);
 	}

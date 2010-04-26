@@ -6,7 +6,8 @@
 #ifndef HARMONY_GEOM_SHAPE_H
 #define HARMONY_GEOM_SHAPE_H
 
-#include <boost/shared_ptr.hpp>
+#include "geom_shape_fwd.h"
+#include "geom_collision.h"
 
 namespace harmony {
 	namespace geom {
@@ -30,9 +31,13 @@ namespace harmony {
 			
 			// Tests if this shape intersects another shape.
 			virtual bool intersects(const shape & that) const = 0;
+			
+			// Performs collision detection.
+			virtual ivec2 collision_displacement(collision & collision, const shape & that) const = 0;
+			
+			// Translates the origin of the shape.
+			virtual shape_ref translate(const ivec2 & displacement) const = 0;
 		};
-		
-		typedef boost::shared_ptr<const shape> shape_ref;
 	}
 }
 

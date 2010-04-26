@@ -857,6 +857,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\geom\geom_collision.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_collision.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\geom\geom_rect.cpp"
 					>
 				</File>
@@ -870,6 +878,10 @@
 				</File>
 				<File
 					RelativePath="..\..\include\geom\geom_shape.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_shape_fwd.h"
 					>
 				</File>
 			</Filter>

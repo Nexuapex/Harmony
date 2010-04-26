@@ -15,8 +15,14 @@ namespace harmony {
 		class circle : public shape {
 		public:
 			circle() : radius(0) {}
-			circle(const ivec2 & o, ucoord_t r) : origin(o), radius(r) {}
-			circle(icoord_t x, icoord_t y, ucoord_t r) : origin(x, y), radius(r) {}
+			circle(const circle & c)
+				: shape(c), origin(c.origin), radius(c.radius) {}
+			circle(const circle & c, const ivec2 & displacement)
+				: origin(c.origin + displacement), radius(c.radius) {}
+			circle(const ivec2 & o, ucoord_t r)
+				: origin(o), radius(r) {}
+			circle(icoord_t x, icoord_t y, ucoord_t r)
+				: origin(x, y), radius(r) {}
 			~circle() {}
 			
 			kind_t kind() const;
@@ -27,6 +33,11 @@ namespace harmony {
 			
 			bool intersects(const shape & that) const;
 			bool intersects(const circle & that) const;
+			
+			ivec2 collision_displacement(collision & collision, const shape & that) const;
+			ivec2 collision_displacement(collision & collision, const circle & that) const;
+			
+			shape_ref translate(const ivec2 & displacement) const;
 			
 		public:
 			ivec2 origin;

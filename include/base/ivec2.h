@@ -18,6 +18,9 @@ namespace harmony {
 		ivec2(const ivec2 & that);
 		explicit ivec2(const vec2 & that);
 		
+		bool operator==(const ivec2 & that) const;
+		bool operator!=(const ivec2 & that) const;
+		
 		ivec2 operator+(const ivec2 & that) const;
 		ivec2 & operator+=(const ivec2 & that);
 		

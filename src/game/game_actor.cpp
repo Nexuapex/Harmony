@@ -5,6 +5,8 @@
 
 #include "game_actor.h"
 #include "ai_agent.h"
+#include "geom_collision.h"
+#include "geom_rect.h"
 
 namespace harmony {
 	game::actor::actor() : heading_(0) {}
@@ -58,7 +60,16 @@ namespace harmony {
 		// Invoke AI for this step.
 		if (agent_) agent_->step(boost::dynamic_pointer_cast<actor>(shared_from_this()), elapsed);
 		
-		// Move the actor for this step.
-		set_position(position() + (velocity_ * (elapsed / 1000.0f)));
+		// Determine the displacement vector for the actor.
+		vec2 displacement = velocity_ * (elapsed / 1000.0f);
+		
+		// DEMO: Fixed collision size for all actors.
+		geom::shape_ref collision_shape(new geom::rect(-24, -24, 48, 48));
+		
+		// Create the collision object for this movement.
+		geom::collision collision(collision_shape, displacement);
+		
+		// Actually move the actor.
+		set_position(position() + collision.displacement());
 	}
 }

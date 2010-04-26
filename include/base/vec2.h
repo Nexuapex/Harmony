@@ -16,6 +16,9 @@ namespace harmony {
 		vec2(coord_t x, coord_t y);
 		vec2(const vec2 & that);
 		
+		bool operator==(const vec2 & that) const;
+		bool operator!=(const vec2 & that) const;
+		
 		vec2 operator+(const vec2 & that) const;
 		vec2 & operator+=(const vec2 & that);
 		

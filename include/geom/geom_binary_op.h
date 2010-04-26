@@ -28,6 +28,10 @@ namespace harmony {
 			
 			bool intersects(const shape & that) const;
 			
+			ivec2 collision_displacement(collision & collision, const shape & that) const;
+			
+			shape_ref translate(const ivec2 & displacement) const;
+			
 		public:
 			op_t op;
 			shape_ref left, right;

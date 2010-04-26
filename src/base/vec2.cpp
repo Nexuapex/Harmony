@@ -13,6 +13,14 @@ namespace harmony {
 	vec2::vec2(coord_t x, coord_t y) : x_(x), y_(y) {}
 	vec2::vec2(const vec2 & that) : x_(that.x_), y_(that.y_) {}
 	
+	bool vec2::operator==(const vec2 & that) const {
+		return x_ == that.x_ && y_ == that.y_;
+	}
+	
+	bool vec2::operator!=(const vec2 & that) const {
+		return !(*this == that);
+	}
+	
 	vec2 vec2::operator+(const vec2 & that) const {
 		return vec2(x_ + that.x_, y_ + that.y_);
 	}

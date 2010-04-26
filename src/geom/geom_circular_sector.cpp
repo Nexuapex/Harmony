@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "geom_binary_op.h"
+#include "geom_circle.h"
 #include "geom_circular_sector.h"
 #include "geom_rect.h"
 
@@ -39,5 +40,27 @@ namespace harmony {
 		} else {
 			return false;
 		}
+	}
+	
+	ivec2 geom::circular_sector::collision_displacement(collision & collision, const shape & that) const {
+		switch (that.kind()) {
+			case shape::circle:
+				return collision_displacement(collision, static_cast<circular_sector>(static_cast<const geom::circle &>(that)));
+			case shape::circular_sector:
+				return collision_displacement(collision, static_cast<const circular_sector &>(that));
+			default:
+				throw std::domain_error("collision not defined");
+		}
+	}
+	
+	ivec2 geom::circular_sector::collision_displacement(collision & collision, const circular_sector & that) const {
+		(void)collision;
+		(void)that;
+		throw std::domain_error("collision not defined");
+	}
+	
+	geom::shape_ref geom::circular_sector::translate(const ivec2 & displacement) const {
+		shape_ref new_shape(new circular_sector(*this, displacement));
+		return new_shape;
 	}
 }

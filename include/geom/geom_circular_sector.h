@@ -17,6 +17,8 @@ namespace harmony {
 		public:
 			circular_sector()
 				: angular_position(0), central_angle(0) {}
+			circular_sector(const circular_sector & c, const ivec2 & displacement)
+				: source(c.source, displacement), angular_position(c.angular_position), central_angle(c.central_angle) {}
 			circular_sector(const geom::circle & s)
 				: source(s), angular_position(0), central_angle(360) {}
 			circular_sector(const geom::circle & s, game::angle_t p, game::angle_t c)
@@ -36,6 +38,11 @@ namespace harmony {
 			bool intersects(const shape & that) const;
 			bool intersects(const geom::circle & that) const;
 			bool intersects(const circular_sector & that) const;
+			
+			ivec2 collision_displacement(collision & collision, const shape & that) const;
+			ivec2 collision_displacement(collision & collision, const circular_sector & that) const;
+			
+			shape_ref translate(const ivec2 & displacement) const;
 			
 		public:
 			geom::circle source;
