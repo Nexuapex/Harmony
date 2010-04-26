@@ -15,7 +15,10 @@ namespace harmony {
 		// A section of a two-dimensional circle.
 		class circular_sector : public shape {
 		public:
-			circular_sector() : angular_position(0), central_angle(0) {}
+			circular_sector()
+				: angular_position(0), central_angle(0) {}
+			circular_sector(const geom::circle & s)
+				: source(s), angular_position(0), central_angle(360) {}
 			circular_sector(const geom::circle & s, game::angle_t p, game::angle_t c)
 				: source(s), angular_position(p), central_angle(c) {}
 			circular_sector(icoord_t x, icoord_t y, ucoord_t r, game::angle_t p, game::angle_t c)

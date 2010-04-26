@@ -18,14 +18,14 @@ namespace harmony {
 	
 	bool geom::rect::intersects(const shape & that) const {
 		switch (that.kind()) {
-			case shape::binary_op:
-				return static_cast<const geom::binary_op &>(that).intersects(*this);
 			case shape::circle:
 				return intersects(static_cast<const geom::circle &>(that));
 			case shape::circular_sector:
 				return intersects(static_cast<const geom::circular_sector &>(that));
 			case shape::rect:
 				return intersects(static_cast<const rect &>(that));
+			case shape::binary_op:
+				return static_cast<const geom::binary_op &>(that).intersects(*this);
 			default:
 				throw std::domain_error("intersection not defined");
 		}
