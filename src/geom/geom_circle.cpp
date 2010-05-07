@@ -35,18 +35,8 @@ namespace harmony {
 		return (that.origin - origin).magnitude_squared() < (radii * radii);
 	}
 	
-	ivec2 geom::circle::collision_displacement(collision & collision, const shape & that) const {
-		switch (that.kind()) {
-			case shape::circle:
-				return collision_displacement(collision, static_cast<const geom::circle &>(that));
-			default:
-				throw std::domain_error("collision not defined");
-		}
-	}
-	
-	ivec2 geom::circle::collision_displacement(collision & collision, const circle & that) const {
+	void geom::circle::resolve_collision(collision & collision) const {
 		(void)collision;
-		(void)that;
 		throw std::domain_error("collision not defined");
 	}
 	

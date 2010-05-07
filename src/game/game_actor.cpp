@@ -6,10 +6,12 @@
 #include "game_actor.h"
 #include "ai_agent.h"
 #include "geom_collision.h"
+#include "geom_shape.h"
 #include "geom_rect.h"
 
 namespace harmony {
-	game::actor::actor() : heading_(0) {}
+	game::actor::actor()
+		: heading_(0), collision_shape_(new geom::rect(-24, -24, 48, 48)) {}
 	game::actor::~actor() {}
 	
 	bool game::actor::is_actor() const {
@@ -30,6 +32,14 @@ namespace harmony {
 	
 	void game::actor::set_heading(angle_t new_heading) {
 		heading_ = new_heading;
+	}
+	
+	geom::shape_ref game::actor::collision_shape() const {
+		return collision_shape_;
+	}
+	
+	void game::actor::set_collision_shape(const geom::shape_ref & new_shape) {
+		collision_shape_ = new_shape;
 	}
 	
 	ai::agent_ref game::actor::agent() const {
@@ -60,14 +70,11 @@ namespace harmony {
 		// Invoke AI for this step.
 		if (agent_) agent_->step(boost::dynamic_pointer_cast<actor>(shared_from_this()), elapsed);
 		
-		// Determine the displacement vector for the actor.
-		vec2 displacement = velocity_ * (elapsed / 1000.0f);
-		
-		// DEMO: Fixed collision size for all actors.
-		geom::shape_ref collision_shape(new geom::rect(-24, -24, 48, 48));
-		
 		// Create the collision object for this movement.
-		geom::collision collision(collision_shape, displacement);
+		geom::collision collision(
+			collision_shape_->translate(static_cast<ivec2>(position())),
+			velocity_ * (elapsed / 1000.0f)
+		);
 		
 		// Actually move the actor.
 		set_position(position() + collision.displacement());

@@ -37,17 +37,20 @@ namespace harmony {
 			ucoord_t width() const { return size.x(); }
 			ucoord_t height() const { return size.y(); }
 			
+			ivec2 center() const;
+			
 			bool intersects(const shape & that) const;
 			bool intersects(const geom::circle & that) const;
 			bool intersects(const geom::circular_sector & that) const;
 			bool intersects(const rect & that) const;
 			
-			ivec2 collision_displacement(collision & collision, const shape & that) const;
-			ivec2 collision_displacement(collision & collision, const geom::binary_op & that) const;
-			ivec2 collision_displacement(collision & collision, const rect & that) const;
+			void resolve_collision(collision & collision) const;
 			
 			shape_ref translate(const ivec2 & displacement) const;
 			rect intersect(const rect & that) const;
+			
+		private:
+			void resolve_collision_rect_on_rect(collision & collision) const;
 			
 		public:
 			ivec2 origin, size;

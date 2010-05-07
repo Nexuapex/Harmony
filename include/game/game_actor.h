@@ -9,6 +9,7 @@
 #include "game_types.h"
 #include "game_actor_fwd.h"
 #include "game_mark.h"
+#include "geom_shape_fwd.h"
 #include "ai_agent_fwd.h"
 #include "gx.h"
 
@@ -32,6 +33,10 @@ namespace harmony {
 			angle_t heading() const;
 			void set_heading(angle_t new_heading);
 			
+			// The collision shape used by this actor.
+			geom::shape_ref collision_shape() const;
+			void set_collision_shape(const geom::shape_ref & new_shape);
+			
 			// The agent attached to this actor.
 			ai::agent_ref agent() const;
 			void set_agent(const ai::agent_ref & new_agent);
@@ -50,6 +55,7 @@ namespace harmony {
 		private:
 			vec2 velocity_;
 			angle_t heading_;
+			geom::shape_ref collision_shape_;
 			ai::agent_ref agent_;
 			gx::sprite_ref sprite_;
 			gx::sprite_state sprite_state_;

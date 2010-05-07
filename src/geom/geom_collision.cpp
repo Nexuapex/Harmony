@@ -7,27 +7,42 @@
 #include "geom_shape.h"
 
 namespace harmony {
-	geom::collision::collision(const shape_ref & origin, const vec2 & displacement)
-		: initial_(origin) , origin_(origin)
-		, destination_(origin->translate(static_cast<ivec2>(displacement)))
-		, displacement_(displacement) , ricochet_count_(16) {}
+	geom::collision::collision(const shape_ref & object, const vec2 & displacement)
+		: initial_(object), object_(object)
+		, displacement_(displacement), ricochet_count_(16) {}
 	
 	geom::collision::~collision() {}
 	
-	geom::shape_ref geom::collision::origin() const {
-		return origin_;
+	geom::shape_ref geom::collision::initial() const {
+		return initial_;
 	}
 	
 	vec2 geom::collision::displacement() const {
 		return displacement_;
 	}
 	
-	geom::shape_ref geom::collision::destination() const {
-		return destination_;
+	void geom::collision::set_displacement(const vec2 & displacement) {
+		displacement_ = displacement;
 	}
 	
-	void geom::collision::apply_obstruction(const shape & obstruction) {
-		apply_displacement(origin_->collision_displacement(*this, obstruction));
+	geom::shape_ref geom::collision::object() const {
+		return object_;
+	}
+	
+	void geom::collision::set_object(const shape_ref & object) {
+		object_ = object;
+	}
+	
+	geom::shape_ref geom::collision::obstruction() const {
+		return obstruction_;
+	}
+	
+	void geom::collision::set_obstruction(const shape_ref & obstruction) {
+		obstruction_ = obstruction;
+	}
+	
+	geom::shape_ref geom::collision::destination() const {
+		return object_->translate(static_cast<ivec2>(displacement_));
 	}
 	
 	bool geom::collision::apply_collision() {
@@ -39,10 +54,7 @@ namespace harmony {
 		}
 	}
 	
-	void geom::collision::apply_displacement(const vec2 & displacement) {
-		if (displacement_ != displacement) {
-			displacement_ = displacement;
-			destination_ = origin_->translate(static_cast<ivec2>(displacement));
-		}
+	void geom::collision::resolve() {
+		object_->resolve_collision(*this);
 	}
 }

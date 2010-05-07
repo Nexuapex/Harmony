@@ -34,8 +34,7 @@ namespace harmony {
 			bool intersects(const shape & that) const;
 			bool intersects(const circle & that) const;
 			
-			ivec2 collision_displacement(collision & collision, const shape & that) const;
-			ivec2 collision_displacement(collision & collision, const circle & that) const;
+			void resolve_collision(collision & collision) const;
 			
 			shape_ref translate(const ivec2 & displacement) const;
 			

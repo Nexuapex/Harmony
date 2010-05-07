@@ -14,20 +14,29 @@ namespace harmony {
 	namespace geom {
 		class collision {
 		public:
-			collision(const shape_ref & origin, const vec2 & displacement);
+			collision(const shape_ref & object, const vec2 & displacement);
 			virtual ~collision();
 			
-			void apply_obstruction(const shape & obstruction);
+			shape_ref initial() const;
 			
-			shape_ref origin() const;
 			vec2 displacement() const;
+			void set_displacement(const vec2 & displacement);
+			
+			shape_ref object() const;
+			void set_object(const shape_ref & object);
+			
+			shape_ref obstruction() const;
+			void set_obstruction(const shape_ref & obstruction);
+			
 			shape_ref destination() const;
 			
 			virtual bool apply_collision();
-			void apply_displacement(const vec2 & displacement);
+			
+			void resolve();
 			
 		private:
-			shape_ref initial_, origin_, destination_;
+			shape_ref initial_, object_, destination_;
+			shape_ref obstruction_;
 			vec2 displacement_;
 			unsigned ricochet_count_;
 		};

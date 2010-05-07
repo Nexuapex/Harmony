@@ -25,9 +25,41 @@ namespace harmony {
 		}
 	}
 	
-	ivec2 geom::binary_op::collision_displacement(collision & collision, const shape & that) const {
-		collision.apply_displacement(left->collision_displacement(collision, that));
-		return right->collision_displacement(collision, that);
+	void geom::binary_op::resolve_collision(collision & collision) const {
+		kind_t object = collision.object()->kind();
+		kind_t obstruction = collision.obstruction()->kind();
+		
+		if (op != op_union) {
+			throw std::domain_error("operation not defined");
+		}
+		
+		if (object == shape::binary_op) {
+			resolve_collision_as_object(collision);
+		} else if (obstruction == shape::binary_op) {
+			resolve_collision_as_obstruction(collision);
+		} else {
+			throw std::logic_error("misdispatched collision resolution");
+		}
+	}
+	
+	void geom::binary_op::resolve_collision_as_object(collision & collision) const {
+		const binary_op & obj = static_cast<const binary_op &>(*collision.object());
+		shape_ref obs = collision.obstruction();
+		
+		collision.set_object(obj.left);
+		collision.object()->resolve_collision(collision);
+		collision.set_object(obj.right);
+		collision.object()->resolve_collision(collision);
+	}
+	
+	void geom::binary_op::resolve_collision_as_obstruction(collision & collision) const {
+		shape_ref obj = collision.object();
+		const binary_op & obs = static_cast<const binary_op &>(*collision.obstruction());
+		
+		collision.set_obstruction(obs.left);
+		obj->resolve_collision(collision);
+		collision.set_obstruction(obs.right);
+		obj->resolve_collision(collision);
 	}
 	
 	geom::shape_ref geom::binary_op::translate(const ivec2 & displacement) const {

@@ -33,7 +33,7 @@ namespace harmony {
 			virtual bool intersects(const shape & that) const = 0;
 			
 			// Performs collision detection.
-			virtual ivec2 collision_displacement(collision & collision, const shape & that) const = 0;
+			virtual void resolve_collision(collision & collision) const = 0;
 			
 			// Translates the origin of the shape.
 			virtual shape_ref translate(const ivec2 & displacement) const = 0;
