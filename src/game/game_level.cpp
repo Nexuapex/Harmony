@@ -7,6 +7,7 @@
 #include "game_terrain_layer.h"
 #include "game_mark.h"
 #include "game_actor.h"
+#include "game_lattice.h"
 
 namespace harmony {
 	game::mark_ref game::level::create_mark(const vec2 & position) {
@@ -25,5 +26,14 @@ namespace harmony {
 	
 	void game::level::add_terrain_layer(const terrain_layer_ref & layer) {
 		terrain_layers_.push_back(layer);
+	}
+	
+	game::lattice_ref game::level::lattice() {
+		if (!lattice_) {
+			lattice_ref new_lattice(new game::lattice(shared_from_this(), lattice_size));
+			lattice_ = new_lattice;
+		}
+		
+		return lattice_;
 	}
 }

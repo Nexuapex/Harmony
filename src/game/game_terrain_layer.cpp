@@ -21,13 +21,17 @@ namespace harmony {
 		(*this)[cell] = new_tile;
 	}
 	
-	game::size_t game::terrain_layer::tile_size() const {
-		return tile_size_;
+	ivec2 game::terrain_layer::cell_origin(const ivec2 & cell) const {
+		return cell * tile_size_;
 	}
 	
 	vec2 game::terrain_layer::cell_center(const ivec2 & cell) const {
 		float size = static_cast<float>(tile_size_);
 		return static_cast<vec2>(cell) * size + vec2(size / 2.0f, size / 2.0f);
+	}
+	
+	ivec2 game::terrain_layer::cell_max(const ivec2 & cell) const {
+		return (cell + ivec2(1, 1)) * tile_size_;
 	}
 	
 	ivec2 game::terrain_layer::first_nonempty_cell(const geom::rect & region) const {
@@ -37,6 +41,12 @@ namespace harmony {
 					return cell;
 		
 		return ivec2(-1, -1);
+	}
+	
+	
+	
+	game::size_t game::terrain_layer::tile_size() const {
+		return tile_size_;
 	}
 	
 	const game::terrain_layer::buffer_object &
@@ -104,9 +114,6 @@ namespace harmony {
 							
 							// Index coordinates.
 							indices[vertex] = static_cast<gl::index_t>(indices - index_data + vertex);
-							
-							// Rotation.
-							vertices[vertex].rotation = tile->rotation();
 						}
 						
 						// Advance to the next set of elements.

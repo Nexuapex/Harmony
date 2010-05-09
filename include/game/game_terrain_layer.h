@@ -23,27 +23,29 @@ namespace harmony {
 			terrain_layer(const ivec2 & origin, const ivec2 & size, game::size_t tile_size);
 			~terrain_layer();
 			
-			// The origin point of this layer, in cell coordinates.
+			// The origin point of this layer, in world cell coordinates.
 			ivec2 origin() const { return origin_; }
 			
 			// The size of this layer, in cell coordinates.
 			ivec2 size() const { return size_; }
 			
-			// The rectangle that includes all cells in the layer.
+			// The rectangle that represents the layer (layer coordinates).
 			geom::rect rect() const {
-				return geom::rect(origin_.x(), origin_.y(), size_.x(), size_.y());
+				return geom::rect(0, 0, size_.x(), size_.y());
 			}
 			
-			// Get the terrain tile in a specific cell.
+			// Get the terrain tile in a specific cell (layer coordinates).
 			terrain_tile_ref tile(const ivec2 & cell) const {
 				return (*this)[cell];
 			}
 			
-			// Change the terrain tile in a specific cell.
+			// Change the terrain tile in a specific cell (layer coordinates).
 			void set_tile(const ivec2 & cell, const terrain_tile_ref & new_tile);
 			
 			// Convert from cell coordinates to world coordinates.
+			ivec2 cell_origin(const ivec2 & cell) const;
 			vec2 cell_center(const ivec2 & cell) const;
+			ivec2 cell_max(const ivec2 & cell) const;
 			
 			// The first cell in the given region that, scanning in row-major
 			// order, is not empty.
@@ -56,7 +58,6 @@ namespace harmony {
 			struct tile_vertex {
 				gl::float_t x, y;
 				gl::float_t s, t;
-				gl::ushort_t rotation;
 				
 			public:
 				void set_tex_coords(const gl::float_t (& coords)[2]);

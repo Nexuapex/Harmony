@@ -98,4 +98,14 @@ namespace harmony {
 		const float deg_to_rad = boost::math::constants::pi<float>() / 180.0f;
 		return vec2(std::cos(angle * deg_to_rad), std::sin(angle * deg_to_rad));
 	}
+	
+	const vec2 vec2::min(
+		std::numeric_limits<coord_t>::min(), 
+		std::numeric_limits<coord_t>::min()
+	);
+	
+	const vec2 vec2::max(
+		std::numeric_limits<coord_t>::max(), 
+		std::numeric_limits<coord_t>::max()
+	);
 }

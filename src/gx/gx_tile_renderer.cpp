@@ -11,7 +11,7 @@ namespace harmony {
 	gx::tile_renderer::tile_renderer() : tile_shader_("tile.vs", "tile.fs") {}
 	
 	void gx::tile_renderer::draw(gx::atlas_renderer & intermediate_renderer, game::level & level) const {
-		game::size_t num_layers = level.num_terrain_layers();
+		const game::size_t num_layers = level.num_terrain_layers();
 		
 		for (unsigned index = 0; index < num_layers; ++index)
 			draw(intermediate_renderer, level.terrain_layer_at(index));

@@ -4,6 +4,7 @@
 //
 
 #include <cmath>
+#include <limits>
 
 #include "ivec2.h"
 
@@ -90,4 +91,14 @@ namespace harmony {
 	float ivec2::magnitude() const {
 		return std::sqrt(static_cast<float>(magnitude_squared()));
 	}
+	
+	const ivec2 ivec2::min(
+		std::numeric_limits<icoord_t>::min(), 
+		std::numeric_limits<icoord_t>::min()
+	);
+	
+	const ivec2 ivec2::max(
+		std::numeric_limits<icoord_t>::max(), 
+		std::numeric_limits<icoord_t>::max()
+	);
 }

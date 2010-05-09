@@ -13,6 +13,9 @@ namespace harmony {
 	// A vector containing two integral coordinates.
 	class ivec2 {
 	public:
+		static const ivec2 min, max;
+		
+	public:
 		ivec2();
 		ivec2(icoord_t x, icoord_t y);
 		ivec2(const ivec2 & that);

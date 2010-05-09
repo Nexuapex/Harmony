@@ -12,6 +12,9 @@ namespace harmony {
 	// A vector containing two floating-point coordinates.
 	class vec2 {
 	public:
+		static const vec2 min, max;
+		
+	public:
 		vec2();
 		vec2(coord_t x, coord_t y);
 		vec2(const vec2 & that);

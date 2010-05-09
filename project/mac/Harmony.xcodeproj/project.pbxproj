@@ -24,6 +24,7 @@
 		B47DAEE410DDAAC900BF33FE /* lua_level_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47DAEE310DDAAC900BF33FE /* lua_level_interface.cpp */; };
 		B47DAEF610DDACB700BF33FE /* lua_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B47DAEF510DDACB700BF33FE /* lua_interface.cpp */; };
 		B480B25D1168173C007E4BC1 /* gx_atlas_renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B480B1E91168117E007E4BC1 /* gx_atlas_renderer.cpp */; };
+		B4876C45119760CE00FC177F /* game_lattice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4876C44119760CE00FC177F /* game_lattice.cpp */; };
 		B48E546210D5D38800CEE891 /* gl_viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B48E546110D5D38800CEE891 /* gl_viewport.cpp */; };
 		B49E6C941165A00E00FA83F8 /* gl_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B49E6C931165A00E00FA83F8 /* gl_buffer.cpp */; };
 		B4A2816B10DD9D08004481C3 /* script in Resources */ = {isa = PBXBuildFile; fileRef = B4A2816A10DD9D08004481C3 /* script */; };
@@ -205,6 +206,9 @@
 		B4876C1F11975E0500FC177F /* unordered_set_hook.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unordered_set_hook.hpp; sourceTree = "<group>"; };
 		B4876C2D11975E7400FC177F /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = version.hpp; path = ../../boost/version.hpp; sourceTree = SOURCE_ROOT; };
 		B4876C3611975E9E00FC177F /* pointer_to_other.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = pointer_to_other.hpp; path = ../../boost/pointer_to_other.hpp; sourceTree = SOURCE_ROOT; };
+		B4876C44119760CE00FC177F /* game_lattice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_lattice.cpp; path = ../../src/game/game_lattice.cpp; sourceTree = SOURCE_ROOT; };
+		B4876C46119760DB00FC177F /* game_lattice_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_lattice_fwd.h; path = ../../include/game/game_lattice_fwd.h; sourceTree = SOURCE_ROOT; };
+		B4876C47119760DB00FC177F /* game_lattice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_lattice.h; path = ../../include/game/game_lattice.h; sourceTree = SOURCE_ROOT; };
 		B48E546010D5D38800CEE891 /* gl_viewport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_viewport.h; path = ../../include/gl/gl_viewport.h; sourceTree = "<group>"; };
 		B48E546110D5D38800CEE891 /* gl_viewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gl_viewport.cpp; path = ../../src/gl/gl_viewport.cpp; sourceTree = "<group>"; };
 		B48E546410D5D4E200CEE891 /* gl_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_library.h; path = ../../include/gl/gl_library.h; sourceTree = "<group>"; };
@@ -3382,6 +3386,9 @@
 				B4F55C3411555DA100101328 /* game_actor_fwd.h */,
 				B4EDC94D10D5FAFF00177704 /* game_engine.cpp */,
 				B4EDC94C10D5FAFF00177704 /* game_engine.h */,
+				B4876C44119760CE00FC177F /* game_lattice.cpp */,
+				B4876C47119760DB00FC177F /* game_lattice.h */,
+				B4876C46119760DB00FC177F /* game_lattice_fwd.h */,
 				B4D4113E10DD8C8700D722A8 /* game_level.cpp */,
 				B4D4113D10DD8C8700D722A8 /* game_level.h */,
 				B4E16FA410DEC9D0004823E4 /* game_level_fwd.h */,
@@ -6354,6 +6361,7 @@
 				B4F009191184E1D400FBE7A3 /* geom_circular_sector.cpp in Sources */,
 				B4F0095C1184E71800FBE7A3 /* geom_binary_op.cpp in Sources */,
 				B4F4623311855312008820C9 /* geom_collision.cpp in Sources */,
+				B4876C45119760CE00FC177F /* game_lattice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

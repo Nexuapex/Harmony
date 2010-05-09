@@ -421,6 +421,18 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\game\game_lattice.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\game\game_lattice.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\game\game_lattice_fwd.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\game\game_level.cpp"
 					>
 				</File>

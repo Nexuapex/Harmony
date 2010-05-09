@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "game_level_fwd.h"
+#include "game_lattice_fwd.h"
 #include "game_terrain_layer_fwd.h"
 #include "game_mark_fwd.h"
 #include "game_actor.h"
@@ -22,6 +23,12 @@ namespace harmony {
 		class level : public boost::enable_shared_from_this<level> {
 		private:
 			typedef boost::unordered_set<mark_ref> mark_set;
+			
+		public:
+			// The size of the level's associated lattice. Doesn't have to be
+			// constant, but it does have to be a factor of every terrain
+			// layer's tile size.
+			static const game::size_t lattice_size = 24;
 			
 		public:
 			// Creates a mark on this level at a given position.
@@ -36,12 +43,16 @@ namespace harmony {
 			// Add a new terrain layer to the level.
 			void add_terrain_layer(const terrain_layer_ref & layer);
 			
+			// Return the associated spatial lattice.
+			lattice_ref lattice();
+			
 		public:
 			// When a mark changes levels, it needs to be able to change the
 			// levels' references to it.
 			friend void mark::set_position(const level_ref & new_level, const vec2 & new_position);
 			
 		private:
+			lattice_ref lattice_;
 			mark_set marks_;
 			std::vector<terrain_layer_ref> terrain_layers_;
 			
