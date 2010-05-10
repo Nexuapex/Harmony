@@ -6,6 +6,17 @@
 #include "game_terrain_layer.h"
 
 namespace harmony {
+	static gl::index_t rotated_indices[8][4] = {
+		{0, 1, 2, 3}, // Normal.
+		{1, 2, 3, 0}, // Rotate right.
+		{2, 3, 0, 1}, // Rotate 180.
+		{3, 0, 1, 2}, // Rotate left.
+		{3, 2, 1, 0}, // Flip.
+		{2, 1, 0, 3}, // Flip and rotate left.
+		{1, 0, 3, 2}, // Flip and rotate 180.
+		{0, 3, 2, 1}  // Flip and rotate right.
+	};
+	
 	game::terrain_layer::terrain_layer(const ivec2 & origin,
 		const ivec2 & size, game::size_t tile_size)
 		: origin_(origin), size_(size), tile_size_(tile_size)
@@ -40,8 +51,6 @@ namespace harmony {
 		
 		return ivec2(-1, -1);
 	}
-	
-	
 	
 	game::size_t game::terrain_layer::tile_size() const {
 		return tile_size_;
@@ -107,7 +116,9 @@ namespace harmony {
 						for (unsigned vertex = 0; vertex < 4; ++vertex) {
 							// Texture coordinates.
 							vertices[vertex].set_tex_coords(
-								tile->texture()->tex_coords()[vertex]
+								tile->texture()->tex_coords()[
+									rotated_indices[tile->rotation()][vertex]
+								]
 							);
 							
 							// Index coordinates.

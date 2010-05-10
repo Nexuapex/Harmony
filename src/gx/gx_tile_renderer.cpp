@@ -50,9 +50,7 @@ namespace harmony {
 		, vertex_buffer(rendering_object.vertices())
 		, index_buffer(rendering_object.indices())
 		, translation(layer.origin() * layer.tile_size())
-		, extent(shader, "extent", initial_tile.texture()->source_extent())
-		, texture(shader, "tile", initial_tile.texture()->source())
-		, rotation(shader, "rotation", 0) {}
+		, texture(shader, "tile", initial_tile.texture()->source()) {}
 	
 	void gx::tile_renderer::using_layer::draw() {
 		index_buffer.draw(GL_QUADS);

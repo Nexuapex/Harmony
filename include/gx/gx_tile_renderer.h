@@ -37,9 +37,7 @@ namespace harmony {
 				gl::using_buffer<game::terrain_layer::tile_vertex> vertex_buffer;
 				gl::using_buffer<gl::index_t> index_buffer;
 				gl::using_translation translation;
-				gl::using_uniform<vec2> extent;
 				gl::using_uniform<gl::texture_ref> texture;
-				gl::using_uniform<gl::int_t> rotation;
 				
 				using_layer(const gl::shader_program & shader,
 					game::terrain_layer & layer,
