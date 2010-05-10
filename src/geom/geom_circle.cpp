@@ -35,13 +35,20 @@ namespace harmony {
 		return (that.origin - origin).magnitude_squared() < (radii * radii);
 	}
 	
-	void geom::circle::resolve_collision(collision & collision) const {
-		(void)collision;
-		throw std::domain_error("collision not defined");
-	}
-	
 	geom::shape_ref geom::circle::translate(const ivec2 & displacement) const {
 		shape_ref new_shape(new circle(*this, displacement));
 		return new_shape;
+	}
+	
+	geom::rect geom::circle::bounding_rect() const {
+		return geom::rect(
+			origin - ivec2(radius, radius),
+			ivec2(radius * 2, radius * 2)
+		);
+	}
+	
+	void geom::circle::resolve_collision(collision & collision) const {
+		(void)collision;
+		throw std::domain_error("collision not defined");
 	}
 }

@@ -6,19 +6,16 @@
 #ifndef HARMONY_GAME_LATTICE_H
 #define HARMONY_GAME_LATTICE_H
 
-#include <boost/intrusive/list.hpp>
+#include <boost/scoped_array.hpp>
 
 #include "game_types.h"
 #include "game_lattice_fwd.h"
 #include "game_level_fwd.h"
+#include "geom_rect_fwd.h"
+#include "game_actor.h"
 
 namespace harmony {
 	namespace game {
-		// Base class for nodes that participate in a lattice.
-		class lattice_node : public boost::intrusive::list_base_hook<> {
-			
-		};
-		
 		// Spatial partitioning, dividing a level into a lattice of nodes, each
 		// of which can contain terrain tiles, actors, and/or pathing nodes.
 		class lattice {
@@ -26,9 +23,8 @@ namespace harmony {
 			typedef boost::intrusive::list<lattice_node> node_list;
 			
 		public:
-			// Constructor/destructor.
+			// Constructor.
 			lattice(const level_ref & level, game::size_t node_size);
-			~lattice();
 			
 			// The associated level.
 			level_ref level() const;
@@ -41,6 +37,18 @@ namespace harmony {
 			
 			// The size, in pixels, of a node in this lattice.
 			game::size_t node_size() const;
+			
+			// Translates world coordinates into lattice coordinates.
+			ivec2 node_at(const ivec2 & position) const;
+			
+			// The rectangle associated with a node (lattice coordinates).
+			geom::rect node_rect(const ivec2 & cell) const;
+			
+			// Updates one of an actor's associated collision nodes in the
+			// lattice. Changes the node's activity and, if active, its position
+			// (given in lattice coordinates).
+			void set_collision_node_active(actor::collision_node & node,
+				bool now_active, const ivec2 & new_cell);
 			
 		protected:
 			// Subscript operator to provide access to a cell.
@@ -57,8 +65,12 @@ namespace harmony {
 			level_weak level_;
 			ivec2 origin_, size_;
 			game::size_t node_size_;
-			node_list * nodes_;
+			boost::scoped_array<node_list> nodes_;
 		};
+		
+		// Comparison operators.
+		bool operator==(const lattice_node & a, const lattice_node & b);
+		bool operator!=(const lattice_node & a, const lattice_node & b);
 	}
 }
 

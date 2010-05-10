@@ -38,16 +38,18 @@ namespace harmony {
 			ucoord_t height() const { return size.y(); }
 			
 			ivec2 center() const;
+			ucoord_t area() const;
 			
 			bool intersects(const shape & that) const;
 			bool intersects(const geom::circle & that) const;
 			bool intersects(const geom::circular_sector & that) const;
 			bool intersects(const rect & that) const;
 			
-			void resolve_collision(collision & collision) const;
-			
 			shape_ref translate(const ivec2 & displacement) const;
+			rect bounding_rect() const;
 			rect intersect(const rect & that) const;
+			
+			void resolve_collision(collision & collision) const;
 			
 		private:
 			void resolve_collision_rect_on_rect(collision & collision) const;
@@ -56,7 +58,8 @@ namespace harmony {
 			ivec2 origin, size;
 		};
 		
-		rect tile_aligned_bounding_rect(const rect & r, ucoord_t tile_size);
+		rect union_bounding_rect(const rect & a, const rect & b);
+		rect cell_aligned_bounding_rect(const rect & r, ucoord_t cell_size);
 	}
 }
 

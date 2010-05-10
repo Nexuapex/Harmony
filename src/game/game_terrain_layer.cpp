@@ -12,10 +12,6 @@ namespace harmony {
 		, tiles_(new terrain_tile_ref[size.x() * size.y()])
 		, atlas_(tile_size), dirty_(true) {}
 	
-	game::terrain_layer::~terrain_layer() {
-		delete [] tiles_;
-	}
-	
 	void game::terrain_layer::set_tile(const ivec2 & cell, const terrain_tile_ref & new_tile) {
 		dirty_ = true;
 		(*this)[cell] = new_tile;
@@ -35,8 +31,10 @@ namespace harmony {
 	}
 	
 	ivec2 game::terrain_layer::first_nonempty_cell(const geom::rect & region) const {
-		for (ivec2 cell = region.origin; cell.y() < region.y2(); cell.incr_y())
-			for (cell.set_x(region.x1()); cell.x() < region.x2(); cell.incr_x())
+		const icoord_t x_max = region.x2(), y_max = region.y2();
+		
+		for (ivec2 cell = region.origin; cell.y() < y_max; cell.incr_y())
+			for (cell.set_x(region.x1()); cell.x() < x_max; cell.incr_x())
 				if ((*this)[cell])
 					return cell;
 		
@@ -80,9 +78,9 @@ namespace harmony {
 		tile_vertex * vertices = new tile_vertex[count];
 		gl::index_t * indices = new gl::index_t[count];
 		
-		// Keep a reference to the original pointers.
-		const tile_vertex * vertex_data = vertices;
-		const gl::index_t * index_data = indices;
+		// Keep a scoped reference to the original pointers.
+		boost::scoped_array<tile_vertex> vertex_data(vertices);
+		boost::scoped_array<gl::index_t> index_data(indices);
 		
 		// Start an accurate count.
 		count = 0;
@@ -113,7 +111,7 @@ namespace harmony {
 							);
 							
 							// Index coordinates.
-							indices[vertex] = static_cast<gl::index_t>(indices - index_data + vertex);
+							indices[vertex] = static_cast<gl::index_t>(indices - index_data.get() + vertex);
 						}
 						
 						// Advance to the next set of elements.
@@ -152,13 +150,9 @@ namespace harmony {
 		);
 		
 		// Create the new buffers.
-		vertex_buffer_ref vertex_buffer_ptr(new vertex_buffer(vertex_layout, vertex_data, count));
-		index_buffer_ref index_buffer_ptr(new index_buffer(index_layout, index_data, count));
+		vertex_buffer_ref vertex_buffer_ptr(new vertex_buffer(vertex_layout, vertex_data.get(), count));
+		index_buffer_ref index_buffer_ptr(new index_buffer(index_layout, index_data.get(), count));
 		vertices_ = vertex_buffer_ptr;
 		indices_ = index_buffer_ptr;
-		
-		// Delete the data arrays.
-		delete [] vertex_data;
-		delete [] index_data;
 	}
 }

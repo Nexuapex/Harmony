@@ -885,6 +885,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\include\geom\geom_rect_fwd.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\geom\geom_shape.cpp"
 					>
 				</File>

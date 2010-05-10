@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "geom_binary_op.h"
+#include "geom_rect.h"
 
 namespace harmony {
 	geom::shape::kind_t geom::binary_op::kind() const {
@@ -23,6 +24,15 @@ namespace harmony {
 			default:
 				throw std::domain_error("operation not defined");
 		}
+	}
+	
+	geom::shape_ref geom::binary_op::translate(const ivec2 & displacement) const {
+		shape_ref new_shape(new binary_op(op, left->translate(displacement), right->translate(displacement)));
+		return new_shape;
+	}
+	
+	geom::rect geom::binary_op::bounding_rect() const {
+		return union_bounding_rect(left->bounding_rect(), right->bounding_rect());
 	}
 	
 	void geom::binary_op::resolve_collision(collision & collision) const {
@@ -60,10 +70,5 @@ namespace harmony {
 		obj->resolve_collision(collision);
 		collision.set_obstruction(obs.right);
 		obj->resolve_collision(collision);
-	}
-	
-	geom::shape_ref geom::binary_op::translate(const ivec2 & displacement) const {
-		shape_ref new_shape(new binary_op(op, left->translate(displacement), right->translate(displacement)));
-		return new_shape;
 	}
 }

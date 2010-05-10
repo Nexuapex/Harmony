@@ -42,13 +42,17 @@ namespace harmony {
 		}
 	}
 	
-	void geom::circular_sector::resolve_collision(collision & collision) const {
-		(void)collision;
-		throw std::domain_error("collision not defined");
-	}
-	
 	geom::shape_ref geom::circular_sector::translate(const ivec2 & displacement) const {
 		shape_ref new_shape(new circular_sector(*this, displacement));
 		return new_shape;
+	}
+	
+	geom::rect geom::circular_sector::bounding_rect() const {
+		return source.bounding_rect();
+	}
+	
+	void geom::circular_sector::resolve_collision(collision & collision) const {
+		(void)collision;
+		throw std::domain_error("collision not defined");
 	}
 }

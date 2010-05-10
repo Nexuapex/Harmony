@@ -39,9 +39,10 @@ namespace harmony {
 			bool intersects(const geom::circle & that) const;
 			bool intersects(const circular_sector & that) const;
 			
-			void resolve_collision(collision & collision) const;
-			
 			shape_ref translate(const ivec2 & displacement) const;
+			geom::rect bounding_rect() const;
+			
+			void resolve_collision(collision & collision) const;
 			
 		public:
 			geom::circle source;

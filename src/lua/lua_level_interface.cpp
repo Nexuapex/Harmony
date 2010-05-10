@@ -10,9 +10,25 @@
 
 namespace harmony {
 	namespace lua {
+		// Keeps track of actor data so that actors may be inserted into the
+		// level last.
+		class deferred_actor {
+		public:
+			deferred_actor(const game::actor_ref & a, const vec2 & pos) {
+				actor = a;
+				position = pos;
+			}
+			
+		public:
+			game::actor_ref actor;
+			vec2 position;
+		};
+		
+		// Load a specific cell of level data.
 		static void load_terrain_element(const engine & engine,
-			const game::level_ref & level, game::terrain_layer & layer,
-			const ivec2 & cell)
+			const game::level_ref & level,
+			std::vector<deferred_actor> & deferred_actors,
+			game::terrain_layer & layer, const ivec2 & cell)
 		{
 			if (!lua_isnil(engine, -1)) {
 				// Get the tile, if it is a tile.
@@ -29,8 +45,8 @@ namespace harmony {
 					game::actor_ref actor = lua::to_actor(engine, -1);
 					
 					if (actor) {
-						// Insert the actor into the level.
-						actor->set_position(level, position);
+						// Insert the actor into the list of deferred actors.
+						deferred_actors.push_back(deferred_actor(actor, position));
 					} else {
 						// Get the mark, if it is a mark.
 						game::mark_ref mark = lua::to_mark(engine, -1);
@@ -47,7 +63,11 @@ namespace harmony {
 			lua_pop(engine, 1);
 		}
 		
-		static void load_terrain_layers(const engine & engine, const game::level_ref & level) {
+		// Load a specific layer of level data.
+		static void load_terrain_layers(const engine & engine,
+			const game::level_ref & level,
+			std::vector<deferred_actor> & deferred_actors)
+		{
 			// <layer table> <origin>
 			lua_getfield(engine, -1, "origin");
 			ivec2 origin = lua::to_ivec2(engine, -1);
@@ -118,14 +138,14 @@ namespace harmony {
 							lua_gettable(engine, -2);
 							
 							// <layer table> <row table> <tile>
-							load_terrain_element(engine, level, *layers[index], cell);
+							load_terrain_element(engine, level, deferred_actors, *layers[index], cell);
 						}
 						
 						// <layer table> <row table>
 						lua_pop(engine, 1);
 					} else {
 						// <layer table> <row table>
-						load_terrain_element(engine, level, *layer, cell);
+						load_terrain_element(engine, level, deferred_actors, *layer, cell);
 					}
 				}
 				
@@ -167,6 +187,9 @@ namespace harmony {
 		// Get the number of layers.
 		size_t count = lua_objlen(engine, -1);
 		
+		// Track all actors discovered during the loading.
+		std::vector<deferred_actor> deferred_actors;
+		
 		for (unsigned index = 1; index <= count; ++index) {
 			// <level table> <layers table> <index>
 			lua_pushinteger(engine, index);
@@ -175,11 +198,17 @@ namespace harmony {
 			lua_gettable(engine, -2);
 			
 			// <level table> <layers table>
-			load_terrain_layers(engine, level);
+			load_terrain_layers(engine, level, deferred_actors);
 		}
 		
 		// empty stack
 		lua_pop(engine, 2);
+		
+		// Insert all deferred actors.
+		typedef std::vector<deferred_actor>::const_iterator iterator;
+		for (iterator iter = deferred_actors.begin(); iter != deferred_actors.end(); ++iter) {
+			iter->actor->set_position(level, iter->position);
+		}
 		
 		// Return the new level.
 		return level;

@@ -6,6 +6,8 @@
 #ifndef HARMONY_GAME_TERRAIN_LAYER_H
 #define HARMONY_GAME_TERRAIN_LAYER_H
 
+#include <boost/scoped_array.hpp>
+
 #include "game_types.h"
 #include "game_terrain_layer_fwd.h"
 #include "game_terrain_tile.h"
@@ -19,9 +21,8 @@ namespace harmony {
 		// A single layer of terrain tiles.
 		class terrain_layer {
 		public:
-			// Constructor and destructor.
+			// Constructor.
 			terrain_layer(const ivec2 & origin, const ivec2 & size, game::size_t tile_size);
-			~terrain_layer();
 			
 			// The origin point of this layer, in world cell coordinates.
 			ivec2 origin() const { return origin_; }
@@ -103,7 +104,7 @@ namespace harmony {
 		private:
 			ivec2 origin_, size_;
 			game::size_t tile_size_;
-			terrain_tile_ref * tiles_;
+			boost::scoped_array<terrain_tile_ref> tiles_;
 			gx::texture_atlas atlas_;
 			buffer_object buffer_object_;
 			bool dirty_;

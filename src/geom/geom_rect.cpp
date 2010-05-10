@@ -20,6 +20,10 @@ namespace harmony {
 		return origin + size / 2;
 	}
 	
+	ucoord_t geom::rect::area() const {
+		return width() * height();
+	}
+	
 	bool geom::rect::intersects(const shape & that) const {
 		switch (that.kind()) {
 			case shape::circle:
@@ -51,6 +55,31 @@ namespace harmony {
 	
 	bool geom::rect::intersects(const rect & that) const {
 		return x1() < that.x2() && x2() > that.x1() && y1() < that.y2() && y2() > that.y1();
+	}
+	
+	geom::shape_ref geom::rect::translate(const ivec2 & displacement) const {
+		shape_ref new_shape(new rect(*this, displacement));
+		return new_shape;
+	}
+	
+	geom::rect geom::rect::bounding_rect() const {
+		return *this;
+	}
+	
+	geom::rect geom::rect::intersect(const rect & that) const {
+		if (intersects(that)) {
+			ivec2 o(
+				std::max(x1(), that.x1()),
+				std::max(y1(), that.y1())
+			);
+			ivec2 s(
+				std::min(x2(), that.x2()) - o.x(),
+				std::min(y2(), that.y2()) - o.y()
+			);
+			return rect(o, s);
+		} else {
+			return rect();
+		}
 	}
 	
 	void geom::rect::resolve_collision(collision & collision) const {
@@ -115,30 +144,21 @@ namespace harmony {
 		collision.set_displacement(displace);
 	}
 	
-	geom::shape_ref geom::rect::translate(const ivec2 & displacement) const {
-		shape_ref new_shape(new rect(*this, displacement));
-		return new_shape;
-	}
-	
-	geom::rect geom::rect::intersect(const rect & that) const {
-		if (intersects(that)) {
+	namespace geom {
+		rect union_bounding_rect(const rect & a, const rect & b) {
 			ivec2 o(
-				std::max(x1(), that.x1()),
-				std::max(y1(), that.y1())
+				std::min(a.x1(), b.x1()),
+				std::min(a.y1(), b.y1())
 			);
 			ivec2 s(
-				std::min(x2(), that.x2()) - o.x(),
-				std::min(y2(), that.y2()) - o.y()
+				std::max(a.x2(), b.x2()) - o.x(),
+				std::max(a.y2(), b.y2()) - o.y()
 			);
 			return rect(o, s);
-		} else {
-			return rect();
 		}
-	}
-	
-	namespace geom {
-		rect tile_aligned_bounding_rect(const rect & r, ucoord_t tile_size) {
-			float size = static_cast<float>(tile_size);
+		
+		rect cell_aligned_bounding_rect(const rect & r, ucoord_t cell_size) {
+			float size = static_cast<float>(cell_size);
 			ivec2 o(
 				static_cast<icoord_t>(std::floor(r.x1() / size)),
 				static_cast<icoord_t>(std::floor(r.y1() / size))

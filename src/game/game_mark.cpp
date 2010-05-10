@@ -18,6 +18,10 @@ namespace harmony {
 		return false;
 	}
 	
+	bool game::mark::exists_in_level() const {
+		return !!level_;
+	}
+	
 	void game::mark::set_position(const vec2 & new_position) {
 		set_position(level_, new_position);
 	}
