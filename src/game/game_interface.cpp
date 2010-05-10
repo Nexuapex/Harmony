@@ -15,6 +15,9 @@ hgame_ref hgame_create() {
 
 void hgame_step(hgame_ref game, float elapsed) {
 	game::engine & self = *reinterpret_cast<game::engine *>(game);
+	
+	if (elapsed > 100.0f) elapsed = 100.0f;
+	
 	self.step(static_cast<game::elapsed_t>(elapsed));
 }
 

@@ -96,6 +96,7 @@
 		B4EE2F801167BE8F000A7776 /* gl_using_vertices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2F7F1167BE8F000A7776 /* gl_using_vertices.cpp */; };
 		B4EE2FD81167C375000A7776 /* gx_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE2FD71167C375000A7776 /* gx_texture.cpp */; };
 		B4EE30901167D28E000A7776 /* gx_texture_atlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE308F1167D28E000A7776 /* gx_texture_atlas.cpp */; };
+		B4EE465F1198BEA6002CAEB7 /* geom_irect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EE465E1198BEA6002CAEB7 /* geom_irect.cpp */; };
 		B4F009191184E1D400FBE7A3 /* geom_circular_sector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F009181184E1D400FBE7A3 /* geom_circular_sector.cpp */; };
 		B4F0095C1184E71800FBE7A3 /* geom_binary_op.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F0095B1184E71800FBE7A3 /* geom_binary_op.cpp */; };
 		B4F4623311855312008820C9 /* geom_collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F4623211855312008820C9 /* geom_collision.cpp */; };
@@ -674,6 +675,8 @@
 		B4EE2FDF1167C3C3000A7776 /* gx_texture_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx_texture_fwd.h; path = ../../include/gx/gx_texture_fwd.h; sourceTree = SOURCE_ROOT; };
 		B4EE308E1167D28E000A7776 /* gx_texture_atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gx_texture_atlas.h; path = ../../include/gx/gx_texture_atlas.h; sourceTree = SOURCE_ROOT; };
 		B4EE308F1167D28E000A7776 /* gx_texture_atlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gx_texture_atlas.cpp; path = ../../src/gx/gx_texture_atlas.cpp; sourceTree = SOURCE_ROOT; };
+		B4EE465E1198BEA6002CAEB7 /* geom_irect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_irect.cpp; path = ../../src/geom/geom_irect.cpp; sourceTree = SOURCE_ROOT; };
+		B4EE46601198BEB0002CAEB7 /* geom_irect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_irect.h; path = ../../include/geom/geom_irect.h; sourceTree = SOURCE_ROOT; };
 		B4F009171184E1D400FBE7A3 /* geom_circular_sector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_circular_sector.h; path = ../../include/geom/geom_circular_sector.h; sourceTree = SOURCE_ROOT; };
 		B4F009181184E1D400FBE7A3 /* geom_circular_sector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = geom_circular_sector.cpp; path = ../../src/geom/geom_circular_sector.cpp; sourceTree = SOURCE_ROOT; };
 		B4F0095A1184E71800FBE7A3 /* geom_binary_op.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = geom_binary_op.h; path = ../../include/geom/geom_binary_op.h; sourceTree = SOURCE_ROOT; };
@@ -2646,6 +2649,8 @@
 				B4F009171184E1D400FBE7A3 /* geom_circular_sector.h */,
 				B4F4623211855312008820C9 /* geom_collision.cpp */,
 				B4F4623111855312008820C9 /* geom_collision.h */,
+				B4EE465E1198BEA6002CAEB7 /* geom_irect.cpp */,
+				B4EE46601198BEB0002CAEB7 /* geom_irect.h */,
 				B428568E1162BA70002FE5FF /* geom_rect.cpp */,
 				B428568D1162BA60002FE5FF /* geom_rect.h */,
 				B4269E1411976DE3008564E4 /* geom_rect_fwd.h */,
@@ -6472,6 +6477,7 @@
 				B4F0095C1184E71800FBE7A3 /* geom_binary_op.cpp in Sources */,
 				B4F4623311855312008820C9 /* geom_collision.cpp in Sources */,
 				B4876C45119760CE00FC177F /* game_lattice.cpp in Sources */,
+				B4EE465F1198BEA6002CAEB7 /* geom_irect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

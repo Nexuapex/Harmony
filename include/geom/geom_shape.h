@@ -6,6 +6,7 @@
 #ifndef HARMONY_GEOM_SHAPE_H
 #define HARMONY_GEOM_SHAPE_H
 
+#include "vec2.h"
 #include "geom_shape_fwd.h"
 #include "geom_rect_fwd.h"
 #include "geom_collision.h"
@@ -23,8 +24,7 @@ namespace harmony {
 			} kind_t;
 			
 		public:
-			// Constructor/destructor.
-			shape() {}
+			// Destructor.
 			virtual ~shape() {}
 			
 			// Type introspection.
@@ -34,7 +34,7 @@ namespace harmony {
 			virtual bool intersects(const shape & that) const = 0;
 			
 			// Translates the origin of the shape.
-			virtual shape_ref translate(const ivec2 & displacement) const = 0;
+			virtual shape_ref translate(const vec2 & displacement) const = 0;
 			
 			// Rectangle that completely surrounds this shape.
 			virtual geom::rect bounding_rect() const = 0;

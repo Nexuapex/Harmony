@@ -11,6 +11,7 @@
 #include "game_actor_fwd.h"
 #include "game_mark.h"
 #include "game_lattice_fwd.h"
+#include "geom_irect.h"
 #include "geom_shape_fwd.h"
 #include "ai_agent_fwd.h"
 #include "gx.h"
@@ -67,7 +68,7 @@ namespace harmony {
 			// reference is always a rectangle, and is already translated to be
 			// relative to the actor's collision shape.
 			void collide(geom::collision & collision,
-				const terrain_tile_ref & tile, const geom::shape_ref & tile_rect);
+				const terrain_tile_ref & tile, const geom::irect & tile_rect);
 			
 			// Handling collisions between actors and other actors.
 			void collide(geom::collision & collision, const actor_ref & actor);
@@ -107,7 +108,7 @@ namespace harmony {
 			// Get a pointer to the node in a specified array.
 			static collision_node & collision_node_at(const ivec2 & cell,
 				const boost::scoped_array<collision_node> & array,
-				const geom::rect & context_rect)
+				const geom::irect & context_rect)
 			{
 				return array[cell.y() * context_rect.width() + cell.x()];
 			}
@@ -141,7 +142,7 @@ namespace harmony {
 			angle_t heading_;
 			geom::shape_ref collision_shape_;
 			boost::scoped_array<collision_node> collision_nodes_;
-			geom::rect collision_nodes_rect_;
+			geom::irect collision_nodes_rect_;
 			ai::agent_ref agent_;
 			gx::sprite_ref sprite_;
 			gx::sprite_state sprite_state_;

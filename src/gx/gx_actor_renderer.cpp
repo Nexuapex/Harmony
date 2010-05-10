@@ -95,10 +95,10 @@ namespace harmony {
 						glColor4f(0.0f, 0.0f, 1.0f, 0.4f);
 						glBegin(GL_QUADS);
 						{
-							glVertex2i(node.x1(), node.y2());
-							glVertex2i(node.x2(), node.y2());
-							glVertex2i(node.x2(), node.y1());
-							glVertex2i(node.x1(), node.y1());
+							glVertex2f(node.x1(), node.y2());
+							glVertex2f(node.x2(), node.y2());
+							glVertex2f(node.x2(), node.y1());
+							glVertex2f(node.x1(), node.y1());
 						}
 						glEnd();
 					}
@@ -115,10 +115,10 @@ namespace harmony {
 				glColor4f(1.0f, 0.0f, 0.0f, 0.6f);
 				glBegin(GL_QUADS);
 				{
-					glVertex2i(c.x1(), c.y2());
-					glVertex2i(c.x2(), c.y2());
-					glVertex2i(c.x2(), c.y1());
-					glVertex2i(c.x1(), c.y1());
+					glVertex2f(c.x1(), c.y2());
+					glVertex2f(c.x2(), c.y2());
+					glVertex2f(c.x2(), c.y1());
+					glVertex2f(c.x1(), c.y1());
 				}
 				glEnd();
 			}

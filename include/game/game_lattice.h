@@ -63,7 +63,7 @@ namespace harmony {
 			game::size_t node_size() const;
 			
 			// Translates world coordinates into lattice coordinates.
-			ivec2 node_at(const ivec2 & position) const;
+			ivec2 node_at(const vec2 & position) const;
 			
 			// The rectangle associated with a node (lattice coordinates).
 			geom::rect node_rect(const ivec2 & cell) const;
@@ -71,7 +71,7 @@ namespace harmony {
 			// The terrain tile at a given cell (lattice coordinates) for a
 			// specific terrain layer. Returns the tile rect by reference.
 			terrain_tile_ref tile_at(const ivec2 & cell,
-				const terrain_layer & layer, geom::rect & tile_rect) const;
+				const terrain_layer & layer, geom::irect & tile_rect) const;
 			
 			// Iterating through collision nodes at a given cell.
 			actor_iterator begin_actors_at(const ivec2 & cell) const;

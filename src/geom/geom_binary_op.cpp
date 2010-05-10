@@ -26,7 +26,7 @@ namespace harmony {
 		}
 	}
 	
-	geom::shape_ref geom::binary_op::translate(const ivec2 & displacement) const {
+	geom::shape_ref geom::binary_op::translate(const vec2 & displacement) const {
 		shape_ref new_shape(new binary_op(op, left->translate(displacement), right->translate(displacement)));
 		return new_shape;
 	}

@@ -54,8 +54,8 @@ namespace harmony {
 		void incr_x() { ++x_; }
 		void incr_y() { ++y_; }
 		
-		float magnitude_squared() const { return x_ * x_ + y_ * y_; }
-		float magnitude() const;
+		coord_t magnitude_squared() const { return x_ * x_ + y_ * y_; }
+		coord_t magnitude() const;
 		
 		ivec2 round() const;
 		

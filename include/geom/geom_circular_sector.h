@@ -17,21 +17,23 @@ namespace harmony {
 		public:
 			circular_sector()
 				: angular_position(0), central_angle(0) {}
-			circular_sector(const circular_sector & c, const ivec2 & displacement)
+			circular_sector(const circular_sector & c)
+				: shape(c), source(c.source), angular_position(c.angular_position), central_angle(c.central_angle) {}
+			circular_sector(const circular_sector & c, const vec2 & displacement)
 				: source(c.source, displacement), angular_position(c.angular_position), central_angle(c.central_angle) {}
 			circular_sector(const geom::circle & s)
 				: source(s), angular_position(0), central_angle(360) {}
 			circular_sector(const geom::circle & s, game::angle_t p, game::angle_t c)
 				: source(s), angular_position(p), central_angle(c) {}
-			circular_sector(icoord_t x, icoord_t y, ucoord_t r, game::angle_t p, game::angle_t c)
+			circular_sector(coord_t x, coord_t y, ucoord_t r, game::angle_t p, game::angle_t c)
 				: source(x, y, r), angular_position(p), central_angle(c) {}
 			~circular_sector() {}
 			
 			kind_t kind() const;
 			
-			ivec2 origin() const { return source.origin; }
-			icoord_t x() const { return source.x(); }
-			icoord_t y() const { return source.y(); }
+			vec2 origin() const { return source.origin; }
+			coord_t x() const { return source.x(); }
+			coord_t y() const { return source.y(); }
 			ucoord_t radius() const { return source.radius; }
 			ucoord_t radius_squared() const { return source.radius_squared(); }
 			
@@ -39,7 +41,7 @@ namespace harmony {
 			bool intersects(const geom::circle & that) const;
 			bool intersects(const circular_sector & that) const;
 			
-			shape_ref translate(const ivec2 & displacement) const;
+			shape_ref translate(const vec2 & displacement) const;
 			geom::rect bounding_rect() const;
 			
 			void resolve_collision(collision & collision) const;

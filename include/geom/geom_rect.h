@@ -6,7 +6,8 @@
 #ifndef HARMONY_GEOM_RECT_H
 #define HARMONY_GEOM_RECT_H
 
-#include "ivec2.h"
+#include "vec2.h"
+#include "geom_irect.h"
 #include "geom_shape.h"
 #include "geom_binary_op.h"
 #include "geom_circle.h"
@@ -20,24 +21,26 @@ namespace harmony {
 			rect() {}
 			rect(const rect & r)
 				: shape(r), origin(r.origin), size(r.size) {}
-			rect(const rect & r, const ivec2 & displacement)
+			explicit rect(const irect & r)
+				: origin(r.origin), size(r.size) {}
+			rect(const rect & r, const vec2 & displacement)
 				: origin(r.origin + displacement), size(r.size) {}
-			rect(const ivec2 & o, const ivec2 & s)
+			rect(const vec2 & o, const ivec2 & s)
 				: origin(o), size(s) {}
-			rect(icoord_t x, icoord_t y, ucoord_t width, ucoord_t height)
+			rect(coord_t x, coord_t y, ucoord_t width, ucoord_t height)
 				: origin(x, y), size(width, height) {}
 			~rect() {}
 			
 			kind_t kind() const;
 			
-			icoord_t x1() const { return origin.x(); }
-			icoord_t y1() const { return origin.y(); }
-			icoord_t x2() const { return x1() + width(); }
-			icoord_t y2() const { return y1() + height(); }
+			coord_t x1() const { return origin.x(); }
+			coord_t y1() const { return origin.y(); }
+			coord_t x2() const { return x1() + width(); }
+			coord_t y2() const { return y1() + height(); }
 			ucoord_t width() const { return size.x(); }
 			ucoord_t height() const { return size.y(); }
 			
-			ivec2 center() const;
+			vec2 center() const;
 			ucoord_t area() const;
 			
 			bool intersects(const shape & that) const;
@@ -45,9 +48,8 @@ namespace harmony {
 			bool intersects(const geom::circular_sector & that) const;
 			bool intersects(const rect & that) const;
 			
-			shape_ref translate(const ivec2 & displacement) const;
+			shape_ref translate(const vec2 & displacement) const;
 			rect bounding_rect() const;
-			rect intersect(const rect & that) const;
 			
 			void resolve_collision(collision & collision) const;
 			
@@ -55,11 +57,12 @@ namespace harmony {
 			void resolve_collision_rect_on_rect(collision & collision) const;
 			
 		public:
-			ivec2 origin, size;
+			vec2 origin;
+			ivec2 size;
 		};
 		
 		rect union_bounding_rect(const rect & a, const rect & b);
-		rect cell_aligned_bounding_rect(const rect & r, ucoord_t cell_size);
+		irect cell_aligned_bounding_rect(const rect & r, ucoord_t cell_size);
 	}
 }
 

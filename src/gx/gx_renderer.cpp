@@ -34,6 +34,9 @@ void hgx_reshape(hgame_ref game, size_t width, size_t height) {
 void hgx_render(hgame_ref game, float elapsed) {
 	game::engine & self = *reinterpret_cast<game::engine *>(game);
 	
+	// Clamp the elapsed time.
+	if (elapsed > 100.0f) elapsed = 100.0f;
+	
 	// Clear the viewport.
 	gl::clear();
 	

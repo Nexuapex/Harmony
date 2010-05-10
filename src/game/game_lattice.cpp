@@ -61,29 +61,22 @@ namespace harmony {
 		return node_size_;
 	}
 	
-	ivec2 game::lattice::node_at(const ivec2 & position) const {
-		if (position.x() < 0 || position.y() < 0) {
-			// Integer division doesn't necessarily truncate towards negative
-			// infinity, so that needs to be corrected for negative coordinates.
-			const float size = static_cast<float>(node_size_);
-			return static_cast<ivec2>(
-				vec2(std::floor(position.x() / size), std::floor(position.y() / size))
-			);
-		} else {
-			// Quick path.
-			return position / ivec2(node_size_, node_size_);
-		}
-	}
-	
-	geom::rect game::lattice::node_rect(const ivec2 & cell) const {
-		return geom::rect(
-			cell.x() * node_size_, cell.y() * node_size_,
-			node_size_, node_size_
+	ivec2 game::lattice::node_at(const vec2 & position) const {
+		// Integer division doesn't necessarily truncate towards negative
+		// infinity, so that needs to be corrected for negative coordinates.
+		const float size = static_cast<float>(node_size_);
+		return static_cast<ivec2>(
+			vec2(std::floor(position.x() / size), std::floor(position.y() / size))
 		);
 	}
 	
+	geom::rect game::lattice::node_rect(const ivec2 & cell) const {
+		const coord_t size = static_cast<coord_t>(node_size_);
+		return geom::rect(cell.x() * size, cell.y() * size, node_size_, node_size_);
+	}
+	
 	game::terrain_tile_ref game::lattice::tile_at(const ivec2 & cell,
-		const terrain_layer & layer, geom::rect & tile_rect) const
+		const terrain_layer & layer, geom::irect & tile_rect) const
 	{
 		// Translate the vector to the layer's origin point, scaled to world coordinates.
 		ivec2 pt = cell * node_size_ + origin_ - layer.origin() * layer.tile_size();

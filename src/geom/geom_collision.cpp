@@ -40,7 +40,7 @@ namespace harmony {
 	}
 	
 	geom::shape_ref geom::collision::destination() const {
-		return object_->translate(displacement_.round());
+		return object_->translate(displacement());
 	}
 	
 	unsigned geom::collision::remaining_collisions() const {

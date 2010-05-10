@@ -11,7 +11,7 @@
 #include "game_types.h"
 #include "game_terrain_layer_fwd.h"
 #include "game_terrain_tile.h"
-#include "geom_rect.h"
+#include "geom_irect.h"
 #include "gl_types.h"
 #include "gl_buffer.h"
 #include "gx_texture_atlas.h"
@@ -31,8 +31,8 @@ namespace harmony {
 			ivec2 size() const { return size_; }
 			
 			// The rectangle that represents the layer (layer coordinates).
-			geom::rect rect() const {
-				return geom::rect(0, 0, size_.x(), size_.y());
+			geom::irect rect() const {
+				return geom::irect(0, 0, size_.x(), size_.y());
 			}
 			
 			// Get the terrain tile in a specific cell (layer coordinates).
@@ -49,11 +49,11 @@ namespace harmony {
 			ivec2 cell_max(const ivec2 & cell) const;
 			
 			// Get the rect that the tile occupies.
-			geom::rect cell_rect(const ivec2 & cell) const;
+			geom::irect cell_rect(const ivec2 & cell) const;
 			
 			// The first cell in the given region that, scanning in row-major
 			// order, is not empty.
-			ivec2 first_nonempty_cell(const geom::rect & region) const;
+			ivec2 first_nonempty_cell(const geom::irect & region) const;
 			
 			// The size, in pixels, of a tile in this layer.
 			game::size_t tile_size() const;

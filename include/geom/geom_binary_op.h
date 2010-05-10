@@ -28,7 +28,7 @@ namespace harmony {
 			
 			bool intersects(const shape & that) const;
 			
-			shape_ref translate(const ivec2 & displacement) const;
+			shape_ref translate(const vec2 & displacement) const;
 			geom::rect bounding_rect() const;
 			
 			void resolve_collision(collision & collision) const;

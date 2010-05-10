@@ -32,19 +32,17 @@ namespace harmony {
 	
 	bool geom::circle::intersects(const circle & that) const {
 		const ucoord_t radii = radius + that.radius;
-		return (that.origin - origin).magnitude_squared() < (radii * radii);
+		return (that.origin - origin).magnitude_squared() < static_cast<coord_t>(radii * radii);
 	}
 	
-	geom::shape_ref geom::circle::translate(const ivec2 & displacement) const {
+	geom::shape_ref geom::circle::translate(const vec2 & displacement) const {
 		shape_ref new_shape(new circle(*this, displacement));
 		return new_shape;
 	}
 	
 	geom::rect geom::circle::bounding_rect() const {
-		return geom::rect(
-			origin - ivec2(radius, radius),
-			ivec2(radius * 2, radius * 2)
-		);
+		const coord_t r = static_cast<coord_t>(radius);
+		return geom::rect(origin - vec2(r, r), ivec2(radius * 2, radius * 2));
 	}
 	
 	void geom::circle::resolve_collision(collision & collision) const {

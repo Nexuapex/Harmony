@@ -877,6 +877,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\geom\geom_irect.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\geom\geom_irect.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\geom\geom_rect.cpp"
 					>
 				</File>

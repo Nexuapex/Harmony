@@ -113,18 +113,17 @@ namespace harmony {
 					
 					if (node.active()) {
 						// Storage for the rect corresponding to a terrain tile.
-						geom::rect * const tile_rect = new geom::rect;
-						const geom::shape_ref tile_rect_ref(tile_rect);
+						geom::irect tile_rect;
 						
 						// Terrain tiles.
 						for (unsigned index = 0; index < level.num_terrain_layers(); ++index) {
 							// Get the terrain tile at this location (if any).
 							terrain_tile_ref tile = lattice.tile_at(node.cell(),
-								level.terrain_layer_at(index), *tile_rect);
+								level.terrain_layer_at(index), tile_rect);
 							
 							if (tile && !tile->passable()) {
 								// Handle the collision.
-								collide(collision, tile, tile_rect_ref);
+								collide(collision, tile, tile_rect);
 							}
 						}
 						
@@ -161,10 +160,11 @@ namespace harmony {
 	}
 	
 	void game::actor::collide(geom::collision & collision,
-		const terrain_tile_ref & tile, const geom::shape_ref & tile_rect)
+		const terrain_tile_ref & tile, const geom::irect & tile_rect)
 	{
 		(void)tile;
-		collision.set_obstruction(tile_rect);
+		geom::shape_ref tile_shape(new geom::rect(tile_rect));
+		collision.set_obstruction(tile_shape);
 		collision.resolve();
 	}
 	
@@ -191,7 +191,7 @@ namespace harmony {
 			
 			// Get the new rect for the nodes.
 			geom::rect bounds = collision_shape_->bounding_rect();
-			geom::rect new_rect = geom::cell_aligned_bounding_rect(bounds, lattice.node_size());
+			geom::irect new_rect = geom::cell_aligned_bounding_rect(bounds, lattice.node_size());
 			
 			// Get the desired size of the array.
 			ucoord_t new_size = new_rect.area();
@@ -220,13 +220,13 @@ namespace harmony {
 			collision_nodes_.swap(old_nodes);
 			
 			// Clear the rect.
-			collision_nodes_rect_ = geom::rect();
+			collision_nodes_rect_ = geom::irect();
 		}
 	}
 	
 	void game::actor::update_collision_nodes(bool should_update_shape, const level_ref & old_level) {
 		// Keep track of the current node rect.
-		geom::rect old_rect = collision_nodes_rect_;
+		geom::irect old_rect = collision_nodes_rect_;
 		
 		// Storage for the old set of collision nodes, if needed.
 		boost::scoped_array<collision_node> old_nodes;
@@ -263,7 +263,6 @@ namespace harmony {
 			// In order to avoid translating arbitrary shapes (and thus causing
 			// frequent allocations), create an offset that moves the origin
 			// point of each collision node.
-			const ivec2 pos = static_cast<ivec2>(position());
 			const ivec2 offset = collision_nodes_offset(lattice);
 			
 			// Search through all current nodes.
@@ -277,7 +276,7 @@ namespace harmony {
 					node_rect.origin -= offset;
 					
 					// Update the lattice coordinate for this node.
-					ivec2 lattice_cell = lattice.node_at(pos + node_rect.origin);
+					ivec2 lattice_cell = lattice.node_at(position() + node_rect.origin);
 					
 					// Slightly expand the borders of the tile to compensate
 					// for the movement speed of the actor.
@@ -306,7 +305,7 @@ namespace harmony {
 		lattice & lattice = *(level()->lattice());
 		geom::rect node_rect = lattice.node_rect(cell + collision_nodes_rect_.origin);
 		node_rect.origin = lattice.node_at(
-			static_cast<ivec2>(position())
+			position()
 			+ node_rect.origin
 			- collision_nodes_offset(lattice)
 		) * lattice.node_size();

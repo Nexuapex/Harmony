@@ -42,7 +42,7 @@ namespace harmony {
 		}
 	}
 	
-	geom::shape_ref geom::circular_sector::translate(const ivec2 & displacement) const {
+	geom::shape_ref geom::circular_sector::translate(const vec2 & displacement) const {
 		shape_ref new_shape(new circular_sector(*this, displacement));
 		return new_shape;
 	}
