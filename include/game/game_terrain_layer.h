@@ -48,6 +48,9 @@ namespace harmony {
 			vec2 cell_center(const ivec2 & cell) const;
 			ivec2 cell_max(const ivec2 & cell) const;
 			
+			// Get the rect that the tile occupies.
+			geom::rect cell_rect(const ivec2 & cell) const;
+			
 			// The first cell in the given region that, scanning in row-major
 			// order, is not empty.
 			ivec2 first_nonempty_cell(const geom::rect & region) const;

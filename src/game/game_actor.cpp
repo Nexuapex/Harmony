@@ -75,8 +75,11 @@ namespace harmony {
 	}
 	
 	void game::actor::step(elapsed_t elapsed) {
+		// Get a self-reference.
+		actor_ref self = boost::dynamic_pointer_cast<actor>(shared_from_this());
+		
 		// Invoke AI for this step.
-		if (agent_) agent_->step(boost::dynamic_pointer_cast<actor>(shared_from_this()), elapsed);
+		if (agent_) agent_->step(self, elapsed);
 		
 		// Create the collision object for this movement.
 		geom::collision collision(
@@ -84,8 +87,64 @@ namespace harmony {
 			velocity_ * (elapsed / 1000.0f)
 		);
 		
-		// Actually move the actor.
-		mark::set_position(position() + collision.displacement());
+		// Get a reference to the current level and the lattice.
+		game::level & level = *this->level();
+		const game::lattice & lattice = *(level.lattice());
+		
+		// Store the initial position.
+		const vec2 initial_position = position();
+		
+		// Apply collisions until we stop hitting anything or hit a maximum
+		// number of attempts.
+		unsigned previous_count = 0;
+		while (collision.remaining_collisions() > 0 && collision.remaining_collisions() != previous_count) {
+			// If this isn't the first time through, then update the collision
+			// nodes associated with the actor.
+			if (previous_count != 0) update_collision_nodes(false);
+			
+			// Remember the previous count.
+			previous_count = collision.remaining_collisions();
+			
+			// Iterate through all the collision nodes active on this actor.
+			for (ivec2 cell; cell.uy() < collision_nodes_rect_.height(); cell.incr_y()) {
+				for (cell.set_x(0); cell.ux() < collision_nodes_rect_.width(); cell.incr_x()) {
+					// Get the node.
+					collision_node & node = collision_node_at(cell);
+					
+					if (node.active()) {
+						// Storage for the rect corresponding to a terrain tile.
+						geom::rect * const tile_rect = new geom::rect;
+						const geom::shape_ref tile_rect_ref(tile_rect);
+						
+						// Terrain tiles.
+						for (unsigned index = 0; index < level.num_terrain_layers(); ++index) {
+							// Get the terrain tile at this location (if any).
+							terrain_tile_ref tile = lattice.tile_at(node.cell(),
+								level.terrain_layer_at(index), *tile_rect);
+							
+							if (tile && !tile->passable()) {
+								// Handle the collision.
+								collide(collision, tile, tile_rect_ref);
+							}
+						}
+						
+						// Other actors.
+						lattice::actor_iterator iter_end = lattice.end_actors_at(node.cell());
+						for (lattice::actor_iterator iter = lattice.begin_actors_at(node.cell());
+							iter != iter_end; ++iter)
+						{
+							if (*iter != self) {
+								// Handle the collision.
+								collide(collision, *iter);
+							}
+						}
+					}
+				}
+			}
+			
+			// Actually move the actor.
+			mark::set_position(initial_position + collision.displacement());
+		}
 	}
 	
 	void game::actor::set_position(const level_ref & new_level, const vec2 & new_position) {
@@ -99,6 +158,23 @@ namespace harmony {
 		// if the level has changed as part of this change in position, because
 		// the lattice size of the new level may differ.
 		update_collision_nodes(new_level != old_level, old_level);
+	}
+	
+	void game::actor::collide(geom::collision & collision,
+		const terrain_tile_ref & tile, const geom::shape_ref & tile_rect)
+	{
+		(void)tile;
+		collision.set_obstruction(tile_rect);
+		collision.resolve();
+	}
+	
+	void game::actor::collide(geom::collision & collision,
+		const actor_ref & actor)
+	{
+		collision.set_obstruction(actor->collision_shape()->translate(
+			static_cast<ivec2>(actor->position())
+		));
+		collision.resolve();
 	}
 	
 	ivec2 game::actor::collision_nodes_offset(lattice & lattice) const {
@@ -202,6 +278,12 @@ namespace harmony {
 					
 					// Update the lattice coordinate for this node.
 					ivec2 lattice_cell = lattice.node_at(pos + node_rect.origin);
+					
+					// Slightly expand the borders of the tile to compensate
+					// for the movement speed of the actor.
+					ivec2 slop(tile_collision_slop, tile_collision_slop);
+					node_rect.origin -= slop;
+					node_rect.size += slop * 2;
 					
 					// Update the node in the lattice.
 					bool should_be_active = collision_shape_->intersects(node_rect);

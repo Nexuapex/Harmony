@@ -7,6 +7,8 @@
 #include <boost/math/constants/constants.hpp>
 
 #include "vec2.h"
+#include "ivec2.h"
+#include "mathfunc.h"
 
 namespace harmony {
 	vec2::vec2() : x_(0.0f), y_(0.0f) {}
@@ -83,6 +85,10 @@ namespace harmony {
 	
 	float vec2::magnitude() const {
 		return std::sqrt(magnitude_squared());
+	}
+	
+	ivec2 vec2::round() const {
+		return ivec2(harmony::round(x_), harmony::round(y_));
 	}
 	
 	vec2 vec2::unit() const {

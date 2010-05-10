@@ -17,8 +17,6 @@ namespace harmony {
 			collision(const shape_ref & object, const vec2 & displacement);
 			virtual ~collision();
 			
-			shape_ref initial() const;
-			
 			vec2 displacement() const;
 			void set_displacement(const vec2 & displacement);
 			
@@ -30,15 +28,17 @@ namespace harmony {
 			
 			shape_ref destination() const;
 			
+			unsigned remaining_collisions() const;
+			
 			virtual bool apply_collision();
 			
 			void resolve();
 			
 		private:
-			shape_ref initial_, object_, destination_;
+			shape_ref object_, destination_;
 			shape_ref obstruction_;
+			unsigned collision_count_;
 			vec2 displacement_;
-			unsigned ricochet_count_;
 		};
 	}
 }

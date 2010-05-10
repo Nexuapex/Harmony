@@ -53,13 +53,15 @@ namespace harmony {
 	}
 	
 	void geom::binary_op::resolve_collision_as_object(collision & collision) const {
-		const binary_op & obj = static_cast<const binary_op &>(*collision.object());
+		const shape_ref initial_object = collision.object();
+		const binary_op & obj = static_cast<const binary_op &>(*initial_object);
 		shape_ref obs = collision.obstruction();
 		
 		collision.set_object(obj.left);
-		collision.object()->resolve_collision(collision);
+		collision.resolve();
 		collision.set_object(obj.right);
-		collision.object()->resolve_collision(collision);
+		collision.resolve();
+		collision.set_object(initial_object);
 	}
 	
 	void geom::binary_op::resolve_collision_as_obstruction(collision & collision) const {
@@ -67,8 +69,8 @@ namespace harmony {
 		const binary_op & obs = static_cast<const binary_op &>(*collision.obstruction());
 		
 		collision.set_obstruction(obs.left);
-		obj->resolve_collision(collision);
+		collision.resolve();
 		collision.set_obstruction(obs.right);
-		obj->resolve_collision(collision);
+		collision.resolve();
 	}
 }

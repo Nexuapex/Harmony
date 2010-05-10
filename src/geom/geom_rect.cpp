@@ -101,42 +101,41 @@ namespace harmony {
 	}
 	
 	void geom::rect::resolve_collision_rect_on_rect(collision & collision) const {
-		const rect & obj = static_cast<const rect &>(*collision.object());
+		const rect obj = static_cast<const rect &>(*collision.destination());
 		const rect & obs = static_cast<const rect &>(*collision.obstruction());
 		
 		// Get the motion displacement.
 		vec2 displace = collision.displacement();
-		coord_t dx = displace.x(), dy = displace.y();
+		icoord_t dx = 0, dy = 0;
 		
-		// This is not a correct method of altering the displacement. Ideally,
-		// the direction of the initial displacement should be respected instead
-		// of shunting the object directly away from the obstacle. This would
-		// involving determining the axis with the least distance required to
-		// move the object away from the obstacle, and then allowing the initial
-		// displacement to determine the other axis.
 		if (obj.intersects(obs) && collision.apply_collision()) {
-			// Minimum x plane of the object.
-			if (obj.x1() > obs.x1() && obj.x1() < obs.x2()) {
-				dx += clamp(static_cast<coord_t>(obs.x2() - obj.x1()), -dx, dx);
-				displace.set_x(dx);
+			// Minimum x plane.
+			if (obs.x1() < obj.x1() && obj.x1() < obs.x2()) {
+				dx = obs.x2() - obj.x1();
 			}
 			
-			// Maximum x plane of the object.
-			if (obj.x2() > obs.x1() && obj.x2() < obs.x2()) {
-				dx += clamp(static_cast<coord_t>(obs.x1() - obj.x2()), -dx, dx);
-				displace.set_x(dx);
+			// Maximum x plane.
+			if (obs.x1() < obj.x2() && obj.x2() < obs.x2()) {
+				icoord_t x = obs.x1() - obj.x2();
+				if (std::abs(x) < std::abs(dx)) dx = x;
 			}
 			
-			// Minimum y plane of the object.
-			if (obj.y1() > obs.y1() && obj.y1() < obs.y2()) {
-				dy += clamp(static_cast<coord_t>(obs.y2() - obj.y1()), -dy, dy);
-				displace.set_y(dy);
+			// Minimum y plane.
+			if (obs.y1() < obj.y1() && obj.y1() < obs.y2()) {
+				dy = obs.y2() - obj.y1();
 			}
 			
-			// Maximum y plane of the object.
-			if (obj.y2() > obs.y1() && obj.y2() < obs.y2()) {
-				dy += clamp(static_cast<coord_t>(obs.y1() - obj.y2()), -dy, dy);
-				displace.set_y(dy);
+			// Maximum y plane.
+			if (obs.y1() < obj.y2() && obj.y2() < obs.y2()) {
+				icoord_t y = obs.y1() - obj.y2();
+				if (std::abs(y) < std::abs(dy)) dy = y;
+			}
+			
+			// Shunt the object away with whichever change is smaller.
+			if (std::abs(dx) < std::abs(dy)) {
+				displace.set_x(displace.x() + dx + signum(dx) * 0.5f);
+			} else {
+				displace.set_y(displace.y() + dy + signum(dy) * 0.5f);
 			}
 		}
 		

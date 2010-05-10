@@ -15,13 +15,18 @@ namespace harmony {
 		// A class of terrain tiles.
 		class terrain_tile {
 		public:
-			terrain_tile(const gx::texture_ref & texture, gl::ushort_t rotation = 0);
+			terrain_tile(bool passable, const gx::texture_ref & texture,
+				gl::ushort_t rotation = 0);
 			~terrain_tile();
+			
+			// If the tile can be passed by ground or not.
+			bool passable() const { return passable_; }
 			
 			gx::texture_ref texture() const;
 			gl::ushort_t rotation() const;
 			
 		private:
+			bool passable_;
 			gx::texture_ref texture_;
 			gl::ushort_t rotation_;
 		};

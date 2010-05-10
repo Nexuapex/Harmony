@@ -23,6 +23,12 @@ namespace harmony {
 		);
 	}
 	
+	static const char * tile_passable_options[] = {
+		"impassable",
+		"passable",
+		NULL
+	};
+	
 	static const char * tile_rotation_options[] = {
 		"normal",
 		"rotate right",
@@ -40,13 +46,14 @@ namespace harmony {
 		
 		// Get the function's parameters.
 		const char * filename = luaL_checkstring(state, 1);
+		bool passable = luaL_checkoption(state, 2, "passable", tile_passable_options) != 0;
 		gl::ushort_t rotation = static_cast<gl::ushort_t>(
-			luaL_checkoption(state, 2, "normal", tile_rotation_options)
+			luaL_checkoption(state, 3, "normal", tile_rotation_options)
 		);
 		
 		// Create the tile object.
 		gx::texture_ref texture = engine.texture_cache().get(filename);
-		game::terrain_tile_ref tile(new game::terrain_tile(texture, rotation));
+		game::terrain_tile_ref tile(new game::terrain_tile(passable, texture, rotation));
 		
 		// Create and return the userdata proxy.
 		engine.lua_engine().push_proxy(lua::terrain_tile_class, tile);

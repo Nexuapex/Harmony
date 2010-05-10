@@ -82,6 +82,39 @@ namespace harmony {
 		);
 	}
 	
+	game::terrain_tile_ref game::lattice::tile_at(const ivec2 & cell,
+		const terrain_layer & layer, geom::rect & tile_rect) const
+	{
+		// Translate the vector to the layer's origin point, scaled to world coordinates.
+		ivec2 pt = cell * node_size_ + origin_ - layer.origin() * layer.tile_size();
+		
+		// Check the minimum boundary.
+		if (pt.x() >= 0 && pt.y() >= 0) {
+			// Scale the point to layer coordinates.
+			pt /= layer.tile_size();
+			
+			// Check the maximum boundary.
+			if (pt.x() < layer.size().x() && pt.y() < layer.size().y()) {
+				// Found a tile.
+				tile_rect = layer.cell_rect(pt);
+				return layer.tile(pt);
+			}
+		}
+		
+		// Out of bounds.
+		return terrain_tile_ref();
+	}
+	
+	game::lattice::actor_iterator game::lattice::begin_actors_at(const ivec2 & cell) const {
+		const node_list & list = (*this)[cell];
+		return actor_iterator(actor_filter_iterator(list.cbegin(), list.cend()));
+	}
+	
+	game::lattice::actor_iterator game::lattice::end_actors_at(const ivec2 & cell) const {
+		const node_list & list = (*this)[cell];
+		return actor_iterator(actor_filter_iterator(list.cend(), list.cend()));
+	}
+	
 	void game::lattice::set_collision_node_active(actor::collision_node & node,
 		bool now_active, const ivec2 & new_cell)
 	{

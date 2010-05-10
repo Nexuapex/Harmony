@@ -2,53 +2,61 @@ local function T(name, ...)
 	return terrain.create_tile(("tile/%s.png"):format(name), ...)
 end
 
+local function F(name, ...)
+	return T(name, "passable", ...)
+end
+
+local function W(name, ...)
+	return T(name, "impassable", ...)
+end
+
 module "tile"
 
 floor = {
-	asphalt = T"floor/asphalt",
-	boardwalk = T"floor/boardwalk",
+	asphalt = F"floor/asphalt",
+	boardwalk = F"floor/boardwalk",
 	carpet = {
-		red = T"floor/carpet red",
-		white = T"floor/carpet white",
+		red = F"floor/carpet red",
+		white = F"floor/carpet white",
 	},
-	concrete_stairs = T"floor/concrete stairs",
-	dirt = T"floor/dirt",
+	concrete_stairs = F"floor/concrete stairs",
+	dirt = F"floor/dirt",
 	dirt_road = {
-		normal = T"floor/dirt road",
-		rough = T"floor/dirt road rough",
+		normal = F"floor/dirt road",
+		rough = F"floor/dirt road rough",
 	},
-	grass = T"floor/grass",
-	grating = T"floor/grating",
-	grating_stairs = T"floor/grating stairs",
+	grass = F"floor/grass",
+	grating = F"floor/grating",
+	grating_stairs = F"floor/grating stairs",
 	metal = {
-		normal = T"floor/metal",
-		shiny = T"floor/metal shiny",
+		normal = F"floor/metal",
+		shiny = F"floor/metal shiny",
 	},
-	metal_stairs = T"floor/metal stairs",
-	ocean = T"floor/ocean",
-	sand = T"floor/sand",
-	sidewalk = T"floor/sidewalk",
+	metal_stairs = F"floor/metal stairs",
+	ocean = F"floor/ocean",
+	sand = F"floor/sand",
+	sidewalk = F"floor/sidewalk",
 	tile = {
-		black = T"floor/tile black",
-		green = T"floor/tile green",
-		white = T"floor/tile white",
-		yellow = T"floor/tile yellow",
+		black = F"floor/tile black",
+		green = F"floor/tile green",
+		white = F"floor/tile white",
+		yellow = F"floor/tile yellow",
 	},
 	wood_stairs = T"floor/wood stairs",
 }
 
 wall = {
-	brick = T"wall/brick",
-	concrete = T"wall/concrete",
-	glass = T"wall/glass",
+	brick = W"wall/brick",
+	concrete = W"wall/concrete",
+	glass = W"wall/glass",
 	marble = {
-		black = T"wall/marble black",
-		blue = T"wall/marble blue",
-		green = T"wall/marble green",
-		purple = T"wall/marble purple",
-		red = T"wall/marble red",
-		white = T"wall/marble white",
+		black = W"wall/marble black",
+		blue = W"wall/marble blue",
+		green = W"wall/marble green",
+		purple = W"wall/marble purple",
+		red = W"wall/marble red",
+		white = W"wall/marble white",
 	},
-	stone = T"wall/stone",
-	white = T"wall/white",
+	stone = W"wall/stone",
+	white = W"wall/white",
 }

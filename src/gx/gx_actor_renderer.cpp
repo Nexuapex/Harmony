@@ -35,7 +35,7 @@ namespace harmony {
 		);
 		
 		// Iterate through all actors attached to the level.
-		for (game::level::actor_iterator iter(level); iter; ++iter) {
+		for (game::level::actor_iterator iter = level.begin(); iter != level.end(); ++iter) {
 			game::actor_ref actor = *iter;
 			
 			// Draw any actors that have an associated sprite.
@@ -80,7 +80,7 @@ namespace harmony {
 #ifdef HARMONY_DRAW_COLLISION_NODES
 	void gx::actor_renderer::draw_collision_nodes(game::level & level) const {
 		// Iterate through all actors attached to the level.
-		for (game::level::actor_iterator iter(level); iter; ++iter) {
+		for (game::level::actor_iterator iter = level.begin(); iter != level.end(); ++iter) {
 			game::actor_ref actor = *iter;
 			
 			// Iterate through all the actor's collision nodes.

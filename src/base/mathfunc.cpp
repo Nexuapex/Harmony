@@ -17,4 +17,8 @@ namespace harmony {
 		if (min > max) std::swap(min, max);
 		return std::max(min, std::min(max, value));
 	}
+	
+	icoord_t round(coord_t value) {
+		return static_cast<icoord_t>((value < 0) ? value - 0.5f : value + 0.5f);
+	}
 }

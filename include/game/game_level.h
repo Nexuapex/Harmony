@@ -8,7 +8,8 @@
 
 #include <boost/unordered_set.hpp>
 #include <boost/enable_shared_from_this.hpp>
-#include <iterator>
+#include <boost/iterator/filter_iterator.hpp>
+#include <boost/iterator/transform_iterator.hpp>
 #include <vector>
 
 #include "game_level_fwd.h"
@@ -24,6 +25,26 @@ namespace harmony {
 		private:
 			typedef boost::unordered_set<mark_ref> mark_set;
 			
+			// Used as part of the definition of actor_iterator.
+			struct is_actor_predicate {
+				bool operator()(const mark_ref & item) const {
+					return item->is_actor();
+				}
+			};
+			struct actor_cast_function {
+				typedef actor_ref result_type;
+				result_type operator()(const mark_ref & item) const {
+					return boost::static_pointer_cast<actor>(item);
+				}
+			};
+			typedef boost::filter_iterator<is_actor_predicate,
+				mark_set::const_iterator> actor_filter_iterator;
+			
+		public:
+			// Iterates through actors attached to a given level.
+			typedef boost::transform_iterator<actor_cast_function,
+				actor_filter_iterator> actor_iterator;
+			
 		public:
 			// The size of the level's associated lattice. Doesn't have to be
 			// constant, but it does have to be a factor of every terrain
@@ -33,6 +54,10 @@ namespace harmony {
 		public:
 			// Creates a mark on this level at a given position.
 			mark_ref create_mark(const vec2 & position);
+			
+			// Iterating through the actors on this level.
+			actor_iterator begin() const;
+			actor_iterator end() const;
 			
 			// The number of terrain layers associated with the level.
 			size_t num_terrain_layers() const;
@@ -56,9 +81,7 @@ namespace harmony {
 			mark_set marks_;
 			std::vector<terrain_layer_ref> terrain_layers_;
 			
-		public:
-			// Iterates through actors attached to a given level.
-			class actor_iterator : public std::iterator<std::forward_iterator_tag, actor_ref> {
+			/*class actor_iterator : public std::iterator<std::forward_iterator_tag, actor_ref> {
 			public:
 				// Construction.
 				actor_iterator() {}
@@ -110,7 +133,7 @@ namespace harmony {
 			private:
 				mark_set::iterator iter_;
 				mark_set * set_;
-			};
+			};*/
 		};
 	}
 }

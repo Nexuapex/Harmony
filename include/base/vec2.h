@@ -9,6 +9,9 @@
 #include "types.h"
 
 namespace harmony {
+	// Forward declaration.
+	class ivec2;
+	
 	// A vector containing two floating-point coordinates.
 	class vec2 {
 	public:
@@ -53,6 +56,8 @@ namespace harmony {
 		
 		float magnitude_squared() const { return x_ * x_ + y_ * y_; }
 		float magnitude() const;
+		
+		ivec2 round() const;
 		
 		vec2 unit() const;
 		angle_t arc_tangent() const;

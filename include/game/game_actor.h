@@ -19,6 +19,11 @@ namespace harmony {
 	namespace game {
 		// An actor is a single renderable, mobile object in the game world.
 		class actor : public mark {
+		private:
+			// The number of pixels by which to expand the borders of tiles for
+			// the purpose of keeping them within the collision working set.
+			static const icoord_t tile_collision_slop = 4;
+			
 		public:
 			// Constructor/destructor.
 			actor();
@@ -56,6 +61,16 @@ namespace harmony {
 			
 			// Override mark::set_position().
 			void set_position(const level_ref & new_level, const vec2 & new_position);
+			
+		protected:
+			// Handling collisions between actors and terrain. The passed shape
+			// reference is always a rectangle, and is already translated to be
+			// relative to the actor's collision shape.
+			void collide(geom::collision & collision,
+				const terrain_tile_ref & tile, const geom::shape_ref & tile_rect);
+			
+			// Handling collisions between actors and other actors.
+			void collide(geom::collision & collision, const actor_ref & actor);
 			
 		public:
 			// Represents a specific cell of the actor within a lattice.

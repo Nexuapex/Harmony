@@ -35,7 +35,7 @@ namespace harmony {
 		
 		// DEMO: Set up the player.
 		actor_ref player;
-		for (game::level::actor_iterator iter(*current_level_); iter; ++iter) player = *iter;
+		player = *current_level_->begin();
 		set_followed_actor(player);
 		player_agent_->set_speed(96.0f);
 		player->set_agent(player_agent_);
@@ -123,7 +123,7 @@ namespace harmony {
 	}
 	
 	void game::engine::step(game::elapsed_t elapsed) {
-		for (game::level::actor_iterator iter(*current_level_); iter; ++iter)
+		for (game::level::actor_iterator iter = current_level_->begin(); iter != current_level_->end(); ++iter)
 			(*iter)->step(elapsed);
 	}
 }

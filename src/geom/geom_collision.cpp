@@ -8,17 +8,15 @@
 
 namespace harmony {
 	geom::collision::collision(const shape_ref & object, const vec2 & displacement)
-		: initial_(object), object_(object)
-		, displacement_(displacement), ricochet_count_(16) {}
+		: object_(object), collision_count_(16), displacement_(displacement) {}
 	
 	geom::collision::~collision() {}
 	
-	geom::shape_ref geom::collision::initial() const {
-		return initial_;
-	}
-	
 	vec2 geom::collision::displacement() const {
-		return displacement_;
+		if (collision_count_ > 0)
+			return displacement_;
+		else
+			return vec2();
 	}
 	
 	void geom::collision::set_displacement(const vec2 & displacement) {
@@ -42,12 +40,16 @@ namespace harmony {
 	}
 	
 	geom::shape_ref geom::collision::destination() const {
-		return object_->translate(static_cast<ivec2>(displacement_));
+		return object_->translate(displacement_.round());
+	}
+	
+	unsigned geom::collision::remaining_collisions() const {
+		return collision_count_;
 	}
 	
 	bool geom::collision::apply_collision() {
-		if (ricochet_count_ > 0) {
-			--ricochet_count_;
+		if (collision_count_ > 0) {
+			--collision_count_;
 			return true;
 		} else {
 			return false;

@@ -16,6 +16,14 @@ namespace harmony {
 		return new_mark;
 	}
 	
+	game::level::actor_iterator game::level::begin() const {
+		return actor_iterator(actor_filter_iterator(marks_.cbegin(), marks_.cend()));
+	}
+	
+	game::level::actor_iterator game::level::end() const {
+		return actor_iterator(actor_filter_iterator(marks_.cend(), marks_.cend()));
+	}
+	
 	game::size_t game::level::num_terrain_layers() const {
 		return terrain_layers_.size();
 	}

@@ -7,10 +7,14 @@
 #define HARMONY_GAME_LATTICE_H
 
 #include <boost/scoped_array.hpp>
+#include <boost/iterator/filter_iterator.hpp>
+#include <boost/iterator/transform_iterator.hpp>
 
 #include "game_types.h"
 #include "game_lattice_fwd.h"
 #include "game_level_fwd.h"
+#include "game_terrain_layer_fwd.h"
+#include "game_terrain_tile_fwd.h"
 #include "geom_rect_fwd.h"
 #include "game_actor.h"
 
@@ -21,6 +25,26 @@ namespace harmony {
 		class lattice {
 		private:
 			typedef boost::intrusive::list<lattice_node> node_list;
+			
+			// Used as part of the definition of collision_node_iterator.
+			struct is_collision_node_predicate {
+				bool operator()(const lattice_node & item) {
+					return !!dynamic_cast<const actor::collision_node *>(&item);
+				}
+			};
+			struct collision_node_cast_function {
+				typedef actor_ref result_type;
+				result_type operator()(const lattice_node & item) const {
+					return static_cast<const actor::collision_node &>(item).actor();
+				}
+			};
+			typedef boost::filter_iterator<is_collision_node_predicate,
+				node_list::const_iterator> actor_filter_iterator;
+			
+		public:
+			// Iterates through actors residing in a specific cell.
+			typedef boost::transform_iterator<collision_node_cast_function,
+				actor_filter_iterator> actor_iterator;
 			
 		public:
 			// Constructor.
@@ -43,6 +67,15 @@ namespace harmony {
 			
 			// The rectangle associated with a node (lattice coordinates).
 			geom::rect node_rect(const ivec2 & cell) const;
+			
+			// The terrain tile at a given cell (lattice coordinates) for a
+			// specific terrain layer. Returns the tile rect by reference.
+			terrain_tile_ref tile_at(const ivec2 & cell,
+				const terrain_layer & layer, geom::rect & tile_rect) const;
+			
+			// Iterating through collision nodes at a given cell.
+			actor_iterator begin_actors_at(const ivec2 & cell) const;
+			actor_iterator end_actors_at(const ivec2 & cell) const;
 			
 			// Updates one of an actor's associated collision nodes in the
 			// lattice. Changes the node's activity and, if active, its position

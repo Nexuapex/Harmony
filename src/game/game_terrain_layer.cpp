@@ -41,6 +41,10 @@ namespace harmony {
 		return (cell + ivec2(1, 1)) * tile_size_;
 	}
 	
+	geom::rect game::terrain_layer::cell_rect(const ivec2 & cell) const {
+		return geom::rect(cell_origin(cell), ivec2(tile_size_, tile_size_));
+	}
+	
 	ivec2 game::terrain_layer::first_nonempty_cell(const geom::rect & region) const {
 		const icoord_t x_max = region.x2(), y_max = region.y2();
 		
