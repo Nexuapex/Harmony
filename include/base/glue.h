@@ -18,4 +18,6 @@
 #define HARMONY_API extern
 #endif
 
+#define HARMONY_DRAW_COLLISION_NODES
+
 #endif // HARMONY_GLUE_H

@@ -101,6 +101,12 @@ namespace harmony {
 		update_collision_nodes(new_level != old_level, old_level);
 	}
 	
+	ivec2 game::actor::collision_nodes_offset(lattice & lattice) const {
+		const ivec2 pos = static_cast<ivec2>(position());
+		const size_t ns = lattice.node_size();
+		return ivec2((pos.x() % ns + ns) % ns, (pos.y() % ns + ns) % ns);
+	}
+	
 	void game::actor::update_collision_nodes_shape(boost::scoped_array<collision_node> & old_nodes)
 	{
 		if (exists_in_level() && collision_shape_) {
@@ -131,9 +137,6 @@ namespace harmony {
 			
 			// Update the rect.
 			collision_nodes_rect_ = new_rect;
-			
-			// Update the world coordinates offset.
-			collision_nodes_offset_ = bounds.origin;
 		} else {
 			// No longer in a level or has no shape. Need to get rid of the
 			// current set of nodes.
@@ -185,8 +188,7 @@ namespace harmony {
 			// frequent allocations), create an offset that moves the origin
 			// point of each collision node.
 			const ivec2 pos = static_cast<ivec2>(position());
-			const size_t ns = lattice.node_size();
-			const ivec2 offset((pos.x() % ns + ns) % ns, (pos.y() % ns + ns) % ns);
+			const ivec2 offset = collision_nodes_offset(lattice);
 			
 			// Search through all current nodes.
 			for (ivec2 cell; cell.uy() < collision_nodes_rect_.height(); cell.incr_y()) {
@@ -208,4 +210,25 @@ namespace harmony {
 			}
 		}
 	}
+	
+#ifdef HARMONY_DRAW_COLLISION_NODES
+	ivec2 game::actor::collision_nodes_size() const {
+		return collision_nodes_rect_.size;
+	}
+	
+	bool game::actor::collision_node_active_at(const ivec2 & cell) const {
+		return collision_node_at(cell).active();
+	}
+	
+	geom::rect game::actor::collision_node_rect_at(const ivec2 & cell) const {
+		lattice & lattice = *(level()->lattice());
+		geom::rect node_rect = lattice.node_rect(cell + collision_nodes_rect_.origin);
+		node_rect.origin = lattice.node_at(
+			static_cast<ivec2>(position())
+			+ node_rect.origin
+			- collision_nodes_offset(lattice)
+		) * lattice.node_size();
+		return node_rect;
+	}
+#endif // HARMONY_DRAW_COLLISION_NODES
 }

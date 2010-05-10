@@ -9,6 +9,7 @@
 #include "game_actor.h"
 #include "game_level.h"
 #include "gx_sprite.h"
+#include "geom_rect.h"
 #include "gl.h"
 
 namespace harmony {
@@ -17,6 +18,11 @@ namespace harmony {
 	void gx::actor_renderer::draw(game::elapsed_t elapsed, game::level & level,
 		gx::texture_cache & tex_cache) const
 	{
+#ifdef HARMONY_DRAW_COLLISION_NODES
+		// Draw all the actors' collision nodes.
+		draw_collision_nodes(level);
+#endif // HARMONY_DRAW_COLLISION_NODES
+		
 		// Activate the shader.
 		gl::using_shader active_shader(sprite_shader_);
 		
@@ -70,6 +76,55 @@ namespace harmony {
 		// Actually draw the sprite.
 		active_sprite.draw(GL_QUADS);
 	}
+	
+#ifdef HARMONY_DRAW_COLLISION_NODES
+	void gx::actor_renderer::draw_collision_nodes(game::level & level) const {
+		// Iterate through all actors attached to the level.
+		for (game::level::actor_iterator iter(level); iter; ++iter) {
+			game::actor_ref actor = *iter;
+			
+			// Iterate through all the actor's collision nodes.
+			const ivec2 size = actor->collision_nodes_size();
+			for (ivec2 cell; cell.y() < size.y(); cell.incr_y()) {
+				for (cell.set_x(0); cell.x() < size.x(); cell.incr_x()) {
+					if (actor->collision_node_active_at(cell)) {
+						// Get the node rect.
+						geom::rect node = actor->collision_node_rect_at(cell);
+						
+						// Draw the rect using immediate mode.
+						glColor4f(0.0f, 0.0f, 1.0f, 0.4f);
+						glBegin(GL_QUADS);
+						{
+							glVertex2i(node.x1(), node.y2());
+							glVertex2i(node.x2(), node.y2());
+							glVertex2i(node.x2(), node.y1());
+							glVertex2i(node.x1(), node.y1());
+						}
+						glEnd();
+					}
+				}
+			}
+			
+			// Draw the actor's collision rect (if it is a rect).
+			if (const geom::rect * r = dynamic_cast<const geom::rect *>(actor->collision_shape().get())) {
+				// Translate the collision rect to the actor's position.
+				geom::rect c = *r;
+				c.origin += static_cast<ivec2>(actor->position());
+				
+				// Draw the rect using immediate mode.
+				glColor4f(1.0f, 0.0f, 0.0f, 0.6f);
+				glBegin(GL_QUADS);
+				{
+					glVertex2i(c.x1(), c.y2());
+					glVertex2i(c.x2(), c.y2());
+					glVertex2i(c.x2(), c.y1());
+					glVertex2i(c.x1(), c.y1());
+				}
+				glEnd();
+			}
+		}
+	}
+#endif // HARMONY_DRAW_COLLISION_NODES
 	
 	gx::actor_renderer::using_sprite::using_sprite(gx::sprite & sprite)
 		: using_vertices(4, 2, sprite.vertices(), sprite.tex_coords()) {}

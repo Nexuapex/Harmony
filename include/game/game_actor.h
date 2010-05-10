@@ -6,6 +6,7 @@
 #ifndef HARMONY_GAME_ACTOR_H
 #define HARMONY_GAME_ACTOR_H
 
+#include "glue.h"
 #include "game_types.h"
 #include "game_actor_fwd.h"
 #include "game_mark.h"
@@ -102,6 +103,9 @@ namespace harmony {
 				return collision_node_at(cell, collision_nodes_, collision_nodes_rect_);
 			}
 			
+			// All collision nodes are offset by the negation of this.
+			ivec2 collision_nodes_offset(lattice & lattice) const;
+			
 			// Updates the size of the array of collision nodes. If the size
 			// changes, the list of old nodes is returned by reference.
 			void update_collision_nodes_shape(boost::scoped_array<collision_node> & old_nodes);
@@ -109,13 +113,20 @@ namespace harmony {
 			// Update the set of collision nodes and their connection to the lattice.
 			void update_collision_nodes(bool should_update_shape, const level_ref & old_level = level_ref());
 			
+#ifdef HARMONY_DRAW_COLLISION_NODES
+		public:
+			// Used by the actor renderer to draw the collision nodes.
+			ivec2 collision_nodes_size() const;
+			bool collision_node_active_at(const ivec2 & cell) const;
+			geom::rect collision_node_rect_at(const ivec2 & cell) const;
+#endif // HARMONY_DRAW_COLLISION_NODES
+			
 		private:
 			vec2 velocity_;
 			angle_t heading_;
 			geom::shape_ref collision_shape_;
 			boost::scoped_array<collision_node> collision_nodes_;
 			geom::rect collision_nodes_rect_;
-			ivec2 collision_nodes_offset_;
 			ai::agent_ref agent_;
 			gx::sprite_ref sprite_;
 			gx::sprite_state sprite_state_;

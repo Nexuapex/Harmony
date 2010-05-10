@@ -62,7 +62,17 @@ namespace harmony {
 	}
 	
 	ivec2 game::lattice::node_at(const ivec2 & position) const {
-		return position / ivec2(node_size_, node_size_);
+		if (position.x() < 0 || position.y() < 0) {
+			// Integer division doesn't necessarily truncate towards negative
+			// infinity, so that needs to be corrected for negative coordinates.
+			const float size = static_cast<float>(node_size_);
+			return static_cast<ivec2>(
+				vec2(std::floor(position.x() / size), std::floor(position.y() / size))
+			);
+		} else {
+			// Quick path.
+			return position / ivec2(node_size_, node_size_);
+		}
 	}
 	
 	geom::rect game::lattice::node_rect(const ivec2 & cell) const {
@@ -87,9 +97,14 @@ namespace harmony {
 		node.set_active(now_active);
 		node.set_cell(new_cell);
 		
-		// Check if adding to a new node is necessary.
-		if (cell_changed || (!node.active() && now_active)) {
-			(*this)[new_cell].push_front(node);
+		if (new_cell.x() < 0 || new_cell.y() < 0 || new_cell.x() >= size_.x() || new_cell.y() >= size_.y()) {
+			// New cell is offscreen.
+			node.set_active(false);
+		} else {
+			// Check if adding to a new node is necessary.
+			if (cell_changed || (!node.active() && now_active)) {
+				(*this)[new_cell].push_front(node);
+			}
 		}
 	}
 	
