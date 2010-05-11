@@ -129,7 +129,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\;..\..\include\ai;..\..\include\base;..\..\include\game;..\..\include\gl;..\..\include\gx;..\..\include\lua;..\..\include\win;..\..\glee;..\..\lua"
+				AdditionalIncludeDirectories=".\;..\..\include\ai;..\..\include\base;..\..\include\game;..\..\include\geom;..\..\include\gl;..\..\include\gx;..\..\include\lua;..\..\include\win;..\..\glee;..\..\lua"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;HARMONY_WIN"
 				MinimalRebuild="false"
 				RuntimeLibrary="0"

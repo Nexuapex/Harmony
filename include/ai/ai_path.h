@@ -14,6 +14,7 @@
 #include "ai_path_fwd.h"
 #include "ai_pathing_node_fwd.h"
 #include "game_lattice_fwd.h"
+#include "game_actor_fwd.h"
 
 namespace harmony {
 	namespace ai {
@@ -32,7 +33,7 @@ namespace harmony {
 			
 		public:
 			// Constructor/destructor.
-			path(const game::lattice_ref & lattice, const ivec2 & initial, const ivec2 & destination);
+			path(const game::lattice_ref & lattice, const ivec2 & initial, const ivec2 & goal);
 			~path();
 			
 			// The default number of steps taken.
@@ -42,20 +43,28 @@ namespace harmony {
 			// The lattice that this path works within.
 			const game::lattice_ref & lattice() const;
 			
+			// The destination node.
+			const ivec2 & goal() const;
+			
 			// Heuristic function.
 			distance_t heuristic_distance_from(const ivec2 & cell) const;
 			
 			// Makes a series of processing steps.
-			void step(unsigned count = 0);
+			void step(const game::actor_ref & actor, unsigned count = 0);
 			
 		private:
 			// Make a single processing step.
-			bool step_once();
+			bool step_once(const game::actor_ref & actor);
+			
+			// Process a neighbor node.
+			void process_adjacent(pathing_node * current, pathing_step_t step,
+				pathing_node * adjacent);
 			
 		private:
 			unsigned step_count_;
 			game::lattice_ref lattice_;
-			ivec2 destination_;
+			ivec2 goal_;
+			pathing_node * goal_node_;
 			open_set_type open_set_;
 			closed_set_type closed_set_;
 		};

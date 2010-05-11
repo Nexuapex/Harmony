@@ -20,7 +20,8 @@ namespace harmony {
 		, path_(&path)
 		, step_(NULL)
 		, distance_(std::numeric_limits<distance_t>::max())
-		, heuristic_(path.heuristic_distance_from(cell)) {}
+		, heuristic_(path.heuristic_distance_from(cell))
+		, closed_(false) {}
 	
 	ai::pathing_node * ai::pathing_node::adjacent(pathing_step_t step, bool create) const {
 		return path_->lattice()->pathing_node_at(step->apply(cell()), *path_, create);

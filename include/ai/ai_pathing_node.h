@@ -27,6 +27,9 @@ namespace harmony {
 			distance_t estimated_remaining() const { return heuristic_; }
 			distance_t estimated_cost() const { return distance_ + heuristic_; }
 			
+			// If this node is currently in the closed set.
+			bool closed() const { return closed_; }
+			
 			// Gets an adjacent cell in the given direction.
 			ivec2 adjacent_cell(pathing_step_t step) const {
 				return step->apply(cell());
@@ -65,11 +68,13 @@ namespace harmony {
 			void set_path(ai::path & path) { path_ = &path; }
 			void set_step(pathing_step_t step) { step_ = step; }
 			void set_distance(distance_t distance) { distance_ = distance; }
+			void set_closed(bool now_closed) { closed_ = now_closed; }
 			
 		private:
 			ai::path * path_;
 			pathing_step_t step_;
 			distance_t distance_, heuristic_;
+			bool closed_;
 		};
 	}
 }
