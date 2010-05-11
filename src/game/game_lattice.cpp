@@ -119,10 +119,6 @@ namespace harmony {
 			(*this)[node.cell()].remove(node);
 		}
 		
-		// Change the node's properties.
-		node.set_active(now_active);
-		node.set_cell(new_cell);
-		
 		if (new_cell.x() < 0 || new_cell.y() < 0 || new_cell.x() >= size_.x() || new_cell.y() >= size_.y()) {
 			// New cell is offscreen.
 			node.set_active(false);
@@ -131,6 +127,10 @@ namespace harmony {
 			if (cell_changed || (!node.active() && now_active)) {
 				(*this)[new_cell].push_front(node);
 			}
+			
+			// Change the node's properties.
+			node.set_active(now_active);
+			node.set_cell(new_cell);
 		}
 	}
 	

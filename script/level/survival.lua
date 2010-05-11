@@ -15,13 +15,14 @@ local wb = tile.wall.brick
 local wc = tile.wall.concrete
 local ws = tile.wall.stone
 
--- Create an actor that the player controls.
-local player = object.create_actor()
-player.sprite = object.create_sprite("player", ".png", 48)
+local sprite = object.create_sprite("player", ".png", 48)
+local pc1, pc2, pc3 = object.create_actor(), object.create_actor(), object.create_actor()
+pc1.sprite, pc2.sprite, pc3.sprite = sprite, sprite, sprite
 
-local ps = {g, player}
+local n1 = {g, pc1}
+local n2 = {g, pc2}
+local n3 = {g, pc3}
 
--- And now, the level layout.
 table.insert(level.layers, {
 
 width = 36,
@@ -33,14 +34,14 @@ tile_size = 48,
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b, b,wc,},
-{ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
+{ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,n3, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, d, d, d,dn,dn,dr,dn,dn,dn,dn,dr,dr,dn,dn,dn,dn,dn,dn,dn,dn,dr,dn,wc,},
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, d, d, d,dn,dn,dn,dn,dn,dn,dn,dn,dn,dn,dn,dr,dn,dn,dn,dr,dn,dn,dr,wc,},
-{ws, g, g, g, g, g, g, g, g, g, g, g, g, d, d, d, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
+{ws, g, g, g, g, g, g, g, g, g, g, g,n2, d, d, d, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,cr,cr, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
-{ws,cs,cs,cs,cs, g, g, g, g, g, g, g, g, g, g, g, g,ps, g, g,cr,cr, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
+{ws,cs,cs,cs,cs, g, g, g, g, g, g, g, g, g, g, g, g,n1, g, g,cr,cr, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, s, s, s,cs, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,cr,cr, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, s, s, s,cs, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},
 {ws, s, s, s,cs, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g,wc,},

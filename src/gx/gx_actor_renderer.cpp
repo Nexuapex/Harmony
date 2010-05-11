@@ -79,7 +79,6 @@ namespace harmony {
 	
 #ifdef HARMONY_DRAW_COLLISION_NODES
 	void gx::actor_renderer::draw_collision_nodes(game::level & level) const {
-		// Iterate through all actors attached to the level.
 		for (game::level::actor_iterator iter = level.begin(); iter != level.end(); ++iter) {
 			game::actor_ref actor = *iter;
 			
@@ -104,6 +103,10 @@ namespace harmony {
 					}
 				}
 			}
+		}
+		
+		for (game::level::actor_iterator iter = level.begin(); iter != level.end(); ++iter) {
+			game::actor_ref actor = *iter;
 			
 			// Draw the actor's collision rect (if it is a rect).
 			if (const geom::rect * r = dynamic_cast<const geom::rect *>(actor->collision_shape().get())) {

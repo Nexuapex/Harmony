@@ -84,7 +84,7 @@ namespace harmony {
 				bool now_active, const ivec2 & new_cell);
 			
 		protected:
-			// Subscript operator to provide access to a cell.
+			// Subscript operator to provide access to a node list.
 			node_list & operator[](const ivec2 & cell) {
 				return nodes_[cell.y() * size_.x() + cell.x()];
 			}

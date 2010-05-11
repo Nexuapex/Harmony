@@ -64,6 +64,9 @@ namespace harmony {
 			void set_position(const level_ref & new_level, const vec2 & new_position);
 			
 		protected:
+			// Advancing the actor's movement.
+			void movement_step(elapsed_t elapsed);
+			
 			// Handling collisions between actors and terrain. The passed shape
 			// reference is always a rectangle, and is already translated to be
 			// relative to the actor's collision shape.
@@ -78,7 +81,7 @@ namespace harmony {
 			class collision_node : public lattice_node {
 			public:
 				// The actor associated with this node.
-				actor_ref actor() const { return actor_; }
+ 				actor_ref actor() const { return actor_; }
 				
 				// If this node is currently active (in the lattice) or not.
 				bool active() const { return active_; }

@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <stdexcept>
 
 #include "geom_rect.h"
@@ -90,8 +91,13 @@ namespace harmony {
 		
 		// Get the motion displacement.
 		vec2 displace = collision.displacement();
-		coord_t dx = 0, dy = 0;
+		coord_t dx = std::numeric_limits<coord_t>::max(),
+			dy = std::numeric_limits<coord_t>::max();
 		
+		// This logic works great, but it can get stuck in infinite loops along
+		// walls. This manifests as the actor getting "caught" while trying to
+		// slide along a wall, when the tile being approched decides that moving
+		// perpendicular to the wall is the path of least resistance.
 		if (obj.intersects(obs) && collision.apply_collision()) {
 			// Minimum x plane.
 			if (obs.x1() < obj.x1() && obj.x1() < obs.x2()) {

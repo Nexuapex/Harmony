@@ -17,6 +17,11 @@ namespace harmony {
 		// DEMO: Default collision shape.
 		geom::shape_ref collision_shape(new geom::rect(-18, -18, 36, 36));
 		set_collision_shape(collision_shape);
+		
+		// DEMO: Walking animation.
+		gx::animated<float>::animation_ref walking_animation(new gx::animation<float>(1.0f, 3.0f, 5.0f));
+		gx::sprite_tag walking_tag("walk", 0, walking_animation);
+		sprite_state_.add_tag(walking_tag);
 	}
 	
 	game::actor::~actor() {}
@@ -81,18 +86,39 @@ namespace harmony {
 		// Invoke AI for this step.
 		if (agent_) agent_->step(self, elapsed);
 		
+		// Perform movement for this step.
+		if (agent_) movement_step(elapsed);
+	}
+	
+	void game::actor::set_position(const level_ref & new_level, const vec2 & new_position) {
+		// Retain the reference to the old level.
+		level_ref old_level = level();
+		
+		// Call mark::set_position().
+		mark::set_position(new_level, new_position);
+		
+		// Update the collision nodes. The size of the list may need to change
+		// if the level has changed as part of this change in position, because
+		// the lattice size of the new level may differ.
+		update_collision_nodes(new_level != old_level, old_level);
+	}
+	
+	void game::actor::movement_step(elapsed_t elapsed) {
+		// Get a self-reference.
+		actor_ref self = boost::dynamic_pointer_cast<actor>(shared_from_this());
+		
+		// Store the initial position.
+		const vec2 initial_position = position();
+		
 		// Create the collision object for this movement.
 		geom::collision collision(
-			collision_shape_->translate(static_cast<ivec2>(position())),
+			collision_shape_->translate(initial_position),
 			velocity_ * (elapsed / 1000.0f)
 		);
 		
 		// Get a reference to the current level and the lattice.
 		game::level & level = *this->level();
 		const game::lattice & lattice = *(level.lattice());
-		
-		// Store the initial position.
-		const vec2 initial_position = position();
 		
 		// Apply collisions until we stop hitting anything or hit a maximum
 		// number of attempts.
@@ -146,19 +172,6 @@ namespace harmony {
 		}
 	}
 	
-	void game::actor::set_position(const level_ref & new_level, const vec2 & new_position) {
-		// Retain the reference to the old level.
-		level_ref old_level = level();
-		
-		// Call mark::set_position().
-		mark::set_position(new_level, new_position);
-		
-		// Update the collision nodes. The size of the list may need to change
-		// if the level has changed as part of this change in position, because
-		// the lattice size of the new level may differ.
-		update_collision_nodes(new_level != old_level, old_level);
-	}
-	
 	void game::actor::collide(geom::collision & collision,
 		const terrain_tile_ref & tile, const geom::irect & tile_rect)
 	{
@@ -172,7 +185,7 @@ namespace harmony {
 		const actor_ref & actor)
 	{
 		collision.set_obstruction(actor->collision_shape()->translate(
-			static_cast<ivec2>(actor->position())
+			actor->position()
 		));
 		collision.resolve();
 	}

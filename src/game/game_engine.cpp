@@ -29,17 +29,12 @@ namespace harmony {
 		// DEMO: Load the initial level.
 		current_level_ = lua::load_level(lua_engine_, "survival.lua");
 		
-		// DEMO: Set up the player's walking animation.
-		gx::animated<float>::animation_ref walking_animation(new gx::animation<float>(1.0f, 3.0f, 5.0f));
-		gx::sprite_tag walking_tag("walk", 0, walking_animation);
-		
 		// DEMO: Set up the player.
 		actor_ref player;
 		player = *current_level_->begin();
 		set_followed_actor(player);
 		player_agent_->set_speed(96.0f);
 		player->set_agent(player_agent_);
-		player->sprite_state().add_tag(walking_tag);
 	}
 
 #ifdef _MSC_VER
