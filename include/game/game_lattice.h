@@ -17,6 +17,8 @@
 #include "game_terrain_tile_fwd.h"
 #include "geom_rect_fwd.h"
 #include "game_actor.h"
+#include "ai_path_fwd.h"
+#include "ai_pathing_node_fwd.h"
 
 namespace harmony {
 	namespace game {
@@ -82,6 +84,16 @@ namespace harmony {
 			// Iterating through collision nodes at a given cell.
 			actor_iterator begin_actors_at(const ivec2 & cell) const;
 			actor_iterator end_actors_at(const ivec2 & cell) const;
+			
+			// Get a pathing node for a given path at the given cell. Will
+			// create a new pathing node if none exists and the appropriate
+			// flag is passed.
+			ai::pathing_node * pathing_node_at(const ivec2 & cell,
+				ai::path & path, bool create = false);
+			
+			// Removes the pathing node for a given path at the given cell, if
+			// it exists. Also deletes the node.
+			void remove_pathing_node(const ivec2 & cell, ai::path & path);
 			
 			// Check if a given node is passable. The actor parameter is used
 			// to prevent an actor from blocking itself.

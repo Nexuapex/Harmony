@@ -29,6 +29,9 @@
 		B49E6C941165A00E00FA83F8 /* gl_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B49E6C931165A00E00FA83F8 /* gl_buffer.cpp */; };
 		B4A2816B10DD9D08004481C3 /* script in Resources */ = {isa = PBXBuildFile; fileRef = B4A2816A10DD9D08004481C3 /* script */; };
 		B4A8907810DEBAF000F2349D /* game_mark.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A8907710DEBAF000F2349D /* game_mark.cpp */; };
+		B4D162AB11990363008E9397 /* ai_pathing_step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D162AA11990363008E9397 /* ai_pathing_step.cpp */; };
+		B4D162CE11990780008E9397 /* ai_pathing_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D162CD11990780008E9397 /* ai_pathing_node.cpp */; };
+		B4D162D9119909FA008E9397 /* ai_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D162D8119909FA008E9397 /* ai_path.cpp */; };
 		B4D3C99110D6329300850761 /* ivec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D3C99010D6329300850761 /* ivec2.cpp */; };
 		B4D3CA3810D6410800850761 /* gl_shader_program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4D3CA3710D6410800850761 /* gl_shader_program.cpp */; };
 		B4D3CA9210D647E400850761 /* WHPlatformInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3CA9110D647E400850761 /* WHPlatformInterface.m */; };
@@ -266,6 +269,14 @@
 		B4A8907610DEBAF000F2349D /* game_mark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_mark.h; path = ../../include/game/game_mark.h; sourceTree = SOURCE_ROOT; };
 		B4A8907710DEBAF000F2349D /* game_mark.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_mark.cpp; path = ../../src/game/game_mark.cpp; sourceTree = SOURCE_ROOT; };
 		B4C2D9A610DC3B1E00BF1E38 /* gl_using_vertices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl_using_vertices.h; path = ../../include/gl/gl_using_vertices.h; sourceTree = SOURCE_ROOT; };
+		B4D162A911990363008E9397 /* ai_pathing_step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_pathing_step.h; path = ../../include/ai/ai_pathing_step.h; sourceTree = SOURCE_ROOT; };
+		B4D162AA11990363008E9397 /* ai_pathing_step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_pathing_step.cpp; path = ../../src/ai/ai_pathing_step.cpp; sourceTree = SOURCE_ROOT; };
+		B4D162CC11990780008E9397 /* ai_pathing_node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_pathing_node.h; path = ../../include/ai/ai_pathing_node.h; sourceTree = SOURCE_ROOT; };
+		B4D162CD11990780008E9397 /* ai_pathing_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_pathing_node.cpp; path = ../../src/ai/ai_pathing_node.cpp; sourceTree = SOURCE_ROOT; };
+		B4D162CF1199078D008E9397 /* ai_pathing_node_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_pathing_node_fwd.h; path = ../../include/ai/ai_pathing_node_fwd.h; sourceTree = SOURCE_ROOT; };
+		B4D162D7119909FA008E9397 /* ai_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_path.h; path = ../../include/ai/ai_path.h; sourceTree = SOURCE_ROOT; };
+		B4D162D8119909FA008E9397 /* ai_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_path.cpp; path = ../../src/ai/ai_path.cpp; sourceTree = SOURCE_ROOT; };
+		B4D162DA11990A04008E9397 /* ai_path_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_path_fwd.h; path = ../../include/ai/ai_path_fwd.h; sourceTree = SOURCE_ROOT; };
 		B4D3C98F10D6329300850761 /* ivec2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ivec2.h; path = ../../include/base/ivec2.h; sourceTree = SOURCE_ROOT; };
 		B4D3C99010D6329300850761 /* ivec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ivec2.cpp; path = ../../src/base/ivec2.cpp; sourceTree = SOURCE_ROOT; };
 		B4D3C99D10D6331B00850761 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = ../../include/base/types.h; sourceTree = SOURCE_ROOT; };
@@ -2926,6 +2937,14 @@
 				B4E4EFCF10DF2979006D7E4D /* ai_agent.cpp */,
 				B4E4EFCE10DF2979006D7E4D /* ai_agent.h */,
 				B4E4EFD610DF2A17006D7E4D /* ai_agent_fwd.h */,
+				B4D162D8119909FA008E9397 /* ai_path.cpp */,
+				B4D162D7119909FA008E9397 /* ai_path.h */,
+				B4D162DA11990A04008E9397 /* ai_path_fwd.h */,
+				B4D162CD11990780008E9397 /* ai_pathing_node.cpp */,
+				B4D162CC11990780008E9397 /* ai_pathing_node.h */,
+				B4D162CF1199078D008E9397 /* ai_pathing_node_fwd.h */,
+				B4D162AA11990363008E9397 /* ai_pathing_step.cpp */,
+				B4D162A911990363008E9397 /* ai_pathing_step.h */,
 				B4E4EFD810DF2A76006D7E4D /* ai_player_agent.cpp */,
 				B4E4EFD710DF2A76006D7E4D /* ai_player_agent.h */,
 				B4E4EFE510DF2B41006D7E4D /* ai_player_agent_fwd.h */,
@@ -6478,6 +6497,9 @@
 				B4F4623311855312008820C9 /* geom_collision.cpp in Sources */,
 				B4876C45119760CE00FC177F /* game_lattice.cpp in Sources */,
 				B4EE465F1198BEA6002CAEB7 /* geom_irect.cpp in Sources */,
+				B4D162AB11990363008E9397 /* ai_pathing_step.cpp in Sources */,
+				B4D162CE11990780008E9397 /* ai_pathing_node.cpp in Sources */,
+				B4D162D9119909FA008E9397 /* ai_path.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

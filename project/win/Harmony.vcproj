@@ -813,6 +813,38 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\src\ai\ai_path.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\ai\ai_path.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\ai\ai_path_fwd.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ai\ai_pathing_node.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\ai\ai_pathing_node.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\ai\ai_pathing_node_fwd.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\ai\ai_pathing_step.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\include\ai\ai_pathing_step.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\ai\ai_player_agent.cpp"
 					>
 				</File>

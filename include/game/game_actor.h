@@ -91,9 +91,6 @@ namespace harmony {
 				// If this node is currently active (in the lattice) or not.
 				bool active() const { return active_; }
 				
-				// The node's current location in the lattice.
-				ivec2 cell() const { return cell_; }
-				
 			private:
 				friend class actor;
 				friend class lattice;
@@ -104,12 +101,10 @@ namespace harmony {
 				// Setters.
 				void set_actor(const actor_ref & new_actor) { actor_ = new_actor; }
 				void set_active(bool now_active) { active_ = now_active; }
-				void set_cell(const ivec2 & new_cell) { cell_ = new_cell; }
 				
 			private:
 				actor_ref actor_;
 				bool active_;
-				ivec2 cell_;
 			};
 			
 		private:

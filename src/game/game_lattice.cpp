@@ -10,6 +10,8 @@
 #include "game_level.h"
 #include "game_terrain_tile.h"
 #include "game_terrain_layer.h"
+#include "ai_path.h"
+#include "ai_pathing_node.h"
 
 namespace harmony {
 	game::lattice::lattice(const level_ref & level, game::size_t node_size)
@@ -109,8 +111,66 @@ namespace harmony {
 		return actor_iterator(actor_filter_iterator(list.cend(), list.cend()));
 	}
 	
+	ai::pathing_node * game::lattice::pathing_node_at(const ivec2 & cell,
+		ai::path & path, bool create)
+	{
+		// If the cell doesn't exist, then there is no node there.
+		if (!node_exists(cell))
+			return NULL;
+		
+		// Get the list of nodes.
+		node_list & list = (*this)[cell];
+		
+		// Try to find an existing node.
+		typedef ai::pathing_node * ai_node;
+		for (node_list::iterator iter = list.begin(); iter != list.end(); ++iter) {
+			if (ai_node node = dynamic_cast<ai_node>(&(*iter))) {
+				if (&(node->path()) == &path) {
+					// Found it.
+					return node;
+				}
+			}
+		}
+		
+		if (create) {
+			// Create a new node.
+			ai_node new_node = new ai::pathing_node(path, cell);
+			
+			// Add it to the list.
+			list.push_front(*new_node);
+			
+			// Return the new node.
+			return new_node;
+		} else {
+			// No node was found.
+			return NULL;
+		}
+	}
+	
+	void game::lattice::remove_pathing_node(const ivec2 & cell, ai::path & path) {
+		// Get the list of nodes.
+		node_list & list = (*this)[cell];
+		
+		// Search for the existing node.
+		typedef const ai::pathing_node * ai_node;
+		for (node_list::iterator iter = list.begin(); iter != list.end(); ++iter) {
+			if (ai_node node = dynamic_cast<ai_node>(&(*iter))) {
+				if (&(node->path()) == &path) {
+					// Erase the node.
+					list.erase(iter);
+					
+					// Delete the node.
+					delete node;
+					
+					// Short-circuit.
+					return;
+				}
+			}
+		}
+	}
+	
 	bool game::lattice::node_passable(const ivec2 & cell, const actor_ref & actor) const {
-		// Nodes that don't exist are impassable.
+		// Cells that don't exist are impassable.
 		if (!node_exists(cell))
 			return false;
 		
@@ -180,13 +240,19 @@ namespace harmony {
 	}
 	
 	bool game::operator==(const lattice_node & a, const lattice_node & b) {
-		// Typedef for the collision node class.
+		// Typedef for the node classes.
 		typedef const actor::collision_node * collision;
+		typedef const ai::pathing_node * ai_node;
 		
 		// Check if we're comparing two collision nodes.
 		if (collision c = dynamic_cast<collision>(&a))
 			if (collision d = dynamic_cast<collision>(&b))
 				return c->actor() == d->actor() && c->cell() == d->cell();
+		
+		// Check if we're comparing two pathing nodes.
+		if (ai_node c = dynamic_cast<ai_node>(&a))
+			if (ai_node d = dynamic_cast<ai_node>(&b))
+				return &(c->path()) == &(d->path()) && c->cell() == d->cell();
 		
 		// Not comparing two nodes of the same type.
 		return false;

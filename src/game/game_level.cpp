@@ -33,6 +33,7 @@ namespace harmony {
 	}
 	
 	void game::level::add_terrain_layer(const terrain_layer_ref & layer) {
+		lattice_.reset();
 		terrain_layers_.push_back(layer);
 	}
 	
