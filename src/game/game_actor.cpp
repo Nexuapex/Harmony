@@ -55,6 +55,10 @@ namespace harmony {
 		update_collision_nodes(true);
 	}
 	
+	const ivec2 & game::actor::pathing_slop() const {
+		return pathing_slop_;
+	}
+	
 	ai::agent_ref game::actor::agent() const {
 		return agent_;
 	}
@@ -203,8 +207,9 @@ namespace harmony {
 			lattice & lattice = *(level()->lattice());
 			
 			// Get the new rect for the nodes.
-			geom::rect bounds = collision_shape_->bounding_rect();
-			geom::irect new_rect = geom::cell_aligned_bounding_rect(bounds, lattice.node_size());
+			const geom::rect bounds = collision_shape_->bounding_rect();
+			const size_t node_size = lattice.node_size();
+			geom::irect new_rect = geom::cell_aligned_bounding_rect(bounds, node_size);
 			
 			// Get the desired size of the array.
 			ucoord_t new_size = new_rect.area();
@@ -226,6 +231,11 @@ namespace harmony {
 			
 			// Update the rect.
 			collision_nodes_rect_ = new_rect;
+			
+			// Calculate the pathing slop.
+			vec2 slop = static_cast<vec2>(bounds.size) / (2.0f * node_size);
+			pathing_slop_.set_x(static_cast<icoord_t>(std::ceil(slop.x())) - 1);
+			pathing_slop_.set_y(static_cast<icoord_t>(std::ceil(slop.y())) - 1);
 		} else {
 			// No longer in a level or has no shape. Need to get rid of the
 			// current set of nodes.
@@ -234,6 +244,9 @@ namespace harmony {
 			
 			// Clear the rect.
 			collision_nodes_rect_ = geom::irect();
+			
+			// Clear the pathing slop.
+			pathing_slop_ = ivec2();
 		}
 	}
 	

@@ -60,10 +60,16 @@ namespace harmony {
 			ivec2 size() const { return size_; }
 			
 			// The size, in pixels, of a node in this lattice.
-			game::size_t node_size() const;
+			size_t node_size() const;
 			
 			// Translates world coordinates into lattice coordinates.
 			ivec2 node_at(const vec2 & position) const;
+			
+			// Checks if a node is within the boundaries of this lattice.
+			bool node_exists(const ivec2 & cell) const {
+				return cell.x() >= 0 && cell.y() >= 0
+					&& cell.x() < size_.x() && cell.y() < size_.y();
+			}
 			
 			// The rectangle associated with a node (lattice coordinates).
 			geom::rect node_rect(const ivec2 & cell) const;
@@ -76,6 +82,13 @@ namespace harmony {
 			// Iterating through collision nodes at a given cell.
 			actor_iterator begin_actors_at(const ivec2 & cell) const;
 			actor_iterator end_actors_at(const ivec2 & cell) const;
+			
+			// Check if a given node is passable. The actor parameter is used
+			// to prevent an actor from blocking itself.
+			bool node_passable(const ivec2 & cell, const actor_ref & actor) const;
+			
+			// Check if the given unit could stand at the center of this cell.
+			bool node_passable_for(const ivec2 & cell, const actor_ref & actor) const;
 			
 			// Updates one of an actor's associated collision nodes in the
 			// lattice. Changes the node's activity and, if active, its position
@@ -97,7 +110,7 @@ namespace harmony {
 		private:
 			level_weak level_;
 			ivec2 origin_, size_;
-			game::size_t node_size_;
+			size_t node_size_;
 			boost::scoped_array<node_list> nodes_;
 		};
 		

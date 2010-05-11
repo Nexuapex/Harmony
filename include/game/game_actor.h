@@ -45,6 +45,11 @@ namespace harmony {
 			geom::shape_ref collision_shape() const;
 			void set_collision_shape(const geom::shape_ref & new_shape);
 			
+			// Considering this actor to be at the center of its lattice cell,
+			// the pathing slop is the number of additional cells around it on
+			// each side that must be reserved for the actor's bulk.
+			const ivec2 & pathing_slop() const;
+			
 			// The agent attached to this actor.
 			ai::agent_ref agent() const;
 			void set_agent(const ai::agent_ref & new_agent);
@@ -146,6 +151,7 @@ namespace harmony {
 			geom::shape_ref collision_shape_;
 			boost::scoped_array<collision_node> collision_nodes_;
 			geom::irect collision_nodes_rect_;
+			ivec2 pathing_slop_;
 			ai::agent_ref agent_;
 			gx::sprite_ref sprite_;
 			gx::sprite_state sprite_state_;

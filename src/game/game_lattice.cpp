@@ -8,6 +8,7 @@
 
 #include "game_lattice.h"
 #include "game_level.h"
+#include "game_terrain_tile.h"
 #include "game_terrain_layer.h"
 
 namespace harmony {
@@ -108,6 +109,50 @@ namespace harmony {
 		return actor_iterator(actor_filter_iterator(list.cend(), list.cend()));
 	}
 	
+	bool game::lattice::node_passable(const ivec2 & cell, const actor_ref & actor) const {
+		// Nodes that don't exist are impassable.
+		if (!node_exists(cell))
+			return false;
+		
+		// Various variables.
+		geom::irect tile_rect;
+		const level_ref lvl = level();
+		const size_t num_layers = lvl->num_terrain_layers();
+		
+		// Search through all terrain tiles at that cell.
+		for (unsigned index = 0; index < num_layers; ++index)
+			if (terrain_tile_ref tile = tile_at(cell, lvl->terrain_layer_at(index), tile_rect))
+				if (tile && !tile->passable())
+					return false;
+		
+		// Get the list of nodes.
+		const node_list & list = (*this)[cell];
+		
+		// Search through all nodes at that cell.
+		typedef const actor::collision_node * collision;
+		for (node_list::const_iterator iter = list.cbegin(); iter != list.cend(); ++iter)
+			if (collision node = dynamic_cast<collision>(&(*iter)))
+				if (node->actor() != actor)
+					return false;
+		
+		// Found nothing blocking.
+		return true;
+	}
+	
+	bool game::lattice::node_passable_for(const ivec2 & cell, const actor_ref & actor) const {
+		const ivec2 & slop = actor->pathing_slop();
+		const icoord_t y_max = cell.y() + slop.y(), x_max = cell.x() + slop.x();
+		
+		// Check every cell around the given cell.
+		for (ivec2 c = cell - slop; c.y() < y_max; c.incr_y())
+			for (c.set_x(cell.x() - slop.x()); c.x() < x_max; c.incr_x())
+				if (!node_passable(c, actor))
+					return false;
+		
+		// Found nothing blocking.
+		return true;
+	}
+	
 	void game::lattice::set_collision_node_active(actor::collision_node & node,
 		bool now_active, const ivec2 & new_cell)
 	{
@@ -119,10 +164,7 @@ namespace harmony {
 			(*this)[node.cell()].remove(node);
 		}
 		
-		if (new_cell.x() < 0 || new_cell.y() < 0 || new_cell.x() >= size_.x() || new_cell.y() >= size_.y()) {
-			// New cell is offscreen.
-			node.set_active(false);
-		} else {
+		if (node_exists(new_cell)) {
 			// Check if adding to a new node is necessary.
 			if (cell_changed || (!node.active() && now_active)) {
 				(*this)[new_cell].push_front(node);
@@ -131,6 +173,9 @@ namespace harmony {
 			// Change the node's properties.
 			node.set_active(now_active);
 			node.set_cell(new_cell);
+		} else {
+			// New cell is offscreen.
+			node.set_active(false);
 		}
 	}
 	

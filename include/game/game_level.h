@@ -49,7 +49,7 @@ namespace harmony {
 			// The size of the level's associated lattice. Doesn't have to be
 			// constant, but it does have to be a factor of every terrain
 			// layer's tile size.
-			static const game::size_t lattice_size = 24;
+			static const game::size_t lattice_size = 16;
 			
 		public:
 			// Creates a mark on this level at a given position.
