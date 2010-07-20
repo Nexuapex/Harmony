@@ -99,7 +99,7 @@ namespace harmony {
 			// to prevent an actor from blocking itself.
 			bool node_passable(const ivec2 & cell, const actor_ref & actor) const;
 			
-			// Check if the given unit could stand at the center of this cell.
+			// Check if the given actor could stand at the center of this cell.
 			bool node_passable_for(const ivec2 & cell, const actor_ref & actor) const;
 			
 			// Updates one of an actor's associated collision nodes in the

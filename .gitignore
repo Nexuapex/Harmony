@@ -6,7 +6,8 @@
 Thumbs.db
 
 # Visual Studio
-*.user
+*.vcxproj.filters
+*.vcxproj.user
 *.suo
 *.ncb
 

@@ -29,14 +29,14 @@ namespace harmony {
 		start->set_distance(0.0f);
 		
 		// Add the initial node to the open set.
-		open_set_.push(start);
+		open_set_.push_back(start);
 	}
 	
 	ai::path::~path() {
 		// Remove all nodes in the open set.
 		while (!open_set_.empty()) {
-			lattice_->remove_pathing_node(open_set_.top()->cell(), *this);
-			open_set_.pop();
+			lattice_->remove_pathing_node(open_set_.back()->cell(), *this);
+			open_set_.pop_back();
 		}
 		
 		// Remove all nodes in the closed set.
@@ -75,7 +75,7 @@ namespace harmony {
 	// Makes a series of processing steps.
 	void ai::path::step(const game::actor_ref & actor, unsigned count) {
 		unsigned remaining_steps = (count == 0) ? step_count_ : count;
-		while (remaining_steps-- > 0 && !step_once(actor)) {}
+		while (remaining_steps-- > 0 && !step_once(actor)) ;
 	}
 	
 	// Make a single processing step.
@@ -84,8 +84,9 @@ namespace harmony {
 		if (goal_node_) return true;
 		
 		// Pop the lowest node from the open set and move it to the closed set.
-		pathing_node * const current = open_set_.top();
-		open_set_.pop();
+		pathing_node * const current = open_set_.front();
+		std::pop_heap(open_set_.begin(), open_set_.end(), pathing_node_less_predicate());
+		open_set_.pop_back();
 		current->set_closed(true);
 		closed_set_.insert(current);
 		
@@ -126,10 +127,11 @@ namespace harmony {
 		// Check if this step leads to a shorter path.
 		if (cost < adjacent->current_cost()) {
 			if (is_open) {
-				// This is where I need to remove the node from the open set,
-				// no matter where it is. Neither STL nor Boost supply a
-				// priority queue that can do this.
-				is_open = false;
+				// Change the distance of the node to reflect the shorter path.
+				// This invalidates the heap, so that invariant needs to fixed.
+				adjacent->set_step(step->reverse);
+				adjacent->set_distance(cost);
+				std::make_heap(open_set_.begin(), open_set_.end(), pathing_node_less_predicate());
 			} else {
 				// Remove the node; we found a shorter path.
 				closed_set_.erase(adjacent);
@@ -142,7 +144,8 @@ namespace harmony {
 		if (!is_open && !is_closed) {
 			adjacent->set_step(step->reverse);
 			adjacent->set_distance(cost);
-			open_set_.push(adjacent);
+			open_set_.push_back(adjacent);
+			std::push_heap(open_set_.begin(), open_set_.end(), pathing_node_less_predicate());
 		}
 	}
 }

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ACA3CAF2-9F75-4F51-B4D4-59A7C0295978}</ProjectGuid>
+    <RootNamespace>Harmony</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\build\win\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\build\win\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\Harmony\My Dropbox\Repository;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\Harmony\My Dropbox\Repository;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;..\..\include\ai;..\..\include\base;..\..\include\game;..\..\include\geom;..\..\include\gl;..\..\include\gx;..\..\include\lua;..\..\include\win;..\..\glee;..\..\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_CRTDBG_MAP_ALLOC;HARMONY_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>WHGlue.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;winmm.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>.\;..\..\include\ai;..\..\include\base;..\..\include\game;..\..\include\geom;..\..\include\gl;..\..\include\gx;..\..\include\lua;..\..\include\win;..\..\glee;..\..\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HARMONY_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>WHGlue.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;winmm.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="Lua\Lua.vcxproj">
+      <Project>{fe677bfa-c47a-4607-942c-bee8041a09fd}</Project>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="GLee\GLee.vcxproj">
+      <Project>{bb3a8fe2-54e8-443c-82e4-6e2e9df1a757}</Project>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\win\WHApplication.cpp" />
+    <ClCompile Include="..\..\src\win\WHGameWindow.cpp" />
+    <ClCompile Include="WHGlue.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\win\WHPlatformInterface.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_actor_renderer.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_atlas_renderer.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_sprite.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_sprite_state.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_sprite_tag.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_texture.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_texture_atlas.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_texture_cache.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_tile_renderer.cpp" />
+    <ClCompile Include="..\..\src\gx\gx_renderer.cpp" />
+    <ClCompile Include="..\..\src\game\game_actor.cpp" />
+    <ClCompile Include="..\..\src\game\game_engine.cpp" />
+    <ClCompile Include="..\..\src\game\game_lattice.cpp" />
+    <ClCompile Include="..\..\src\game\game_level.cpp" />
+    <ClCompile Include="..\..\src\game\game_mark.cpp" />
+    <ClCompile Include="..\..\src\game\game_terrain_layer.cpp" />
+    <ClCompile Include="..\..\src\game\game_terrain_tile.cpp" />
+    <ClCompile Include="..\..\src\game\game_interface.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_buffer.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_color.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_offscreen_renderer.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_shader_program.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_texture.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_blend.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_camera.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_clear.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_error.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_using_offscreen_renderer.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_using_vertices.cpp" />
+    <ClCompile Include="..\..\src\gl\gl_viewport.cpp" />
+    <ClCompile Include="..\..\src\base\ivec2.cpp" />
+    <ClCompile Include="..\..\src\base\vec2.cpp" />
+    <ClCompile Include="..\..\src\base\mathfunc.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_engine.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_interface.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_level.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_level_interface.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_mark.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_sprite.cpp" />
+    <ClCompile Include="..\..\src\lua\lua_vector.cpp" />
+    <ClCompile Include="..\..\src\ai\ai_agent.cpp" />
+    <ClCompile Include="..\..\src\ai\ai_path.cpp" />
+    <ClCompile Include="..\..\src\ai\ai_pathing_node.cpp" />
+    <ClCompile Include="..\..\src\ai\ai_pathing_step.cpp" />
+    <ClCompile Include="..\..\src\ai\ai_player_agent.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_binary_op.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_circle.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_circular_sector.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_collision.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_irect.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_rect.cpp" />
+    <ClCompile Include="..\..\src\geom\geom_shape.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\win\WHApplication.h" />
+    <ClInclude Include="..\..\include\win\WHGameWindow.h" />
+    <ClInclude Include="WHGlue.h" />
+    <ClInclude Include="WHResources.h" />
+    <ClInclude Include="WHTargetPlatform.h" />
+    <ClInclude Include="..\..\include\gx\gx_actor_renderer.h" />
+    <ClInclude Include="..\..\include\gx\gx_animation.h" />
+    <ClInclude Include="..\..\include\gx\gx_atlas_renderer.h" />
+    <ClInclude Include="..\..\include\gx\gx_sprite.h" />
+    <ClInclude Include="..\..\include\gx\gx_sprite_fwd.h" />
+    <ClInclude Include="..\..\include\gx\gx_sprite_state.h" />
+    <ClInclude Include="..\..\include\gx\gx_sprite_tag.h" />
+    <ClInclude Include="..\..\include\gx\gx_texture.h" />
+    <ClInclude Include="..\..\include\gx\gx_texture_atlas.h" />
+    <ClInclude Include="..\..\include\gx\gx_texture_cache.h" />
+    <ClInclude Include="..\..\include\gx\gx_texture_fwd.h" />
+    <ClInclude Include="..\..\include\gx\gx_tile_renderer.h" />
+    <ClInclude Include="..\..\include\gx\gx_interface.h" />
+    <ClInclude Include="..\..\include\gx\gx.h" />
+    <ClInclude Include="..\..\include\game\game_actor.h" />
+    <ClInclude Include="..\..\include\game\game_actor_fwd.h" />
+    <ClInclude Include="..\..\include\game\game_engine.h" />
+    <ClInclude Include="..\..\include\game\game_lattice.h" />
+    <ClInclude Include="..\..\include\game\game_lattice_fwd.h" />
+    <ClInclude Include="..\..\include\game\game_level.h" />
+    <ClInclude Include="..\..\include\game\game_level_fwd.h" />
+    <ClInclude Include="..\..\include\game\game_mark.h" />
+    <ClInclude Include="..\..\include\game\game_mark_fwd.h" />
+    <ClInclude Include="..\..\include\game\game_terrain_layer.h" />
+    <ClInclude Include="..\..\include\game\game_terrain_layer_fwd.h" />
+    <ClInclude Include="..\..\include\game\game_terrain_tile.h" />
+    <ClInclude Include="..\..\include\game\game_terrain_tile_fwd.h" />
+    <ClInclude Include="..\..\include\game\game_interface.h" />
+    <ClInclude Include="..\..\include\game\game.h" />
+    <ClInclude Include="..\..\include\game\game_types.h" />
+    <ClInclude Include="..\..\include\gl\gl_buffer.h" />
+    <ClInclude Include="..\..\include\gl\gl_buffer_fwd.h" />
+    <ClInclude Include="..\..\include\gl\gl_color.h" />
+    <ClInclude Include="..\..\include\gl\gl_offscreen_renderer.h" />
+    <ClInclude Include="..\..\include\gl\gl_shader_program.h" />
+    <ClInclude Include="..\..\include\gl\gl_texture.h" />
+    <ClInclude Include="..\..\include\gl\gl_texture_fwd.h" />
+    <ClInclude Include="..\..\include\gl\gl.h" />
+    <ClInclude Include="..\..\include\gl\gl_library.h" />
+    <ClInclude Include="..\..\include\gl\gl_types.h" />
+    <ClInclude Include="..\..\include\gl\gl_blend.h" />
+    <ClInclude Include="..\..\include\gl\gl_camera.h" />
+    <ClInclude Include="..\..\include\gl\gl_clear.h" />
+    <ClInclude Include="..\..\include\gl\gl_error.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_buffer.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_offscreen_renderer.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_rotation.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_shader.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_translation.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_uniform.h" />
+    <ClInclude Include="..\..\include\gl\gl_using_vertices.h" />
+    <ClInclude Include="..\..\include\gl\gl_viewport.h" />
+    <ClInclude Include="..\..\include\base\ivec2.h" />
+    <ClInclude Include="..\..\include\base\vec2.h" />
+    <ClInclude Include="..\..\include\base\glue.h" />
+    <ClInclude Include="..\..\include\base\types.h" />
+    <ClInclude Include="..\..\include\base\plat_interface.h" />
+    <ClInclude Include="..\..\include\base\mathfunc.h" />
+    <ClInclude Include="..\..\include\lua\lua_engine.h" />
+    <ClInclude Include="..\..\include\lua\lua_error.h" />
+    <ClInclude Include="..\..\include\lua\lua_interface.h" />
+    <ClInclude Include="..\..\include\lua\lua_level.h" />
+    <ClInclude Include="..\..\include\lua\lua_mark.h" />
+    <ClInclude Include="..\..\include\lua\lua_sprite.h" />
+    <ClInclude Include="..\..\include\lua\lua_vector.h" />
+    <ClInclude Include="..\..\include\lua\lua_library.h" />
+    <ClInclude Include="..\..\include\lua\lua_types.h" />
+    <ClInclude Include="..\..\include\ai\ai_agent.h" />
+    <ClInclude Include="..\..\include\ai\ai_agent_fwd.h" />
+    <ClInclude Include="..\..\include\ai\ai_path.h" />
+    <ClInclude Include="..\..\include\ai\ai_path_fwd.h" />
+    <ClInclude Include="..\..\include\ai\ai_pathing_node.h" />
+    <ClInclude Include="..\..\include\ai\ai_pathing_node_fwd.h" />
+    <ClInclude Include="..\..\include\ai\ai_pathing_step.h" />
+    <ClInclude Include="..\..\include\ai\ai_player_agent.h" />
+    <ClInclude Include="..\..\include\ai\ai_player_agent_fwd.h" />
+    <ClInclude Include="..\..\include\ai\ai.h" />
+    <ClInclude Include="..\..\include\ai\ai_types.h" />
+    <ClInclude Include="..\..\include\geom\geom_binary_op.h" />
+    <ClInclude Include="..\..\include\geom\geom_circle.h" />
+    <ClInclude Include="..\..\include\geom\geom_circular_sector.h" />
+    <ClInclude Include="..\..\include\geom\geom_collision.h" />
+    <ClInclude Include="..\..\include\geom\geom_irect.h" />
+    <ClInclude Include="..\..\include\geom\geom_rect.h" />
+    <ClInclude Include="..\..\include\geom\geom_rect_fwd.h" />
+    <ClInclude Include="..\..\include\geom\geom_shape.h" />
+    <ClInclude Include="..\..\include\geom\geom_shape_fwd.h" />
+    <ClInclude Include="..\..\include\geom\geom.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Harmony.ico" />
+    <None Include="Harmony.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Harmony.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

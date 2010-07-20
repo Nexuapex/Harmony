@@ -6,7 +6,6 @@
 #ifndef HARMONY_AI_PATH_H
 #define HARMONY_AI_PATH_H
 
-#include <queue>
 #include <vector>
 #include <boost/unordered_set.hpp>
 
@@ -22,11 +21,7 @@ namespace harmony {
 		class path  {
 		private:
 			// Definition of a priority queue of node pointers.
-			typedef std::priority_queue<
-				pathing_node *,
-				std::vector<pathing_node *>,
-				pathing_node_less_predicate
-			> open_set_type;
+			typedef std::vector<pathing_node *> open_set_type;
 			
 			// Definition of a set of node pointers.
 			typedef boost::unordered_set<pathing_node *> closed_set_type;
