@@ -14,10 +14,8 @@ namespace harmony {
 		// level last.
 		class deferred_actor {
 		public:
-			deferred_actor(const game::actor_ref & a, const vec2 & pos) {
-				actor = a;
-				position = pos;
-			}
+			deferred_actor(const game::actor_ref & a, const vec2 & pos) 
+				: actor(a), position(pos) {}
 			
 		public:
 			game::actor_ref actor;

@@ -8,10 +8,14 @@
 
 #include "lua_engine.h"
 #include "lua_vector.h"
+#include "lua_level.h"
+#include "lua_mark.h"
 #include "lua_sprite.h"
 #include "plat_interface.h"
 
 namespace harmony {
+	const char * lua::engine_context_registry_key = "harmony::engine_context";
+	
 	lua::engine::engine(void * context) {
 		// Set up the Lua state.
 		state_ = luaL_newstate();
@@ -19,7 +23,7 @@ namespace harmony {
 		
 		// Insert the context pointer into the registry.
 		lua_pushlightuserdata(state_, context);
-		lua_setfield(state_, LUA_REGISTRYINDEX, "harmony_engine_context");
+		lua_setfield(state_, LUA_REGISTRYINDEX, engine_context_registry_key);
 		
 		// Set up the search path for Lua files loaded from other scripts.
 		char * search_path = hplat_get_script_path();
@@ -38,6 +42,12 @@ namespace harmony {
 		
 		// Free the search path buffer.
 		free(search_path);
+		
+		// Register the API libraries.
+		register_vector_library(*this);
+		register_level_library(*this);
+		register_mark_library(*this);
+		register_sprite_library(*this);
 	}
 	
 	lua::engine::~engine() {

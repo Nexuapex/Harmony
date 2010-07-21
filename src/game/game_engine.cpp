@@ -6,10 +6,7 @@
 #include "game_engine.h"
 #include "game.h"
 #include "ai_player_agent.h"
-#include "lua_vector.h"
 #include "lua_level.h"
-#include "lua_mark.h"
-#include "lua_sprite.h"
 
 namespace harmony {
 
@@ -20,12 +17,6 @@ namespace harmony {
 
 	game::engine::engine() : lua_engine_(this), player_agent_(new ai::player_agent)
 	{
-		// Register Lua API functions.
-		lua::register_vector_library(lua_engine_);
-		lua::register_level_library(lua_engine_);
-		lua::register_mark_library(lua_engine_);
-		lua::register_sprite_library(lua_engine_);
-		
 		// DEMO: Load the initial level.
 		current_level_ = lua::load_level(lua_engine_, "survival.lua");
 		

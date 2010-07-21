@@ -17,6 +17,8 @@
 
 namespace harmony {
 	namespace lua {
+		extern const char * engine_context_registry_key;
+		
 		// Handles the Lua scripting engine and state.
 		class engine {
 		public:
